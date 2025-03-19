@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>flex - align-item 수직정렬</h3>
+<h3>메뉴선택</h3>
+<form action="">
+  <label><input onclick="flexJustify(this)" type="radio" name="fdtype" value="stretch" checked>stretch</label>
+  <label><input onclick="flexJustify(this)" type="radio" name="fdtype" value="flex-start">flex-start</label>
+  <label><input onclick="flexJustify(this)" type="radio" name="fdtype" value="flex-end">flex-end</label>
+  <label><input onclick="flexJustify(this)" type="radio" name="fdtype" value="center">center</label>
+  <label><input onclick="flexJustify(this)" type="radio" name="fdtype" value="baseline">baseline</label>
+</form>
+<br>
+<div id="container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+</body>
+</html>

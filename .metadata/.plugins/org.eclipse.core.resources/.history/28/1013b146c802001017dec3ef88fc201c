@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div {
+  border: 1px solid blue;
+}
+</style>
+<script>
+function proc1(){
+	
+	a = 24; 
+	b = 38;
+}
+</script>
+</head>
+<body>
+<input type="button" value="확인" onclick="proc1()">
+<br><br>
+<div id="result"></div>
+</body>
+</html>

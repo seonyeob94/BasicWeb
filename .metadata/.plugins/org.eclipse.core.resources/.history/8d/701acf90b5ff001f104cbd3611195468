@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body *{
+  box-sizing: border-box;
+}
+#top{
+  display: flex;
+  flex-direction: column;
+}
+header,aside,section,footer,nav{
+  border: 1px dotted gold;
+  margin: 1px;
+  padding: 5px;
+  border-radius: 20px; 
+}
+header,footer, nav{
+  height: 50px;
+  background: orange;
+}
+header{
+  height: 80px;
+}
+nav{
+  background: yellow;
+}
+section{
+  background: coral;
+}
+#content{
+  display: flex;
+  flex-direction: row;
+}
+</style>
+</head>
+<body>
+<div id="top">
+  <header></header>
+  <nav></nav>
+  <div id="content">
+    <aside></aside>
+    <section></section>
+    <aside></aside>
+  </div>
+  <header></header>
+</div>
+</body>
+</html>

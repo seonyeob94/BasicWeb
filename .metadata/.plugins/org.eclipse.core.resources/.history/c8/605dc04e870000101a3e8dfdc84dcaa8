@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//함수 표현식
+printValue = function(){
+	calc(); // 함수호출
+}
+
+ calc= function() {
+	alert("hello~");
+	
+}
+</script>
+</head>
+<body>
+<input type="button" value="확인" onclick="printValue()">
+</body>
+</html>

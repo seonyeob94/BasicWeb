@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+const sum = (...args) => {
+	//...args : 갯수가 정해지지 않은 값들을 받는 배열변수
+}
+const proc1 = () =>{
+	
+}
+</script>
+</head>
+<body>
+<div class="box">
+  <h3>나머지 매개변수</h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

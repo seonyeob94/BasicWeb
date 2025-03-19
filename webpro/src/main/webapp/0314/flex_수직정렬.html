@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+#container{
+  display: flex;
+  background: dodgerblue;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 300px;
+}
+#container div{
+  background: #f1f1f1;
+  width: 100px;
+  margin: 10px;
+  text-align: center;
+  font-size: 30px;
+}
+label{
+  font-size: 1.3rem;
+}
+#container div:nth-child(2n){
+  font-size: 80px;
+}
+</style>
+<script type="text/javascript">
+window.onload = function(){
+	//부모 검색
+	parent = document.getElementById('container');
+}
+
+function flexItem(target) {
+	parent.style.alignItems = target.value;
+}
+</script>
+</head>
+<body>
+<h3>flex - align-item 수직정렬</h3>
+<h3>메뉴선택</h3>
+<form action="">
+  <label><input onclick="flexItem(this)" type="radio" name="fdtype" value="stretch" checked>stretch</label>
+  <label><input onclick="flexItem(this)" type="radio" name="fdtype" value="flex-start">flex-start</label>
+  <label><input onclick="flexItem(this)" type="radio" name="fdtype" value="flex-end">flex-end</label>
+  <label><input onclick="flexItem(this)" type="radio" name="fdtype" value="center">center</label>
+  <label><input onclick="flexItem(this)" type="radio" name="fdtype" value="baseline">baseline</label>
+</form>
+<br>
+<div id="container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+/**
+ * 
+ */
+
+function calc(){
+	
+	//x,y요소 검색
+	xValue = document.getElementById('x').value;
+	
+	yValue = document.getElementById('y').value;
+	
+	add = xValue + yValue;
+	sub = xValue - yValue;
+	multi = xValue * yValue;
+	div = xValue / yValue;
+}

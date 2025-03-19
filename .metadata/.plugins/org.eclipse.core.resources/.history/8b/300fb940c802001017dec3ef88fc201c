@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+div {
+  border: 1px solid blue;
+}
+</style>
+</head>
+<body>
+<input type="button" value="확인" onclick="proc1()">
+<br><br>
+<div id="result"></div>
+</body>
+</html>

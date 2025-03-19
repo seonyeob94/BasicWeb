@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body *{
+  box-sizing: border-box;
+}
+#top{
+  display: flex;
+  
+}
+</style>
+</head>
+<body>
+<div id="top">
+  <header></header>
+  <nav></nav>
+  <div id="content">
+    <aside></aside>
+    <section></section>
+    <aside></aside>
+  </div>
+  <header></header>
+</div>
+</body>
+</html>

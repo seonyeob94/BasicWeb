@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+img {
+	width: 100px;
+	height: 100px;
+}
+iframe {
+	width: 100%;
+	height: 500px;
+	border: 1px dotted orange;
+}
+</style>
+<script>
+function display(url){
+  vurl="https://www.youtube.com/embed/"+url;
+  
+  //스크립트에서 html요소 iframe을 검색
+  ifr=document.getElementById('show');
+  ifr.setAttribute('src', vurl);
+
+}
+</script>
+</head>
+<body>
+
+<img onclick="display('QOa-3LAFCLU?si=C5WP_KPemCSJ3SWp')" src="../images/chopa.jpg" alt="chopa.jpg" >
+<img onclick="display('_onxKwVbxN8?si=3c8Fd8hjzoSCEzgE')" src="../images/Koala.jpg" alt="Koala.jpg" >
+
+<iframe id="show" title="동영상실행"></iframe>
+
+</body>
+</html>

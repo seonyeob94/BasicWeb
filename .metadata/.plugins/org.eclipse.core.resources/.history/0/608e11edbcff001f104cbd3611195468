@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#container{
+  display: flex;
+  background: dodgerblue;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 300px;
+}
+</style>
+</head>
+<body>
+<h3>flex - justify-content 수평정렬</h3>
+<h3>메뉴선택</h3>
+<form action="">
+  <label><input type="radio" name="fdtype" value="flex-start" checked>flex-start</label>
+  <label><input type="radio" name="fdtype" value="flex-end">flex-end</label>
+  <label><input type="radio" name="fdtype" value="center">center</label>
+  <label><input type="radio" name="fdtype" value="space-around">space-around</label>
+  <label><input type="radio" name="fdtype" value="sapce-between">sapce-between</label>
+</form>
+<br>
+<div id="container">
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</div>
+</body>
+</html>

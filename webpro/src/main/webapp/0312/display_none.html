@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+p {
+  border: 2px solid blue;
+  padding: 10px;
+  margin: 20px;
+  font-size: 1.5rem;	
+  display: none;
+}
+</style>
+<script type="text/javascript">
+function show(){
+	/* 
+	//p태그 검색 - 여러개의 ptag가 있어도 첫번째만 검색
+	let ptag=document.querySelector('p');
+	
+	//ptag변수를 이용해서 style을 설정
+	ptag.style.display = "block";  
+	*/
+	
+	// 모든 p태그를 검색
+	let ptag=document.querySelectorAll('p');
+	
+	//ptag변수는 NodeList로 유사배열이다
+	//ptag[0].style.display = "block";
+	//ptag[1].style.display = "block";
+	
+	//반복문을 이용
+	for(let i=0;i<ptag.length;i++){
+		ptag[i].style.display = "block";
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" value="확인" onclick="show()">
+<p>무궁화 꽃이 피었습니다1</p>
+<p>무궁화 꽃이 피었습니다2</p>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//const calc = function(op){}
+
+const calc= (op) =>{
+	
+	//op변수는 함수 호출시에 값을 받은 매개변수, 파라미터변수, 지역변수
+	//+,-,/,* 중에 하나가 대입한다
+	
+	//id=x인 요소 접근-값 가져오기 -String리턴
+	vx= paseInt(document.getElementById('x').value);
+	
+	//id=y인 요소 접근-값 가져오기 -String리턴
+	vy=  paseInt(document.getElementById('y').value);
+	
+	
+	switch(op){
+	case "+" :
+		res = vx+vy;
+		break;
+	case "-" :
+		res = vx-vy;
+		break;
+	case "/" :
+		res = vx/vy;
+		break;
+	case "*" :
+		res = vx*vy;
+		break;
+	}
+	
+	//출력
+	//id=sum인 요소 검색- 출력 - value
+	
+	documentElementById('sum').value;
+	
+	//id=sp1요소 검색 - vx값을 출력 - innerText
+	vx= documentElementById('sp1').innerText;
+
+	//id=sp2요소 검색 - vy값을 출력 - innerText
+	vy= documentElementById('sp2').innerText;
+	//id=sp3요소 검색 - res값을 출력 - innerText
+	res= documentElementById('sp3').innerText;
+}
+</script>
+</head>
+<body>
+<form>
+첫번째 :<input id="x"><br>
+두번째 :<input id="y"><br>
+결과 :<input id="sum"><br>
+<input type="button" onclick="calc('+')" value="+">
+<input type="button" onclick="calc('-')" value="-">
+<input type="button" onclick="calc('*')" value="*">
+<input type="button" onclick="calc('/')" value="/"><br>
+<p>첫번째 값 :<span id="sp1"></span> </p>
+<p>두번째 값 :<span id="sp2"></span> </p>
+<p>결과 :<span id="sp3"></span> </p>
+</form>
+
+</body>
+</html>

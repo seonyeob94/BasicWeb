@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+  // 변수 호이스팅
+  // 나중에 밑에서 변수가 선언 되더라도 내부적으로 끌어올리기로 실행한
+  // var는 가능-undefined로 실행, let,const는 불가능
+  console.log("a=", a);
+  
+  a=10;
+  
+  const a=20;
+
+</script>
+</body>
+</html>

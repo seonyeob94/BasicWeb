@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+
+<script type="text/javascript">
+//생성자 함수 -객체 선언
+function Rect(garo, sero){
+	this.garo = garo;
+	this.sero = sero;
+	
+	this.getArea= function(){
+		return this.garo*this.sero;
+	}
+}
+
+const proc1 = () =>{
+	const r1 = new Rect(4, 6);
+	const r2 = new Rect(8, 3);
+	
+	area1 = r1.getArea();
+	area2 = r2.getArea();
+	
+	printRect(r1, 'resul1');
+	printRect(r2, 'resul1');
+}
+
+const printRect = () =>{
+	
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>구구단 입력 - 출력하기</h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

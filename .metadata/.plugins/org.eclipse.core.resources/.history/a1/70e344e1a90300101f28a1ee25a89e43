@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+
+const myCar = {
+		
+		model : "x5",
+		make : "bmw",
+		year : 2020,
+		speed : 100,
+		
+		/* brak : function(){
+			this.speed = 0;
+		},
+		accel : function(){
+			this.speed =100;
+		} */
+		brake() {
+			this.speed = 0;
+		},
+		
+		accel() {
+			this.speed =100;
+		}
+}
+
+const proc1 = () => {
+	//정보출력
+	res= `***myCar의 정보***<br>`;
+	res+= `이름 : ${myCar.model}<br>` // ${myCar[model]}
+	res+= `제조사 : ${myCar.make}<br>`
+	res+= `연식 : ${myCar.year}<br>`
+
+ 	document.getElementById('result1').innerHTML = res;
+}
+
+const proc2 = () => {
+
+	res= `===myCar의 정보===<br>`;
+	
+	str="";
+	
+	for(let x in myCar){
+		//x에는 myCar의 속성 이름이 대입
+		str+=`${x} <br>`;
+	}
+	document.getElementById('result2').innerHTML = str;
+
+}
+
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>객체 정보 출력하기</h3>
+  myCar.model / myCar['model']<br>
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+
+<div class="box">
+  <h3>객체 정보 출력하기</h3>
+  myCar.model / myCar['model']
+  for~ in 반복문을 이용해서 key/value로 접근<br>
+  <input type="button" value="확인" onclick="proc2()">
+  <br><br>
+  <div id="result2"></div>
+</div>
+
+</body>
+</html>

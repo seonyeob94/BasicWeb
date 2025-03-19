@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script>
+const proc1 = function(){
+	
+	ptag= document.getElementsByTagName('p');
+	console.log(ptag);
+	for(i=0;i<ptag.length;i++){
+		ptag[i].style.color = red;
+	}
+	
+// 	ptag = document.querySelector('p');
+// 	console.log(ptag);
+	
+// 	ptag = document.querySelectorAll('p');
+// 	console.log(ptag);
+}
+</script>
+</head>
+<body>
+<input type="button" value="확인" onclick="proc1()">
+<p>무궁화 꽃이 피었습니다</p>
+<p>능소화 꽃이 피었습니다</p>
+<p>수선화 꽃이 피었습니다</p>
+<p>라일락 꽃이 피었습니다</p>
+<p>진달래 꽃이 피었습니다</p>
+</body>
+</html>

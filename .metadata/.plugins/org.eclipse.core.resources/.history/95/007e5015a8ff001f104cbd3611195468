@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+body{
+  min-width : 1000px;
+}
+header,aisde,section,footer{
+  border: 1px dotted gold;
+  margin: 1px;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 20px; 
+}
+header,footer{
+  height: 50px;
+  background: orange;
+}
+aisde, section{
+   height: 500px;
+}
+aisde{
+  width: 20%;
+  background: cyan;
+}
+#left{
+  float: left;
+}
+#right{
+  float: right;
+}
+section{
+  width: calc(60% - 1%);
+  background: coral;
+  float: left;
+}
+footer{
+  clear: both;
+}
+</style>
+</head>
+<body>
+<header></header>
+<aside id="left"></aside>
+<section></section>
+<aside id="right"></aside>
+<footer></footer>
+</body>
+</html>

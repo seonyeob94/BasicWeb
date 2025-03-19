@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+let a= 10;
+var b= 20;
+const c= 30;
+
+function a1() {
+	
+}
+
+function b1() {
+	
+}
+
+function c1() {
+	
+}
+
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

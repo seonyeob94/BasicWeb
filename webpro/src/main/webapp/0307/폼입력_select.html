@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+form {
+	border: 3px dotted orange;
+	margin: 30px;
+	padding: 5px;
+	width: 50%;
+	
+	margin: 30px; 
+}
+select {
+	
+}
+</style>
+</head>
+<body>
+
+<form action="select.jsp" method="post">
+
+  <select name="cars1">
+  
+    <option>BMW</option>
+    <option>현대자동차</option>
+    <option>기아자동차</option>
+    <option selected>벤츠</option>
+    <option>랜드로버</option>
+    <option selected>르노</option>
+    
+  </select>
+  
+  &nbsp; &nbsp; &nbsp;
+  
+  <select name="cars2" multiple size="2">
+  
+    <option>BMW</option>
+    <option>현대자동차</option>
+    <option>기아자동차</option>
+    <option selected>벤츠</option>
+    <option>랜드로버</option>
+    <option selected>르노</option>
+    
+  </select>
+  
+  <br><br>
+  
+  <button>전송</button>
+  <input type="reset" value="취소">
+  
+</form>
+
+</body>
+</html>

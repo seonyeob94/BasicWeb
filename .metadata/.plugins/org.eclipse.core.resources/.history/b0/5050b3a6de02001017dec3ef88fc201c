@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script>
+const fruit = ["사과", "바나나","복숭아","참외"];
+
+console.log(fruit);
+
+const proc1 = function(){
+	
+	//출력 함수 호출
+	arrPrint("result1")
+}
+//출력 함수
+const arrPrint = function(out){
+// 	document.getElementById(out).innerText = fruit;
+	let str="";
+	/* for(i=0; i<fruit.length; i++){
+		str += fruit[i] + "&nbsp;&nbsp;&nbsp;"
+	} */
+	fruit.forEach(function(fr){
+		str += fr + "&nbsp;&nbsp;&nbsp;"
+	})
+	document.getElementById(out).innerHTML = str;
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>리터럴 배열 <br>
+    const fruit - ["사과", "바나나","복숭아","참외"]
+  </h3>
+  <input type="button" value="확인" onclick="proc1()">
+  <br>
+  <div id="result1"></div>
+</div>
+
+<div class="box">
+  <h3>리터럴 배열 <br>
+    const fruit = []
+  </h3>
+  <input type="button" value="확인" onclick="proc2()">
+  <br>
+  <div id="result2"></div>
+</div>
+
+</body>
+</html>

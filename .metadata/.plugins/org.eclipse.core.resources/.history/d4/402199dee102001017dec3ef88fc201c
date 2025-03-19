@@ -1,0 +1,92 @@
+자바스크립트 사용서
+
+//스크립트에서 html요소 아이디를 이용한 검색
+ifr=document.getElementById('show');
+
+pri=document.getElementById('price');
+pri=document.querySelector('#price'); --es6
+
+//tag 이름을 이용한 검색
+aa=document.getElementsByTagName('form'); // 유사배열-HTMLCollection을 리턴
+aa[0]
+aa[1]
+
+//태그이름이 여러개 존재해도 첫번째 것만 검색됨
+aa =document.querySelector('form'); -es6
+//태그이름 여러개를 모두 검색
+aa =document.querySelectorAll('form'); -es6 // 유사배열-NodeList을 리턴
+aa[0]
+aa[1]
+
+//검색된 요소에서 입력값을 가져오기/출력하기
+pri.value = input 요소, select-option, textarea
+
+innerHTML = value요소를 제외한 다른 요소 div, span, p, a, td, label
+innerText = value요소를 제외한 다른 요소 div, span, p, a, td, label
+
+a="hello"
+a="<h1>hello</h1>"
+
+//변수 선언- 타입을 지정하지 않는다
+var ifr ; 함수범위
+let ifr; 블록범위, 똑같은 이름의 변수를 중복 선언 불가
+
+const ifr = "초기값"; //초기값을 변경할 수 없다
+
+var, let(es6), const(es6) 키워드를 생략할 수 있다
+
+//함수선언 - 선언식
+function display(){
+
+}
+function display(url){
+
+}
+
+//함수표현식
+const display = function(){
+}
+const display = function(url){
+}
+
+//화살표 함수 -es6버젼
+const display = () =>{
+}
+
+const display = (url) =>{
+}
+
+const display = url =>{
+}
+const arrPrint = (fr, out) => {
+}
+
+fr.forEach(function(item){
+})
+fr.forEach((item)=>{})
+fr.forEach(item=>{})
+
+백틱을 이용한 템플릿 리터럴 -es6버젼
+일반 문자와 변수를 하나의 문자열로 작성
++기호와 ""를 사용하지 않는다
+변수는 ${}
+
+a+"*"+b+"="+"+c
+
+`${a}*${b}=${c}`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

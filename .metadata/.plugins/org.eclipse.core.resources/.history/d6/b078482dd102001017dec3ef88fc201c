@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+const calc = function(){
+	
+	//입력태그의 id를 이용해서 입력한 값을 가져온다
+	fValue = document.getElementById('firstVal').value;
+	sValue = document.getElementById('secondVal').value;	
+	
+	sum= fValue + sValue;
+	
+	//출력
+	doucument.querySelector('#sum')
+}
+</script>
+</head>
+<body>
+첫번째 입력 값 : <input id="firstVal"> <br>
+두번째 입력 값 : <input id="secondVal"> <br>
+합계 : <input id="sum">
+<input type="button" value="계산" onclick="calc();">
+
+</body>
+</html>
