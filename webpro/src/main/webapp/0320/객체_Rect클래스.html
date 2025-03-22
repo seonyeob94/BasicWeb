@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+//캡슐화를 지원하지 않는다 - private, protected, public
+//필드를 정의하지 않는다 - 메소드만 정의
+//정식적인 표준은 아니지만 필드를 사용한다
+class Rect{
+	//생성자 함수
+	constructor(width, height){
+		this.width = width;
+		this.height = height;
+	}
+	//프로토타입 메소드 - this를 사용
+	getArea(){
+		return this.width * this.height;
+	}
+	//정적매소드 = this사용 불가 - instance프로퍼티를 참조하지 않는다
+	//매개변수로 값을 전달받는다
+	static getCircum(w,h){
+		return (w+h)*2;
+	}
+}
+
+console.log(typeof Rect);
+
+const proc1=()=>{
+	let rect1 = new Rect(4,9)
+	//정보 출력
+	printRect(rect1, 'result1');
+}
+
+const printRect=(obj, out)=>{
+	let vwid = obj.width
+	let vhei = obj.height
+	let area = obj.getArea()
+	let circ = Rect.getCircum(obj.width, obj.height)
+	
+	//출력정보
+	let str = `가로 : ${vwid}<br>`;
+	str += `세로 : ${vhei}<br>`;
+	str += `면적 : ${area}<br>`;
+	str += `둘레 : ${circ}<br>`;
+	document.getElementById(out).innerHTML = str;
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>구구단 입력 - 출력하기</h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

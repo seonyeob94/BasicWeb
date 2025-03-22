@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+class User{
+	constructor(name){
+		this.name = name;
+	}
+	//getter, setter 이름은 인스턴스 프로퍼티처럼 사용
+	//호출하는 것이 아니라 프로퍼티처럼 참조하는 형식- 내부적으로 메소드가 호출된다
+	//접근자 프로퍼티라고 한다 - 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수
+	get nameValue(){
+		return this.name
+	}
+	set nameValue(value){
+		this.name = value
+	}
+}
+
+console.log(typeof User);
+
+const proc1=()=>{
+	let user = new User('홍매화');
+	
+	str = user.name+"<br>";
+	str += user.nameValue+"<br>"; // getter호출
+
+	user.nameValue= "개나리"; // setter호출
+	
+	str += "변경후 <br>";
+	str += user.nameValue + "<br>"; //getter호출
+	
+	document.getElementById('result1').innerHTML = str;
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>구구단 입력 - 출력하기</h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

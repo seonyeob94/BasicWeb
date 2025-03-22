@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+
+<script type="text/javascript">
+proc1=()=>{
+	//배열선언
+	arr=[];
+	
+	//반복문
+	for( ; ;){
+		
+		//입력
+    	vname = prompt('입력할 이름');
+		
+		//break 조건
+		if(vname == ""||vname==null) break;
+		//배열 저장
+    	arr.push(vname);
+	}
+	
+	
+	
+	//출력
+	document.getElementById('result1').innerHTML = arr;
+}
+
+proc2= () =>{
+	//배열선언
+	arr=[];
+	//반복문
+	while(true){
+		
+		//입력
+		vnum = prompt('입력할 숫자');
+		if(vnum == null || vnum.trim() == ""){
+	        alert("공백입니다.");
+	        continue; 
+	    }
+		
+		
+		//비교 - 배열에 포함 되어있는지 ?? 없으면 -1
+		//입력한 값이 -1 이냐?? 맞으면 배열에 저장
+				
+		idx=arr.indexOf(vnum);
+		if(idx==-1) arr.push(vnum);
+			else {
+				alert("중복된 수입니다");
+		        continue; 
+			}
+
+// 		//includes : true/false
+// 		if( !arr.includes(vnum)) arr.push(vnum)
+// 			else alert("중복된 수입니다");
+
+		//break 조건
+		if(arr.length==5) break;
+		
+	}
+
+	//출력
+	document.getElementById('result2').innerHTML = arr;
+	
+}
+</script>
+</head>
+<body>
+
+
+	<div class="box">
+		<h3>prompt()를 이용하여 이름을 계속 입력 받아 배열에 저장하고 
+		출력하는 프로그램을 작성하시오. - 입력의 마지막은 공백 문자를 입력하거나 
+		“취소” 버튼을 눌렀을 때(null)로 한다</h3>
+
+		<input type="button" value="확인" onclick="proc1()"> <br> <br>
+		<div id="result1"></div>
+	</div>
+
+
+	<div class="box">
+		<h3>서로 중복되지 않은 정수 5개를 입력 받아 출력하는 프로그램을 작성하시오</h3>
+
+		<input type="button" value="확인" onclick="proc2()"> <br> <br>
+		<div id="result2"></div>
+	</div>
+
+</body>
+</html>

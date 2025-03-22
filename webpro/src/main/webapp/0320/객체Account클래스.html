@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+class Account{
+	
+	//user매개변수는 객체를 전달받는다{ name :"aaa", balance : 200}
+	/* constructor(user){
+		this.name = user.name;
+		this.balance = user.balance;
+	} */
+	
+	//구조분해
+	constructor({name, balance}){
+		this.name = name;
+		this.balance = balance;
+	}
+	static infoValue(...accObj){
+		//...accObj 나머지 매개변수 = Rest Parameter
+		//정해지지 않은 갯수의 값을 전달받는 배열 변수
+		//accObj[0] accObj[1] accObj[2]
+		
+		console.log(accObj);
+		
+		let str="";
+		
+		for(let i=0; i<accObj.length;i++){
+			str+=`${i}번째 : `;
+			str+= `${accObj[i].name}, ${accObj[i].balance} <br> `;
+						
+		}
+		return str;
+	}
+	
+	static st_balance(...accObj){
+		let sum=0;
+		
+		/* accObj.forEach(function(obj){
+			sum+=obj.balance;
+		})
+		
+		accObj.forEach( obj=>{
+			sum+=obj.balance;
+		}) */
+		//구조분해
+		accObj.forEach( ({balance})=>{
+			sum+=balance;
+		})
+		return sum;
+	}
+}
+
+const proc1=()=>{
+	const acc1 = new Account( {name :"aaa", balance : 200 });
+	const acc2 = new Account( {name :"bbb", balance : 500 });
+	const acc3 = new Account( {name :"ccc", balance : 300 });
+	
+	//정보출력
+	let info = Account.infoValue(acc1,acc2,acc3)
+	
+	document.getElementById('result1').innerHTML=info+"<br>";
+	
+	//
+	let total = Account.st_balance(acc1,acc2,acc3);
+	
+	document.getElementById('result1').innerHTML+="합="+total;
+	
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>
