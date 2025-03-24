@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+	today1 = new Date();
+	
+const proc1 = () =>{
+	today2 = new Date(1000);
+	today3 = new Date("2025. 3. 24");
+	today4 = new Date(2025, 2, 24);
+	
+	str = `${today1} <br>`;
+	str += `${today2} <br>`;
+	str += `${today3} <br>`;
+	str += `${today4} <br><br>`;
+	
+	str+= `${today1.toLocaleString()} <br>`
+	str+= `${today2.toLocaleDateString()} <br>`
+	str+= `${today3.toLocaleTimeString()} <br>`
+	str+= `${today4.toLocaleString()} <br>`
+	
+	document.querySelector('#result1').innerHTML = str;
+}
+
+const proc2 = () =>{
+	day = today1.getDay();
+// 	alert(day);
+
+	switch(day){
+	case 0:
+		res="일요일";
+		break;
+	case 1:
+		res="월요일";
+		break;
+	case 2:
+		res="화요일";
+		break;
+	case 3:
+		res="수요일";
+		break;
+	case 4:
+		res="목요일";
+		break;
+	case 5:
+		res="금요일";
+		break;
+	case 6:
+		res="토요일";
+		break;
+	}
+	
+	str = `오늘은 ${today1.toLocaleString()} <br>`
+	str += `${res}입니다`;
+	
+	document.querySelector('#result2').innerHTML=str;
+}
+
+const proc3= () =>{
+	arr=["일요일","월요일","화요일","수요일","목요일","금요일","토요일"];
+// 	arr[0] arr[1] arr[2] arr[3] 
+	day = today1.getDay();
+	
+	res = arr[day];
+	
+	
+	str = `오늘은 ${today1.toLocaleString()} <br>`
+	str += `${res}입니다`;
+	
+	document.querySelector('#result3').innerHTML=str;
+	
+}
+
+const proc4 = () =>{
+	//태어난 년월일
+// 	var myday = new Date("1994.5.19");
+	let myday = new Date(1994,4,19);
+	
+	totime = today1.getTime(); // millisec값이 리턴
+	mytime = myday.getTime();
+	
+	console.log(totime, mytime);
+	
+	mydays = totime - mytime;
+	myvalue = parseInt(mydays/1000/60/60/24);
+	
+	str = `오늘 : ${today1.toLocaleDateString()}<br>`;
+	str += `내 생일 : ${myday.toLocaleDateString()}<br>`;
+	str += `결과 : 오늘은 태어날부터 ${myvalue}일 지났습니다<br>`;
+// 	str += `결과 : 오늘은 태어날부터 ${myvalue.toFixed(0)}일 지났습니다<br>`;
+
+	
+	document.querySelector('#result4').innerHTML=str;
+}
+
+const proc5 =() =>{
+	//500일 후의 날짜를 구하기
+	
+	//현재의 millisec
+
+    totime = today1.getTime();
+	//500일 후의 millisec
+	after = 100*24*60*60*1000;
+	//현재의 millisec + 500일 후의 millisec
+	newdate = totime+after;
+	//Date객체를 생성(현재의 millisec + 500일 후의 millisec)
+	today500 = new Date(newdate);
+	//출력
+	str = `오늘 : ${today1.toLocaleDateString()}<br>`;
+	str += `100일 후 : ${today500.toLocaleDateString()}<br>`
+		
+		document.querySelector('#result5').innerHTML=str;
+}
+
+const proc6 =()=> {
+
+	//1. id=get인 요소 검색 - 값 가져오기
+	get = document.querySelector('#get').value;
+	//2. 1번 값으로 Date객체 생성
+	toget = new Date(get);
+	//3. 2번 객체변수에서 millisec값 구하기
+	gettime =toget.getTime();
+	//4. 현재의 millisec값 구하기
+	totime = today1.getTime();
+	//5. 현재의 millisec에서 3번 값을 빼기
+	after = totime-gettime;
+	//6. 갑으로 /1000 / 60 /60 /24
+	toafter =parseInt(after/1000/60/60/24);
+	//비교 6번의 값이 7이상 - 교환불가
+	if(toafter>7) {
+		str1='교환불가';
+	}
+	else if(toafter<0) str1 = '해당 상품을 구매하지 않았습니다'
+	else{
+		str1='교환가능';
+	}
+	//출력
+	str = `오늘 : ${today1.toLocaleDateString()}<br>`;
+	str += `구입한 날 : ${toget.toLocaleDateString()}<br>`;
+	str += `결과 : ${str1}`;
+
+	document.querySelector('#result6').innerHTML=str;
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>날짜 출력</h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+
+
+<div class="box">
+  <h3>요일 구하기<br>
+  getDay() : 0~6 사이의 값을 출력 <br>
+  if ~ else / switch</h3>
+  
+  <input type="button" value="확인" onclick="proc2()">
+  <br><br>
+  <div id="result2"></div>
+</div>
+
+
+<div class="box">
+  <h3>요일 구하기<br>
+  getDay() : 0~6 사이의 값을 출력 <br>
+  배열 이용</h3>
+  
+  <input type="button" value="확인" onclick="proc3()">
+  <br><br>
+  <div id="result3"></div>
+</div>
+
+
+<div class="box">
+  <h3>태어난 날로부터 현재까지 경과한 일수</h3>
+  
+  <input type="button" value="확인" onclick="proc4()">
+  <br><br>
+  <div id="result4"></div>
+</div>
+
+
+<div class="box">
+  <h3>500일 후의 날짜 구하기</h3>
+  
+  <input type="button" value="확인" onclick="proc5()">
+  <br><br>
+  <div id="result5"></div>
+</div>
+
+
+<div class="box">
+  <h3>구입한 날수가 7일 이상인지 아닌지 비교</h3>
+  구입날짜 입력 : <input type ="date" id="get">
+  <input type="button" value="확인" onclick="proc6()">
+  <br><br>
+  <div id="result6"></div>
+</div>
+
+
+
+</body>
+</html>
