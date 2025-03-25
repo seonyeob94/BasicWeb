@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+const proc1 = () =>{
+// 	window.open();
+// 	window.open("../0324/random객체.html", "_self");
+// 	aa= window.open("../0324/random객체.html", "랜덤객체", "width=400 height=300 top=100 left=200");
+	
+	window.open("winSub.html");
+	
+	
+}
+
+const proc2 = () =>{
+	
+	setTimeout(function(){
+		//result2인 요소를 검색
+		res2= document.querySelector("#result2")
+		
+		//style변경
+		res2.style.background = 'red';
+		
+		
+	}, 1000)
+}
+
+const proc3 = (target) =>{
+	//target. : 이벤트 호출시 this를 파라미터로 전달받은 변수
+	console.log(target);
+	
+	//이벤트 대상인 확인버튼을 비활성화 시킴 또는 감추기
+	target.style.display ="none";
+// 	target.setAttribute("disabled", "disabled");
+	
+	//target변수는 지역변수 - 전역변수를 만들기 stop()함수에서 사용하기 위해
+	gtarget = target;
+	/* vid=setInterval(function(){
+		
+	console.log(vid);
+	//result3인 요소를 검색
+		res3= document.querySelector("#result3")
+		vr = parseInt(Math.random()*256);
+		vg = parseInt(Math.random()*256);
+		vb = parseInt(Math.random()*256);
+		//style변경
+		res3.style.background = `rgb(${vr}, ${vg}, ${vb})`;
+		
+	}, 1000) */
+	
+	//setInterval(function()을 별도로 밖으로 빼서 구현)
+	vid= setInterval(intervalFunction, 1000);
+}//proc3 끝
+
+function intervalFunction(){
+	console.log(vid);
+	//result3인 요소를 검색
+		res3= document.querySelector("#result3")
+		vr = parseInt(Math.random()*256);
+		vg = parseInt(Math.random()*256);
+		vb = parseInt(Math.random()*256);
+		//style변경
+		res3.style.background = `rgb(${vr}, ${vg}, ${vb})`;
+}
+
+const stop = ()=>{
+	clearInterval(vid);
+	//확인 버튼을 다시 보여지게 설정한다
+	gtarget.style.display = "inline";// "block"; //inline
+}
+//중첩 setTimeout
+const proc4 = (target) =>{
+	target.style.display = "none";
+	//전역변수 변환 
+	gtarget1 = target;
+	vtime = setTimeout(function timePro(){
+		//랜덤 색상 생성
+		vr = parseInt(Math.random()*256);
+		vg = parseInt(Math.random()*256);
+		vb = parseInt(Math.random()*256);
+		
+		res4 =document.querySelector('#result4');
+		
+// 		res4.style.background = `rgb(${vr}, ${vg}, ${vb})`;
+		vr16 = vr.toString(16);
+		vg16 = vg.toString(16);
+		vb16 = vb.toString(16);
+		res4.style.background = `#${vr16}${vg16}${vb16}`
+		
+		vtime = setTimeout(timePro, 1000);
+	}, 1000)
+	
+}
+const stop4 = ()=>{
+	clearInterval(vtime);
+	//확인 버튼을 다시 보여지게 설정한다
+	gtarget1.style.display = "inline";// "block"; //inline
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>새로운 창(자식창) 열기<br>
+  자식창에서 이름을 입력하여 현재 파일(부모창) result1에 출력</h3>
+  
+  <input type="button" value="확인"  onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+
+<div class="box">
+  <h3>detTimeout(fn, millisec)<br>
+  millisec 지정시간이 경과하면 fn이 수행된다</h3>
+  
+  <input type="button" value="확인" onclick="proc2()">
+  <br><br>
+  <div id="result2"></div>
+</div>
+
+<div class="box">
+  <h3>setInerval(fn, millisec)<br>
+  millisec 지정시간이 경과할때마다 fn이 수행된다</h3>
+  
+  <input type="button" value="확인" onclick="proc3(this)">
+  <input type="button" value="종료" onclick="stop()">
+  <br><br>
+  <div id="result3"></div>
+</div>
+
+<div class="box">
+  <h3>중첩 setTimeout(fn, millisec)<br>
+  setInerval처럼 millisec 지정시간이 경과할때마다 fn이 수행된다<br>
+  millisec에 fn 수행시간이 포함되지 않는다</h3>
+  
+  <input type="button" value="확인" onclick="proc4(this)">
+  <input type="button" value="종료" onclick="stop4()">
+  <br><br>
+  <div id="result4"></div>
+</div>
+
+</body>
+</html>

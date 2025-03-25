@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+span{
+  font-size : 1.5rem;
+  font-weight : bold;
+  color : orange;
+}
+</style>
+
+<script type="text/javascript">
+const proc1 = () =>{
+	
+	str = `hostname : ${location.hostname}<br>
+		       port : ${location.port}<br>
+		       host : ${location.host}<br>
+	       protocol : ${location.protocol}<br>
+	           path : ${location.pathname}<br>
+	           href : ${decodeURI(location.href)}<br>`;
+	           
+	document.querySelector('#result1').innerHTML= str; 
+}
+
+const proc2 = () =>{
+	
+	location.href="window객체.html";
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+<div class="box">
+  <h2>문서이동하기</h2>
+  <h3>1. button 함수호출 -<span>onclick="proc2()"</span> </h3>
+  <input type="button"  value="1.이동" onclick="proc2()">
+  
+  <h3>2. button 서버로전송 -<span>onclick="location.href='href.jsp?id=a001'"</span></h3>
+  <input type="button"  value="1.이동" onclick="location.href='hrefsend.jsp?id=a001'">
+  <br>
+  
+  <h3> 3. href에서 다른 화일지정  <span>href="../0324/date객체.html"</span></h3>
+  <a href="../0324/date객체.html">이동</a>
+  
+  <h3> 4.  href 에서 script의 함수호출  <span>href="javascript:proc2()"</span></h3>
+  <a href="javascript:proc2()">이동</a>
+  
+  <h3>5.  a태그 onclick=script함수호출  <span>onclick="proc2()"</span> </h3>
+  <a href="#" onclick="proc2()">이동</a>
+    
+   <h3>6.  a태그 onclick=서버로 보내기<span> onclick="location.href='href.jsp?id=a001'"</span></h3> 
+   <a href="#"  onclick="location.href='hrefsend.jsp?id=a001'">서버로get</a>
+</div>
+
+<div class="box">
+
+  <h3>location객체 <br>
+  assign() : 새로운 문서로드 , 히스토리 남김, 뒤로가기 가능 <br>
+  replace() :새로운 문서 대체 히스토리 남기지 않음 , 뒤로가기 불가능 <br> 
+  reload() : 현재 문서를 다시 로드-</h3>
+  <input type="button" value="assign" onclick="fnAssign()">
+  <input type="button"  value="replace" onclick="fnReplace()">
+  <input type="button"  value="reload" onclick="fnRelad()">
+  <br><br>
+  <div id="result2" ></div>
+ </div>
+
+</body>
+</html>

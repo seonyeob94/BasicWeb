@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+//랜덤을 발생
+ rand = (parseInt)(Math.random()*100+1);
+// console.log(rand);
+	arr=[];
+	cnt=0;
+	res="";
+const proc1=()=>{
+	str="";
+	//id가 su인 요소검색 - 값 가져오기
+
+
+		
+	get = document.querySelector('#su').value;
+	
+	if(rand==get) {
+		alert("정답입니다")
+		res=rand;
+	}
+	else if(rand>get) alert("더 큰수를 입력하세요")
+
+	else  alert("더 작은수를 입력하세요")
+
+    	arr.push(get);
+    	cnt++;
+	
+		
+
+	
+	str+=`입력한 값들 : ${arr.join(', ')} <br>`;
+	str+=`입력횟수 : ${cnt}<br>`;
+	str+=`정답 : ${res}<br>`;
+		document.querySelector('#result1').innerHTML=str;
+	
+}
+</script>
+
+</head>
+<body> 23 67 54 33
+
+
+<div class="box">
+  <h3>1~100사이의 랜덤 발생<br>
+  입력해서 맞추는 프로그램<br>
+  입력한 수와 랜덤수를 비료해서 힌트를 제공- 더 큰 수 입력/ 더 작은 수 입력<br>
+  입력 횟수와 입력 값들을 나열</h3>
+  1~100 사이 숫자 입력
+  <input type="text" id="su">
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>
