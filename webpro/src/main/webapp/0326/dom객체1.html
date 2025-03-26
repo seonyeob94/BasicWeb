@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+const proc1 = () =>{
+	/* vua = document.getElementById('ua');
+// 	vlist = vua.getElementsByTagName('li');
+	vlist = vua.querySelectorAll('li');
+	
+	console.log(vlist); */
+	
+	vlist = document.querySelectorAll('#ua li');
+	
+	console.log(vlist);
+	
+	/* for(i=0; ii<vlist.length;i++){
+		vlist[i];
+	}  */
+	
+	let str="";
+	
+	vlist.forEach(function(item, index){
+		console.log(item.firstChild);
+// 		alert(item.firstChild);
+
+		str+= item.firstChild.data+"<br>";
+	})
+	
+	document.getElementById('result1').innerHTML =str;
+}
+
+const proc2 = () =>{
+	
+	//ub요소의 li태그의 값을 가져온다
+	list = document.querySelectorAll('#ub li');
+	list.forEach( item =>{
+		vdata = item.firstChild.data;
+		
+		//이미지 생성
+		vimg = document.createElement('img');
+		vimg.setAttribute('src', '../images/'+vdata );
+		vimg.setAttribute('alt', vdata);
+		
+		item.appendChild(vimg);
+	})
+}
+
+const imgcreate = (vli) =>{
+	
+		vdata = vli.firstChild.data;
+	
+		
+		//이미지 생성
+		vimg = document.createElement('img');
+// 		vimg.setAttribute('src', '../images/'+vdata );
+// 		vimg.setAttribute('alt', vdata);
+		vimg.src = '../images/'+vdata;
+		vimg.alt = vdata;
+		vli.appendChild(vimg);
+	
+}
+window.onload = function(){
+	
+	clist = document.querySelectorAll('#uc li');
+	console.log(clist);
+	//clist 갯수만큼 반복
+	
+	clist.forEach( list=>{
+		
+		list.addEventListener('click',imgFn);
+		
+		/* //list변수에 이벤트 핸들러 등록
+		list.addEventListener('click', function(ev){
+			
+//			vdata= ev.target.firstChild.data;
+			vdata= list.firstChild.data;
+			
+			vimg = document.createElement('img');
+			vimg.src = '../images/'+vdata;
+			vimg.alt = vdata;
+			
+			list.appendChild(vimg);
+			
+			console.log(ev.target)
+		}) */
+		
+		
+	})
+	
+}
+
+function imgFn(){
+// const imgFn = () =>{
+	
+	//화살표 함수 내에서 this는 상위객체를 가르키는 객체가 된다
+	console.log(this);
+	
+	//this를 사용 할 수 있다. - click한 li
+	vdata= this.firstChild.data;
+	console.log(vdata);
+	
+	vimg = document.createElement('img');
+	vimg.src = '../images/'+vdata;
+	vimg.alt = vdata;
+	
+	this.appendChild(vimg);
+}
+</script>
+<style type="text/css">
+
+img{
+	width: 80px;
+	height: 80px;
+	border-radius: 50% 
+}
+</style>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  <ul id="ua">
+    <li>List Item1</li>
+    <li>List Item2</li>
+    <li>List Item3</li>
+    <li>List Item4</li>
+    <li>List Item5</li>
+  </ul>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+<div class="box">
+  <h3>li요소의 자식인 문자를 가져와서 이미지를 생성한다</h3>
+  <ul id="ub">
+    <li>Koala.jpg</li>
+    <li>flower-1.jpg</li>
+    <li>UML.jpg</li>
+    <li>딸기스무디.jpg</li>
+    <li>무지게5.png</li>
+  </ul>
+  
+  <input type="button" value="확인" onclick="proc2()">
+  <br><br>
+  <div id="result2"></div>
+</div>
+
+<div class="box">
+  <h3>li요소를 클릭하면 자식인 문자를 가져와서 이미지를 생성한다<br>
+  onclick='imgcreate()'</h3>
+  <ul id="ub">
+    <li onclick='imgcreate(this)'>Koala.jpg</li>
+    <li onclick='imgcreate(this)'>flower-1.jpg</li>
+    <li onclick='imgcreate(this)'>UML.jpg</li>
+    <li onclick='imgcreate(this)'>딸기스무디.jpg</li>
+    <li onclick='imgcreate(this)'>무지게5.png</li>
+  </ul>
+</div>
+  
+  
+
+<div class="box">
+  <h3>li요소를 클릭하면 자식인 문자를 가져와서 이미지를 생성한다<br>
+  addEventListener()-이벤트 핸들러 작성'</h3>
+  <ul id="uc">
+    <li>Koala.jpg</li>
+    <li>flower-1.jpg</li>
+    <li>UML.jpg</li>
+    <li>딸기스무디.jpg</li>
+    <li>무지게5.png</li>
+  </ul>
+  
+  
+</div>
+
+</body>
+</html>

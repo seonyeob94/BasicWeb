@@ -29,6 +29,31 @@ const proc2 = () =>{
 	
 	location.href="window객체.html";
 }
+const fnAssign= () =>{
+	location.assign("window객체.html");
+}
+
+const fnReplace = () =>{
+	location.replace("window객체.html");
+}
+
+const fnReload = () =>{
+	//랜덤으로 발생되는 문자열을 result1에 출력
+	//문자열을 배열에 저장
+	arr=["Hello","Happy","Good Morning", "aaa", "bbb",
+		"ccc", "ddd","eee","ffff","GGG"];
+	//arr[0] arr[3]
+	
+	//문자열 선택을 위한 랜덤
+	rnd = parseInt(Math.random()*arr.length);
+	document.getElementById("result2").innerHTML = "<h1>"+ arr[rnd]+"</h1>";
+	document.getElementById("result2").style.color="red";
+	
+	//1초 후에 원래문서로 돌아오기
+	setTimeout(function(){
+		location.reload();
+	},3000)
+}
 </script>
 </head>
 <body>
@@ -72,7 +97,7 @@ const proc2 = () =>{
   reload() : 현재 문서를 다시 로드-</h3>
   <input type="button" value="assign" onclick="fnAssign()">
   <input type="button"  value="replace" onclick="fnReplace()">
-  <input type="button"  value="reload" onclick="fnRelad()">
+  <input type="button"  value="reload" onclick="fnReload()">
   <br><br>
   <div id="result2" ></div>
  </div>

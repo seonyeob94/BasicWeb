@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+//문자열 배열 생성
+arr = ["Hello", "Good Morning", "가가가", "거거거", "고고고",
+	"구구구", "그그그", "기기기", "좋은 아침"];
+	
+	
+const addProc1 = () =>{
+	rnd = parseInt(Math.random()*arr.length);
+	
+	//arr[rnd]
+	
+	//선택한 문자열로 textNode 생성하기
+	vtxt = document.createTextNode(arr[rnd]);
+	
+	//p태그 생성하기
+	vptag = document.createElement('P');
+	vptag.onclick=function(){
+		this.style.color = 'red';
+	}
+	
+	//p태그에 textNode를 추가하기
+	vptag.appendChild(vtxt);
+	
+	//result1에 p태그 추가하기
+// 	result1= document.querySelector('#result1');
+// 	result1.appendChild(vptag);
+
+	document.querySelector('#result1').appendChild(vptag);
+}
+//ad
+window.onload = function(){
+	
+	ptag =document.querySelectorAll('#result1 p');
+	console.log(ptag);
+}
+
+const delProc1 = () =>{
+	//삭제대상을 선택 - firstChild / lastChild
+	
+	//부모 - result1을 검색
+	vres1= document.querySelector('#result1');
+	
+	//삭제대상
+	vchild = vres1.firstChild
+	
+	vres1.removeChild(vchild);
+	
+}
+
+const addProc2= () =>{
+	//랜덤 발생
+	rnd = parseInt(Math.random()*arr.length);
+	
+	//문자열 선택
+	//textNode를 생성
+	vtxt = document.createTextNode(arr[rnd]);
+	
+	//삭제버튼 생성
+	//type, value, onclick
+	vdel = document.createElement('input');
+	vdel.type="button"
+	vdel.value="삭제"
+	vdel.onclick=function(){
+		this.parentNode.remove();
+	}
+	
+	//ptag생성
+	vptag = document.createElement('P');
+	
+	//ptag에 textNode를 추가
+	vptag.appendChild(vtxt);
+	
+	//ptag에 삭제버튼 추가
+	vptag.appendChild(vdel);
+	
+	//result2에 ptag를 추가
+	result2= document.querySelector('#result2');
+	result2.appendChild(vptag);
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>랜덤으로 발생되는 문자열을 텍스트 노드로 생성 <br>
+  p태그생성 - 텍스트노드를 추가<br>
+  p태그를 result1에 추가</h3>
+  
+  <input type="button" value="추가" onclick="addProc1()">
+  <input type="button" value="삭제" onclick="delProc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+
+<div class="box">
+  <h3>랜덤으로 발생되는 문자열을 텍스트 노드로 생성 <br>
+  삭제버튼 생성<br>
+  p태그생성 - 텍스트노드를 추가, 삭제버튼 추가<br>
+  p태그를 result2에 추가<br>
+  삭제버튼 클릭시 해당 태그를 삭제한다</h3>
+  
+  <input type="button" value="추가" onclick="addProc2()">
+  <br><br>
+  <div id="result2"></div>
+</div>
+
+</body>
+</html>

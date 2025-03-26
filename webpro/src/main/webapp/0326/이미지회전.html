@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+const start =(target)=>{
+	target.style.display ="none";
+	
+	gtarget1 = target;
+	vid = setTimeout(function timeImage(){
+		
+		res =document.querySelector('#result1');
+		resChild = res.firstChild
+		res.appendChild(resChild);
+		
+		vid=setTimeout(timeImage, 1000);
+	}, 1000)
+	
+}
+
+const stop =()=>{
+	clearInterval(vid);
+	gtarget1.style.display = "inline";
+	
+}
+</script>
+<style type="text/css">
+
+img{
+	width: 80px;
+	height: 80px;
+	border-radius: 50% 
+}
+</style>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="시작" onclick="start(this)">
+  <input type="button" value="종료" onclick="stop()">
+  <br><br>
+  <div id="result1">
+    <img src="../images/국화4.jpg" alt="국화4.jpg">
+    <img src="../images/무지게2.png" alt="무지게2.png">
+    <img src="../images/사막.jpg" alt="사막.jpg">
+    <img src="../images/쇼핑백.jpg" alt="쇼핑백.jpg">
+    <img src="../images/꽃.jpg" alt="꽃.jpg">
+    <img src="../images/수지.gif" alt="수지.gif">  
+  
+  </div>
+</div>
+
+</body>
+</html>
