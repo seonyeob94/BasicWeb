@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+// $(document).ready(()=>{
+$(function(){ 	
+	
+	//보이기버튼을 클릭하면 
+	$('#show').on('click', function(){
+		$('#result1 h2').show();
+		$(this).hide();
+	})
+	
+	$('#result1 h2').on('click', function(){
+// 		$(this).css('display', 'none');
+// 		this.style.display = 'none';
+		$(this).hide();
+		
+		//비교 - 보이는 h2의 갯수
+		if( $('h2:visible').length < 1) {
+			$('#show').show();
+		}
+	})
+	/* 
+	hlist = $('#result1 h2');
+	for(i=0; i<hlist.length; i++){
+		//[i]을 붙혀 dom형식이 되면서 .addEventListener이 가능
+		hlist[i].addEventListener('click', function(){
+			
+		})
+		//실행 안됨
+		//hlist.eq(i).addEventListener('click', function(){})
+	}
+	 */
+	
+}) 
+</script>
+<style type="text/css">
+#show{
+	display : none;
+}
+</style>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>h2요소를 클릭하면 사라지도록 한다<br>
+  다 사라지면(보이는 갯수가 0개이면) 보이기 버튼이 나타난다<br>
+  보이기 버튼을 클릭하면 사라졌던 h2요소를 다시 보이게 한다<br>
+  보이기 버튼 자신은 안보이도록 설정</h3>
+  
+  <br><br>
+  <input type="button" value="보이기" id="show">
+  <div id="result1">
+    <h2>클릭하면 사라집니다1.</h2>
+    <h2>클릭하면 사라집니다2.</h2>
+    <h2>클릭하면 사라집니다3.</h2>
+    <h2>클릭하면 사라집니다4.</h2>
+    <h2>클릭하면 사라집니다5.</h2>
+    <h2>클릭하면 사라집니다6.</h2>
+    <h2>클릭하면 사라집니다7.</h2>
+  </div>
+</div>
+
+</body>
+</html>

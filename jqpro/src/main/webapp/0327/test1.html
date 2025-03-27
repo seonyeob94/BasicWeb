@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script type="text/javascript">
+const proc1= () =>{
+	hlist = document.querySelectorAll("#result1 h1");
+	
+// 	hlist.style.color='red';
+	
+	hlist.forEach(function(h, index){
+		h.style.color="red";
+	})
+	
+	hlist[5].style.color="green";
+	
+}
+
+const proc2 = () =>{
+
+// 	hlist = $('#result2 h1');
+	
+// 	hlist.css('color', 'red');
+// 	hlist.css('background', 'silver');
+	$('#result2 h1').css('color', 'red').css('background', 'silver');
+	
+// 	h2=hlist.eq(2)
+	
+	$('#result2 h1').eq(2).css('color',  'green');
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>자바스크립트를 이용한 선택과 style</h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1">
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+  </div>
+</div>
+
+
+<div class="box">
+  <h3>jQuery를 이용한 선택과 style</h3>
+  
+  <input type="button" value="확인" onclick="proc2()">
+  <br><br>
+  <div id="result2">
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+  </div>
+</div>
+
+</body>
+</html>

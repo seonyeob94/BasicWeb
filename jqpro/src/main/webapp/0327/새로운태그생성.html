@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<style type="text/css">
+img{
+	width : 100px;
+	height : 100px;
+	margin: 2px;
+}
+</style>
+<script>
+
+arr=["단풍.jpg","close.png","소우주.jpg",
+	"spongebob.png","무지게1.png","국화5.jpg",
+	"배경1.jpg","가구3.jpg","가위_좌.png","뱅쇼.jpg",
+	"딸기스무디.jpg","국화.jpg","수국7.jpg","스포츠3.jpg"]
+
+$(function(){
+	
+	$('#btn2').on('click', function(){
+		
+		rnd = parseInt(Math.random()*arr.length);
+		//result2에 이미지 추가
+		$('<img>',{ 
+				  src : '../images/'+arr[rnd],
+				  alt : arr[rnd],
+				  click : function(){
+					  $(this).css('border', '2px solid red');
+				  }
+		}).appendTo($('#result2'));
+	})
+	
+	
+	//id=btn인 요소 검색 - 이벤트 핸들러 작성
+	$('#btn1').on('click', function(){
+		
+		//ptag를 생성 1
+		ptag = $('<p class="aa">Hello jQuery</p>');
+		$('#result1').append(ptag);
+		
+		$('<p class="aa">Hello jQuery</p>').appendTo($(result1));
+		
+		$('#result1').append($('<p class="aa">Hello jQuery</p>'));
+	
+		//ptag생성 2
+		ptag2 = $('<p></p>',{ 
+					"class" : "aa",
+					"text" : "Hello jQuery",
+					"click" : function(){
+						$(this).css('background', 'yellow')
+					}
+			})
+		$(ptag2).appendTo($('#result1'));	
+	})
+	
+	//id가 aa인 요소에 대해서 ~~~~~~ this==click한 '.aa'
+	//새롭게 생성된 요소에 대한 이벤트는 bind방식이 아니고 
+	//delegate방식으로 처리한다
+	
+	$(document).on('click','.aa', function(){
+		$(this).css('background', ' yellow');
+	})
+	/* $('.aa').on('click', function(){
+		$(this).css('background', ' yellow');
+	}) */
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" id="btn1">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="이미지추가" id="btn2">
+  <br><br>
+  <div id="result2"></div>
+</div>
+
+</body>
+</html>

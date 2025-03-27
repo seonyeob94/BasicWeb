@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script type="text/javascript">
+window.onload = function(){
+	
+	hlist = document.querySelectorAll('#result1 h1')
+	
+	for(i=0; i<hlist.length; i++){
+		hlist[i].style.color="red";
+	}
+	
+	hlist[2].style.color="blue";
+}
+
+$(document).ready(function(){
+	
+// 	hlist = $('#result2 h1');
+	$('#result2 h1').css('color', 'green');
+	$('#result2 h1').eq(1).css('color', 'red');
+	
+});
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>script와 window.onload 함수 내에서 요소를 검색</h3>
+  
+
+  <br><br>
+  <div id="result1">
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+  </div>
+</div>
+
+
+<div class="box">
+  <h3>jQuery의 $(document).ready(function(){ }) 함수 내에서 요소를 검색</h3>
+  
+
+  <br><br>
+  <div id="result2">
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+    <h1>무궁화 꽃이 피었습니다</h1>
+  </div>
+</div>
+
+</body>
+</html>

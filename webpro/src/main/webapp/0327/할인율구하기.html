@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style type="text/css">
+#result1, #result2{
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+}
+#result1 div, #result2 div{
+  flex: 25%;
+  margin: 2px;
+  padding: 2px;
+  background: lightgray;
+}
+img{
+  width: 100%;
+  height: 75%;
+}
+</style>
+<script type="text/javascript">
+let ptag = null;
+const proc1=(vimg)=>{
+	
+	//ptag를 지운다
+	if(ptag != null) ptag.remove();
+	
+	//랜덤 발생 : 5-10 textNode로 생성
+	rnd = parseInt(Math.random()*6+5);
+	txt = document.createTextNode("할인율 "+ rnd+"%");
+		
+	//p태그 생성 
+	ptag = document.createElement('p');
+	
+	//p태그에 textNode를 추가
+	ptag.appendChild(txt);
+	
+	//p태그를 클릭한 이미지(vimg)의 부모 div에 추가
+	vimg.parentNode.append(ptag);
+	
+	//현재 이미지의 클릭이벤트를 삭제한다
+	vimg.removeAttribute('onclick');
+}
+
+window.onload = function(){
+	//result2의 이미지 검색
+	img2 = document.querySelectorAll('#result2 img');
+	//NodeList, 배열처럼 인텍스를 사용할 수 있다
+	
+	for(i=0; i<img2.length; i++){
+		img2[i].addEventListener('click', fn_listener)
+				
+	}
+	
+}
+let ptag2 = null;
+function fn_listener(){
+// 	this
+//	envent.target
+	
+	// ptag2를 지운다
+	if(ptag2 != null) ptag2.remove();
+	
+
+	//랜덤 발생 : 5-10 textNode로 생성
+	rnd = parseInt(Math.random()*6+5);
+	txt = document.createTextNode("할인율 "+ rnd+"%");
+		
+	//p태그2 생성 
+	ptag2 = document.createElement('p');
+
+	//p태그2에 textNode를 추가
+	ptag2.appendChild(txt);
+	
+	//p태그2를 클릭한 이미지(vimg)의 부모 div에 추가
+	this.parentNode.append(ptag2);
+	
+	//현재 이미지의 클릭이벤트를 삭제한다
+	this.removeEventListener('click', fn_listener);
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>이미지클릭시 랜덤으로 5~10사이의 값을 발생 <br>
+  할인율 5% = p태그를 생성하여 클릭한 이미지의 부모 div에 추가<br>
+  한번만 클릭이 되도록 하고 클릭시 이전 p태그는 지운다</h3>
+  <br>
+  <div id="result1" class="result">
+    <div><img onclick="proc1(this)" src="../images/꽃.jpg" alt="꽃.jpg"></div>
+    <div><img onclick="proc1(this)" src="../images/식품1.jpg" alt="식품1.jpg"></div>
+    <div><img onclick="proc1(this)" src="../images/봄이부시게.jpg" alt="봄이부시게.jpg"></div>
+    <div><img onclick="proc1(this)" src="../images/셔틀콕.jpg" alt="셔틀콕.jpg"></div>
+  </div>
+</div>
+
+<div class="box">
+  <h3>이미지클릭시 랜덤으로 5~10사이의 값을 발생 <br>
+  할인율 5% = p태그를 생성하여 클릭한 이미지의 부모 div에 추가<br>
+  한번만 클릭이 되도록 하고 클릭시 이전 p태그는 지운다</h3>
+  <br>
+  <div id="result2" class="result">
+    <div><img src="../images/꽃.jpg" alt="꽃.jpg"></div>
+    <div><img src="../images/식품1.jpg" alt="식품1.jpg"></div>
+    <div><img src="../images/봄이부시게.jpg" alt="봄이부시게.jpg"></div>
+    <div><img src="../images/셔틀콕.jpg" alt="셔틀콕.jpg"></div>
+  </div>
+</div>
+
+
+</body>
+</html>

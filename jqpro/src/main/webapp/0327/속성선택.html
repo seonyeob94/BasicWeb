@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+$(document).ready(function(){
+	
+	//id=btn1인 요소 검색 - 이벤트 핸들러 작성
+	$('#btn1').on('click', function(){
+		$('p[title*=korea]').css('color', 'red');
+		
+		$('p[title~=korea]').css('background', 'lime');
+		
+		$('p[title|=무궁화]').css('font-size', '1.5rem');
+	})
+	
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" id="btn1">
+  <br><br>
+  <div id="result1">
+    <p title="무궁화">무궁화 꽃이 피었습니다</p>
+    <p title="진달래">무궁화 꽃이 피었습니다</p>
+    <p title="수선화">무궁화 꽃이 피었습니다</p>
+    <p title="무궁화-korea">무궁화 꽃이 피었습니다</p>
+    <p title="korea123">무궁화 꽃이 피었습니다</p>
+    <p title="korea 123">무궁화 꽃이 피었습니다</p>
+  </div>
+</div>
+
+</body>
+</html>

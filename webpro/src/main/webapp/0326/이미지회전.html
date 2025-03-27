@@ -5,24 +5,47 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="../css/public.css">
 <script type="text/javascript">
+let gstop = null;
+let resChild = null; // 모든이미지, result1의 자식으로 설정
 const start =(target)=>{
 	target.style.display ="none";
+	if(gstop != null) gstop.style.display = "inline";
 	
+	//시작버튼을 전역변수로 전환
 	gtarget1 = target;
-	vid = setTimeout(function timeImage(){
+	
+	//종료버튼 클릭시 생성된 border테두리 없애기 - 
+	if(resChild !=null){
+		resChild[rand].style.border = 'none'}
+	
+	
+	
+	vid = setInterval(function timeImage(){
+// 	vid = setTimeout(function timeImage(){
 		
 		res =document.querySelector('#result1');
-		resChild = res.firstChild
-		res.appendChild(resChild);
+		resChild = res.children;
+		res.appendChild(resChild[0]);
 		
-		vid=setTimeout(timeImage, 1000);
+// 		vid=setTimeout(timeImage, 1000);
 	}, 1000)
 	
 }
 
-const stop =()=>{
-	clearInterval(vid);
+const stop =(stop1)=>{
+
+	//종료버튼을 전역변수로 전환
+	gstop=stop1;
 	gtarget1.style.display = "inline";
+	
+	
+	clearInterval(vid);
+	stop1.style.display ="none";
+	
+	//랜덤발생
+	rand = parseInt(Math.random()*resChild.length);
+	
+	resChild[rand].style.border = "5px double red";
 	
 }
 </script>
@@ -42,7 +65,7 @@ img{
   <h3></h3>
   
   <input type="button" value="시작" onclick="start(this)">
-  <input type="button" value="종료" onclick="stop()">
+  <input type="button" value="종료" onclick="stop(this)">
   <br><br>
   <div id="result1">
     <img src="../images/국화4.jpg" alt="국화4.jpg">
@@ -50,7 +73,10 @@ img{
     <img src="../images/사막.jpg" alt="사막.jpg">
     <img src="../images/쇼핑백.jpg" alt="쇼핑백.jpg">
     <img src="../images/꽃.jpg" alt="꽃.jpg">
-    <img src="../images/수지.gif" alt="수지.gif">  
+    <img src="../images/식품1.jpg" alt="식품1.jpg">  
+    <img src="../images/봄이부시게.jpg" alt="봄이부시게.jpg">  
+    <img src="../images/셔틀콕.jpg" alt="셔틀콕.jpg">  
+    <img src="../images/수국7.jpg" alt="수국7.jpg">  
   
   </div>
 </div>
