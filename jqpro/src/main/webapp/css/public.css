@@ -12,7 +12,8 @@ form {
 	padding : 10px;
 	
 }
-.box input[type=button]{
+.box input[type=button],
+.box butten[type=button]{
 	
 	width : 100px;
 	height : 40px;

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+
+		let str="";
+$( function(){
+	$('#spring1').on('change', function(){
+		
+		//sedl1 = $("#spring1" option:selected).val();
+		sel1 = $('option:selected', this).val();
+		console.log(sel1);
+		
+	})
+	
+	$('#spring2').on('change', function(){
+		//반복문을 이용
+		$('option:selected', this).each( function(){
+			 str += $(this).val() + "<br>"
+		})
+		$('#result2 div').html(str);
+	})
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  
+  <br><br>
+  <div id="result1">
+    <form>
+      봄소식 : 
+      <select name="spring" id="spring1">
+        <option >개나리</option>
+        <option selected>진달래</option>
+        <option>민들레</option>
+        <option selected>벚꽃</option>
+        <option>목련</option>
+        <option>철쭉</option>
+      </select>
+    </form>
+    
+  </div>
+</div>
+
+<div class="box">
+  <h3></h3>
+  
+
+  <br><br>
+  <div id="result2">
+    <form>
+      봄소식 : <br>
+      <select name="spring" id="spring2" multiple size="6">
+        <option >개나리</option>
+        <option selected>진달래</option>
+        <option>민들레</option>
+        <option selected>벚꽃</option>
+        <option>목련</option>
+        <option>철쭉</option>
+      </select>
+    </form>
+    
+    <div></div>
+    
+  </div>
+</div>
+
+</body>
+</html>

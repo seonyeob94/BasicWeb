@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+
+
+const proc2 = () =>{
+	$('#result2 li:first, #result2 li:last').css('background','yellow');
+	$('#result2 li:eq(5)').css('background','red');
+	
+	$('#result2 li:lt(4)').css({ 'font-size' : '1.5rem', 'font-weight' : 'bold' });
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <br><br>
+  <div id="result1">
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+      <li>four</li>
+      <li>five</li>
+      <li>six</li>
+      <li>seven</li>
+      <li>eight</li>
+      <li>nine</li>
+    </ul>
+  
+  </div>
+</div>
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" onclick="proc2()">
+  <br><br>
+  <div id="result2">
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+      <li>four</li>
+      <li>five</li>
+      <li>six</li>
+      <li>seven</li>
+      <li>eight</li>
+      <li>nine</li>
+    </ul>
+  
+  </div>
+</div>
+
+</body>
+</html>

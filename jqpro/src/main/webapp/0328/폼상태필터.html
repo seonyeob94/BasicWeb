@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+const proc1 = () =>{
+	$('#result1 *:enabled').css('border','2px solid blue');
+	
+	$('#result1 *:disabled').css('background','skyblue');
+	
+	//$('#result1 *:selected')
+	//$('#result1 select > option:selected');
+	opt = $('#result1 option:selected').val();
+	console.log(opt);
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1">
+    <form>
+      <input type="text" name="id" ><br>
+      <input type="password" name="pass" value="1234" disabled><br>
+      <br>
+      <input type="radio" value="남자" name="gender" checked>남자
+      <input type="radio" value="여자" name="gender">여자
+      
+      <br><br>      
+      <select name="disSelect">
+        <option>Option1</option>
+        <option>Option2</option>
+        <option selected>Option3</option>
+        <option>Option4</option>
+      </select> <br><br>
+      
+      <textarea name="enTextarea" rows=10 cols=20 >text</textarea>
+      <br>
+      <input type="button" value="확인" onclick="alert('hello~~')"> <br>
+    </form>
+  
+  </div>
+</div>
+
+</body>
+</html>
