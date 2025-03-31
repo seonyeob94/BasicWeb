@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+$(function(){
+	$('p').on('click', function(){
+		
+		if($(this).parent().is('.result')){
+			$(this).clone(true).appendTo($(this).parent()).css('color','red');
+		}
+		else{
+			alert("작업대상이 아닙니다");
+		}
+		
+	})
+})
+
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3>p태그를 클릭하면 부모가 class가 result인지 비교<br>
+  맞다면 p태그를 복사해서 p태그의 부모요소에 붙혀넣기</h3>
+  <br><br>
+  
+  <div id="result1" class="result">
+    <p>무궁화 꽃이 피었습니다</p>
+  </div>
+  
+  <p>개나리 꽃이 피었습니다</p>
+  
+  <div id="result2" class="result">
+    <p>능소화 꽃이 피었습니다</p>
+  </div>
+  
+  <p>개나리 꽃이 피었습니다</p>
+  
+  <div id="result3" class="result">
+    <p>진달래 꽃이 피었습니다</p>
+  </div>
+  
+  <p>개나리 꽃이 피었습니다</p>
+  
+</div>
+
+</body>
+</html>

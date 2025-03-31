@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+$(function(){
+	
+	$('#btn1').on('click', function(){
+		
+		//필터
+		$('p:eq(1)').css('background', 'yellow');
+		//메서드, 이것을 권장
+		$('p').eq(2).css('background', 'pink');
+		//필터
+		$('p:even').css('color', 'red');
+		//메서드, 이것을 권장
+		$('p').odd().css('color', 'blue');
+		//필터
+		$('p:first').css('font-size', '1.5rem');
+		//메서드, 이것을 권장
+		$('p').last().css('font-size', '1.5rem');
+		//메서드, 이것을 권장
+		$('p').filter(':gt(3)').css('border', '1px solid green');
+		
+		//$('p.intro')
+		//$('p').filter('.intro')
+		$('p').not('.intro').css('background', 'lime');
+	})
+	
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" id="btn1">
+  <br><br>
+  <div id="result1">
+    <p>무궁화 꽃이 피었습니다</p>
+    <p class="intro">무궁화 꽃이 피었습니다</p>
+    <p>무궁화 꽃이 피었습니다</p>
+    <p>무궁화 꽃이 피었습니다</p>
+    <p class="intro">무궁화 꽃이 피었습니다</p>
+    <p class="intro">무궁화 꽃이 피었습니다</p>
+    <p>무궁화 꽃이 피었습니다</p>
+    <p>무궁화 꽃이 피었습니다</p>
+    <p class="intro">무궁화 꽃이 피었습니다</p>
+    <p class="intro">무궁화 꽃이 피었습니다</p>
+  </div>
+</div>
+
+</body>
+</html>

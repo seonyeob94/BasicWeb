@@ -13,21 +13,17 @@ $(function(){
 		//반복문
 		$('#testForm *:visible').each(function(a,b){
 			
-			if (this.tagName== "INPUT") {
-				str += `${this.tagName} ==>>> ${$(this).attr('name')} : ${$(this).val()} <br>`;
-			
-			   vtype = $(this).attr('type');
-				//prop(속성) : 속성의 상태 값을 가져온다
-				if(vtype == 'radio' && $(this).prop('checked')) {
-					str += '성별선택 : ' + $(this).val() + '<br>'; 
-				}
-			
+			if ($(this).is('input')) {
+				str+=this.tagName+"==>>>"+$(this).attr('name')+" : "+$(this).val()+"<br>";
 			}
-			else if(this.tagName!= "BR"){
-				str += `${this.tagName} ==>>> ${$(this).text()} <br>`
+			if($(this).is('span')){
+				str +=this.tagName+"==>>>"+$(this).text() + "<br>";
 			}
-			
+			//tag이름 비교
+			console.log(this.tagName);
 		})
+		// if($(this).attr('type')=='radio') 
+			 str += "성별선택 : "+$('input[name="sung"]:checked').val();
 		
 		$('#out_visible').html(str);
 	})
@@ -39,10 +35,10 @@ $(function(){
 		//반복문
 		$('#testForm *:hidden').each(function(a,b){
 		if ($(this).is('input')) {
-			str+="INPUT==>>>"+$(this).attr('name')+" : "+$(this).val()+"<br>";
+			str+=this.tagName+"==>>>"+$(this).attr('name')+" : "+$(this).val()+"<br>";
 		}
 		if($(this).is('span')){
-			str += "SPAN==>>>"+$(this).text() + "<br>";
+			str += this.tagName+"==>>>"+$(this).text() + "<br>";
 		}
 			
 		})

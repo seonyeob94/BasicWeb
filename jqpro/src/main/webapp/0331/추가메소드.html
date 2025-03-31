@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+$(document).ready(function(){
+	//p태그를 검색한다
+	/* ptag = document.querySelector('.box1 p');// NodeList
+	for(i=0;i<ptag.length;i++){
+		ptag[i].addEventListener('click', function(){
+			
+		})
+	}
+	 */
+	
+	
+	ptag = $('.box1 p').on('click', function(){ 
+		vdata = $(this).attr('title');
+		//vdata = $(this).text;
+		
+		//새로운 이미지 생성
+		vimg = $('<img>' , {
+						src : `../images/${vdata}.jpg`,
+						alt : vdata
+		})	
+		//$(this).append(vimg);
+		$(vimg).appendTo(this);
+	})
+	
+	$('.box2 p').on('click', function(){
+		vdata = $(this).attr('title');
+		//vdata = $(this).text;
+		
+		//새로운 이미지 생성
+		vimg = $('<img>' , {
+						src : `../images/${vdata}.jpg`,
+						alt : vdata
+		})	
+		//$(this).prepend(vimg);
+		$(vimg).prependTo(this);
+	})
+	
+	$('.box3 p').on('click', function(){
+		vdata = $(this).attr('title');
+		//vdata = $(this).text;
+		
+		//새로운 이미지 생성
+		vimg = $('<img>' , {
+						src : `../images/${vdata}.jpg`,
+						alt : vdata
+		})	
+		
+		$(vimg).insertBefore(this);
+		//$(this).before(vimg);
+	})
+	
+	$('.box4 p').on('click', function(){
+		vdata = $(this).attr('title');
+		//vdata = $(this).text;
+		
+		//새로운 이미지 생성
+		vimg = $('<img>' , {
+						src : `../images/${vdata}.jpg`,
+						alt : vdata
+		})	
+		
+		$(vimg).insertAfter(this);
+		//$(this).after(vimg);
+	})
+	
+})
+	
+	
+
+</script>
+<style>
+img{
+  width: 80px;
+  heigth: 80px;
+}
+p{
+  border : 1px dotted orange;
+}
+</style>
+</head>
+<body>
+
+
+<div class="box box1">
+  <h3>p태그를 클릭하면 이미지를 추가한다- append/appendTo</h3>
+  
+  <p title="Tulips">튜울립</p>
+  <p title="Chrysanthemum">국화</p>
+  <p title="Koala">코알라</p>
+  <p title="Hydrangeas">수국</p>
+  
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+
+<div class="box box2">
+  <h3>p태그를 클릭하면 이미지를 추가한다 - prepend/ prependTo</h3>
+  
+  <p title="Tulips">튜울립</p>
+  <p title="Chrysanthemum">국화</p>
+  <p title="Koala">코알라</p>
+  <p title="Hydrangeas">수국</p>
+  
+  <br><br>
+  <div id="result2"></div>
+</div>
+
+<div class="box box3">
+  <h3>p태그를 클릭하면 이미지를 추가한다 - before/ insertBefore</h3>
+  
+  <p title="Tulips">튜울립</p>
+  <p title="Chrysanthemum">국화</p>
+  <p title="Koala">코알라</p>
+  <p title="Hydrangeas">수국</p>
+  
+  <br><br>
+  <div id="result3"></div>
+</div>
+
+<div class="box box4">
+  <h3>p태그를 클릭하면 이미지를 추가한다 - after/ insertAfter</h3>
+  
+  <p title="Tulips">튜울립</p>
+  <p title="Chrysanthemum">국화</p>
+  <p title="Koala">코알라</p>
+  <p title="Hydrangeas">수국</p>
+  
+  <br><br>
+  <div id="result4"></div>
+</div>
+
+</body>
+</html>
