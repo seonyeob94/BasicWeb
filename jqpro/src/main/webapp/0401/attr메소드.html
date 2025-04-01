@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<style>
+img{
+  width : 100px;
+  height : 100px;
+}
+</style>
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+$(function(){
+	//id=btn1인 요소 검색 - 이벤트
+	$('#btn1').on("click", ()=>{
+		
+		//img의 title를 설정
+		$('img').attr('title', function(){
+	
+			//src의 속성값을 가져온다 - attr('src')
+			let vsrc = $(this).attr('src');
+			
+			//이름을 추출
+			let start = vsrc.lastIndexOf("/")+1;
+			let end = vsrc.lastIndexOf(".");
+			vtitle = vsrc.slice(start, end);
+			
+			// return 추출한 이름;
+			return vtitle;
+			
+		})//
+	
+	})//btn1
+	
+	$('#btn2').on('click', ()=>{
+		$('img').removeAttr('title');
+	})
+	
+})
+
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="title설정하기" id="btn1">
+  <input type="button" value="title지우기" id="btn2">
+  <br><br>
+  <div id="result1">
+    <img src="../images/image.3.jpg" alt="image.3.jpg">
+    <img src="../images/국화5.jpg" alt="국화5.jpg">
+    <img src="../images/대나무숲.jpg" alt="대나무숲.jpg">
+    <img src="../images/수국8.jpg" alt="수국8.jpg">
+    <img src="../images/우주3.jpg" alt="우주3.jpg">
+  </div>
+</div>
+
+</body>
+</html>
