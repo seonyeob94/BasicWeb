@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script>
+function login(userId, fn){
+	setTimeout( ()=>{
+		console.log("userId가 a001인 데이터의 name을 가져오기")
+		const vname = "김은대";
+		fn(vname);
+	},2000)
+}
+
+/*  login("a001", function(userName){
+	console.log(userName, "님 환영합니다")
+})  */
+
+function addToCart(product, fn){
+	
+	setTimeout( ()=>{
+		
+		fn(product);
+	},3000)
+}
+
+/* addToCart("딸기", function(item){
+	console.log(`${item}을 장바구니에 넣었습니다`)
+}) */
+
+function makePayment(cardNo, product, fn){
+	setTimeout( ()=>{
+		
+		fn(cardNo,product)
+	},1000)
+}
+
+/* makePayment("123412341234", "딸기", function(cno,prod){
+	console.log(`${cno.slice(0,4)}*******으로 ${prod}를 구매했습니다`)
+}) */
+
+/* const proc1 = () =>{
+	
+	/실행순서를 보장할 수 없다, 오류가 발생되는 상황
+	 login("a001", function(userName){
+			console.log(userName, "님 환영합니다")
+		});
+	 
+	 addToCart("딸기", function(item){
+			console.log(`${item}을 장바구니에 넣었습니다`)
+		});
+	 
+	 makePayment("123412341234", "딸기", function(cno,prod){
+			console.log(`${cno.slice(0,4)}*******으로 ${prod}를 구매했습니다`)
+		});
+	 
+} */
+
+const proc1 = () =>{
+	login("a001", function(userName){
+		console.log(userName, "님 환영합니다")
+		
+		 addToCart("딸기", function(item){
+				console.log(`${item}을 장바구니에 넣었습니다`)
+				
+				
+				makePayment("123412341234", "딸기", function(cno,prod){
+					console.log(`${cno.slice(0,4)}*******으로 ${prod}를 구매했습니다`)
+					
+					/* //결제후 리뷰기능
+					reviewPro(function(){
+						
+
+						//쿠폰받기 기능
+						getCoupon(function(){
+							이런식으로 기능이 추가될때마다 callback함수가 추가되면서
+							callback 지옥이 발생한다
+						})//쿠폰받기
+					
+					})//리뷰기능 */
+				
+				});//makePayment
+		 });//addToCart
+	});//login
+}
+
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

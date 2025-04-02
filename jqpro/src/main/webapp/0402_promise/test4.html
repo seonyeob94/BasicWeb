@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script>
+function getData(){
+	
+	const promise = new Promise( (resolve,reject)=>{
+
+		setTimeout( ()=>{
+			
+			//const data = {name : "김은대"};
+			0const data = null;
+			
+			if(data != null){
+
+				resolve(data);
+			}
+			else{
+				reject(new Error("데이터 가져오기 실패"));
+			}
+			
+		},1000)
+	})
+	
+	return promise;
+}
+
+function proc1(){
+	
+	promi = getData();
+	promi.then( data =>{
+		console.log(promi);
+		console.log(data.name);
+	})
+	.catch( err =>{
+		console.log(promi);
+		console.log(err);
+	})
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script type="text/javascript">
+/* 
+function main(fn){
+	console.log(fn);
+}
+const proc1=()=>{
+	main(10);
+	main('hello')
+
+} */
+
+function main(fn){
+	//fn은 main()함수 호출시 전달받은 function()이다
+	//main()함수가 수행되는 도중에 fn에 전달됨. function을 호출
+	console.log("1");
+	
+	//호출
+	fn();
+}
+const proc1 = ()=>{
+
+	main(function(){
+	console.log("2");
+	})
+	console.log("3");
+}
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" onclick="proc1()">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>
