@@ -37,10 +37,12 @@ function makePayment(cardNo, product, fn){
 }
 
 /* makePayment("123412341234", "딸기", function(cno,prod){
-	console.log(`${cno.slice(0,4)}*******으로 ${prod}를 구매했습니다`)
+	console.log(`${cno.slice(0,4)}********으로 ${prod}를 구매했습니다`)
 }) */
 
-/* const proc1 = () =>{
+/* 
+
+const proc1 = () =>{
 	
 	/실행순서를 보장할 수 없다, 오류가 발생되는 상황
 	 login("a001", function(userName){
@@ -55,7 +57,8 @@ function makePayment(cardNo, product, fn){
 			console.log(`${cno.slice(0,4)}*******으로 ${prod}를 구매했습니다`)
 		});
 	 
-} */
+} 
+*/
 
 const proc1 = () =>{
 	login("a001", function(userName){

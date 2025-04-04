@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+
+const getData = (url) =>{
+	
+	return new Promise(function(resolve, reject){
+		
+		const xhr = new XMLHttpRequest();
+		
+		
+		//요청
+		xhr.open('get', url, true);
+		xhr.send();
+		
+		//응답 - 요청을 하고 123단계가 지나 4단계가 되었을때 실행
+		xhr.onload= function(){
+			
+			res= xhr.responseText;
+			resolve(res);
+			
+		}//onload()
+		
+		xhr.onerror = function(){
+			reject(new Error("오류가 발생"))
+		}
+		
+		
+	})//promise()
+	
+	
+}//getData()
+
+$(function(){
+
+	$('#text').on('click', ()=>{
+		
+		promi =	getData("text.jsp");
+		promi.then( function(res){
+			// res : 홍매화/진달래/목련화/산수유/개나리
+			
+			datas =res.split("/");
+			
+			code ="<ul>";
+			$.each(datas, function(i,v){
+				//datas[i] v
+				code += `<li>${v}</li>`;
+			})
+			
+			code += "</ul>"
+			
+			$('#result1').html(code);
+		})
+		.catch( function(err){
+			alert(err)
+		})
+		
+		
+	})//onclick
+	
+	$('#jsonarr').on('click', function(){
+		
+		promi = getData('arr.jsp')
+		promi.then( text =>{
+			//텍스트 기반의 직렬화된 json배열 문자 데이터			
+			// [ "홍매화", "진달래", "무궁화", "산수유", "벚꽃"]
+			
+			// script객체로 역직렬화
+			return JSON.parse(text);
+		})
+		.then( data =>{
+			// data : javascript객체- 배열데이터
+			// [ "홍매화", "진달래", "무궁화", "산수유", "벚꽃"]
+		
+			code="<ol>";
+			
+			data.forEach(function(ar,index){
+				code += `<li>${ar}</li>`
+			})
+			
+			code += "</ol>";
+			
+			$('#result2').html(code);
+		})
+		.catch( err =>{
+			alert(err);
+		})
+		
+	})	
+	
+	$('#jsonobj').on('click', function(){
+		
+		promi = getData('obj.jsp') 
+		promi.then( text => {
+			return JSON.parse(text);
+		})
+		.then( data =>{
+			// data : javascript객체- 배열데이터
+			
+			
+			code = `아이디 : ${data.mem_id}<br>`;
+			code += `이름 : ${data.mem_name}<br>`;
+			code += `전화번호 : ${data.mem_hp}<br>`;
+			code += `이메일 : ${data.mem_mail}<br>`; 
+			
+			$('#result3').html(code);
+			
+		})
+		.catch( err=>{
+			alert(err);
+		})
+		
+		
+		
+	})
+	
+	$('#jobjarr').on('click', function(){
+	
+		promi = getData('jobarr.jsp')
+		promi.then( text =>{
+			return JSON.parse(text);
+		})
+		.then ( data =>{
+			
+			code = "";
+			data.forEach(function(list,index){
+				code += `${index+1}번째 데이터***<br>`;
+				code += `아이디 : ${list.mem_id}<br>`;
+				code += `이름 : ${list.mem_name}<br>`;
+				code += `전화번호 : ${list.mem_hp}<br>`;
+				code += `이메일 : ${list.mem_mail}<br><br>`;
+				
+			})
+				$('#result4').html(code);
+		})
+		.catch( err=>{
+			alert(err);
+		})
+		
+	})
+	
+	
+})
+
+
+</script>
+
+<style>
+#result{
+  box-sizing : border-box;
+  display : flex;
+  flex-direction : row;
+  width : 98%;
+}
+#result div{
+  box-sizing : border-box;
+  flex : 25%;
+}
+</style>
+
+</head>
+<body>
+
+
+<div class="box">
+
+  <h3></h3>
+  <input type="button" value="text"  id="text">
+  <input type="button" value="arr"  id="jsonarr">
+
+  <input type="button" value="jsonobj"  id="jsonobj">
+  <input type="button" value="jsonobjarr"  id="jobjarr">
+  <br><br>
+  <div id="result">
+	  <div id="result1"></div>
+	  <div id="result2"></div>
+	  <div id="result3"></div>
+	  <div id="result4"></div>
+  </div>
+  
+</div>
+
+</body>
+</html>

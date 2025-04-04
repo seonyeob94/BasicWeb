@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"  href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+
+<script>
+
+const  xhr = new XMLHttpRequest();		
+
+const getData = (url) =>{
+	 
+	 //요청
+	 xhr.open("get", url, true);//get방식
+	 xhr.send();
+	 
+	 xhr.onload = function(){
+		 res = this.responseText;
+		 //res = "홍매화/진달래/목련화/산수유/개나리"
+		 
+		 console.log("res==", res);
+		 return res;	
+	 }
+}
+
+$( ()=>{
+	
+ $('#text').on('click', function(){  	
+	
+	
+	 let data = getData("text.jsp")
+		
+	
+		 
+	 arr = data.split("/"); //arr는 배열로 생성
+	 //res = "홍매화/진달래/목련화/산수유/개나리"
+	 console.log(data);
+		 
+	 code = "<ul>";
+	 
+	 for(let aa of arr){
+	  	 code += `<li>${aa}</li>`;
+	  }
+	 
+	  code +="</ul>";
+		 
+	  $('#result1').html(code);
+		 
+	 
+	 
+  })//onclick
+	
+
+	
+  $('#jsonarr').on('click', function(){  	
+// 	 const  xhr = new XMLHttpRequest();		
+		
+		
+  })//onclick
+  
+
+
+ $('#jsonobj').on('click', function(){  	
+// 	 const  xhr = new XMLHttpRequest();		
+		
+		
+  })//onclick
+
+
+
+  $('#jobjarr').on('click', function(){
+// 	 const  xhr = new XMLHttpRequest();		
+	  
+	    
+   })//onclick
+ 	
+
+})//$(functiion())
+
+</script>
+
+<style>
+#result{
+  box-sizing : border-box;
+  display : flex;
+  flex-direction : row;
+  width : 98%;
+}
+#result div{
+  box-sizing : border-box;
+  flex : 25%;
+}
+</style>
+
+</head>
+<body>
+
+<div class="box">
+
+  <h3></h3>
+  <input type="button" value="text"  id="text">
+  <input type="button" value="arr"  id="jsonarr">
+
+  <input type="button" value="jsonobj"  id="jsonobj">
+  <input type="button" value="jsonobjarr"  id="jobjarr">
+  <br><br>
+  <div id="result">
+	  <div id="result1"></div>
+	  <div id="result2"></div>
+	  <div id="result3"></div>
+	  <div id="result4"></div>
+  </div>
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
