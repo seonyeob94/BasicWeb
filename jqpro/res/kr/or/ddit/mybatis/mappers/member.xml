@@ -5,8 +5,6 @@
 	<select id="memberList" resultType="MemberVo">
 		SELECT *
 		FROM MEMBER
-		ORDER BY MEM_NO
-	
 	</select>
 	
 	

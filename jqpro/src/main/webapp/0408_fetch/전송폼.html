@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+
+<script>
+const getData = function(url, ph, pb){	
+	
+	fetch(url, {
+		method : 'post',
+		headers : ph,
+		body : pb
+	})
+	.then( resp =>{
+		//resp : Response 객체		
+		//ok값 비교
+		console.log(resp);
+	
+		if(resp.ok) return resp.json(); //역직렬화
+		else throw new Error(resp.statusText)
+	})
+	.then( data =>{
+		
+		//출력
+		code  =`<p>아이디 : ${data.id}</p>`;
+		code +=`<p>이름 : ${data.name}</p>`
+		code +=`<p>이메일 : ${data.email}</p>`;
+		
+		$('#result1').html(code);
+		
+	})
+	.catch( err =>{
+		console.log(err);
+	})
+}
+
+$(document).ready(function(){
+	//파라미터 전송
+	$('#params').on('click', function(){
+		
+		//입력한 값을 가져오기 
+		
+		vid = $('#id').val();
+		vname =$('#name').val();
+		vemail =$('#email').val();
+		
+		fheader = {
+				"Content-type" : "application/x-www-form-urlencoded"
+		}
+		
+		fbody = "id=" + vid + "&name=" + vname + "&email=" + vemail;
+		//"id=" ""안에 공백이 있으면 안됨
+		
+		getData('params.jsp', fheader, fbody);
+		
+	})
+	
+	//직렬화 전송
+	$('#seria').on('click',function(){
+		
+		
+		//입력한 값을 가져오기 
+		
+		vid = $('#id').val();
+		vname =$('#name').val();
+		vemail =$('#email').val();
+		
+		fheader = {
+				"Content-type" : "application/json;charset=UTF-8"
+		}
+		fbody = JSON.stringify({id : vid, name : vname, email : vemail});
+		
+		getData("/jqpro/Serial.do", fheader, fbody);
+				
+	})
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <form>
+  	<input type="text" placeholder="아이디" name="id" id="id"><br>
+  	<input type="text" placeholder="이름" name="name" id="name"><br>
+  	<input type="text" placeholder="이메일" name="email" id="email"><br>
+    <br>
+    <input type="button" value="params" id="params">
+    <input type="button" value="직렬화" id="seria">
+  </form>
+  
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

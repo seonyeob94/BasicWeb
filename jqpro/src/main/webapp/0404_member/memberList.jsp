@@ -1,3 +1,4 @@
+<%@page import="com.google.gson.GsonBuilder"%>
 <%@page import="kr.or.ddit.member.vo.MemberVo"%>
 <%@page import="kr.or.ddit.mybatis.config.MybatisUtil"%>
 <%@page import="com.google.gson.Gson"%>
@@ -7,7 +8,7 @@
     pageEncoding="UTF-8"%>
 
 <%
-
+//json일때는 http파일이 들어가면 안됨
 
 //서버영역(controller- 서블릿)
 
@@ -23,13 +24,14 @@
 //이름, 전화번호, 이메일, 주소...
 	List<MemberVo> list = sql.selectList("member.memberList");
 
+     sql.close();
 //memberVo객체를 직렬화해서 요청한 클라이언트 영역으로 다시 보낸다 -toJSON()
-	Gson gson = new Gson();
+// 	Gson gson = new Gson();
+	Gson gson = new GsonBuilder().setPrettyPrinting().create();
 	String result = gson.toJson(list);
 //텍스트 기반의 json 형식의 배열데이터
 	out.print(result);
 	out.flush();
 	
-
 
 %>
