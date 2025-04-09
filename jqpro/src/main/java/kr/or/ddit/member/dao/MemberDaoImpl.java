@@ -47,4 +47,26 @@ public class MemberDaoImpl implements IMemberDao {
 		return list;
 	}
 
+	@Override
+	public MemberVo loginMember(MemberVo vo) {
+		
+		SqlSession sql = MybatisUtil.getInstance();
+		MemberVo member =null;
+		
+		try {
+			
+			member = sql.selectOne("member.loginMember", vo);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(sql != null) {
+				sql.commit();
+				sql.close();
+			}
+		}
+		return member;
+	}
+
 }

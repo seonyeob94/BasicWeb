@@ -13,5 +13,14 @@ public interface IMemberDao {
 	 * result : list<memberVo>
 	 */
 	public List<MemberVo> memberList();
+	
+	/*
+	 * 로그인 하기
+	 * parameter : MemberVo (mem_id, mem_pass)
+	 * result : MemberVo
+	 * 
+	 */
+	
+	public MemberVo loginMember(MemberVo vo);
 
 }

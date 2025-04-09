@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+$(function(){
+	
+	const async_login = async (url, head, data)=>{
+		
+		try{
+			
+			const resp =await fetch(url, {
+					method : 'post',
+					heagers : head,
+					body : data
+			})
+		
+			result = await resp.json();
+			
+			console.log(result);
+			//출력
+			code  =`<p>아이디 : ${result.mem_id}</p>`;
+			code +=`<p>이름 : ${result.mem_name}</p>`;
+			code +=`<p>주소 : ${result.mem_add1}</p>`;
+			code +=`<p>전화 : ${result.mem_hp}</p>`;
+			
+			$('#result1').html(code);
+		}catch(err){
+			console.log(err);
+		}
+		
+	}
+	
+	$('#asend').on('click', function(){
+		//입력한 id,pass 가져온다
+		vid = $('#id').val().trim();
+		vpw = $('#pw').val().trim();
+		
+		fheader = {
+				"Content-type" : "application/json;charset=utf-8"
+		}
+		fbody = JSON.stringify({mem_id : vid, mem_pass : vpw});
+		
+		async_login('/jqpro/LoginController.do', fheader, fbody);
+		
+	})
+	
+
+	////-------------fetch-------------------
+	
+	
+	const fetch_login=(url, head, data)=>{
+		fetch(url, {
+			method : 'post',
+			heagers : head,
+			body : data
+		})
+		.then( resp =>{
+			//Response객체
+			if(resp.ok){
+				return resp.json();
+			}else{
+				throw new Error(resp.statusText)
+			}
+		})
+		.then( data=>{
+			console.log(data);
+
+			//출력
+			code  =`<p>아이디 : ${data.mem_id}</p>`;
+			code +=`<p>이름 : ${data.mem_name}</p>`;
+			code +=`<p>주소 : ${data.mem_add1}</p>`;
+			code +=`<p>전화 : ${data.mem_hp}</p>`;
+			
+			$('#result2').html(code);
+			
+			
+		})
+		.catch( err =>{
+			console.log(err);
+		})
+	}
+	
+	
+	$('#fsend').on('click', function(){
+		//입력한 id,pass 가져온다
+		vid = $('#id').val().trim();
+		vpw = $('#pw').val().trim();
+		
+		fheader = {
+				"Content-type" : "application/json;charset=utf-8"
+		}
+		fbody = JSON.stringify({mem_id : vid, mem_pass : vpw});
+		
+		fetch_login('/jqpro/LoginController.do', fheader, fbody)
+		
+		
+	})
+	
+	
+	
+	////-------------promise-------------------
+	
+	const promi_login = (url, data) =>{
+		
+		return new Promise( (resolve, reject)=>{
+			
+			xhr = new XMLHttpRequest();
+			
+			xhr.open('post', url, true);
+			xhr.setRequestHeader("Content-type",
+					          "application/x-www-form-urlencoded");
+			xhr.send(data);
+			
+			xhr.onload = res => {
+				resolve(xhr.responseText)
+			}
+			
+			xhr.onerror = err =>{
+				reject(new Error(xhr.status))
+			}
+		})
+	}
+	
+	$('#psend').on('click', function(){
+		
+		//입력한 아이디와 패스를 
+		vid = $('#id').val().trim();
+		vpw = $('#pw').val().trim();
+		
+		vdata = "mem_id=" + vid +"&mem_pass=" + vpw; 
+		
+		promi_login('/jqpro/LoginController.do', vdata)
+		.then( res =>{
+			
+			//json 형식의 문자열 데이터
+			//res데이터를 역직렬화
+			return JSON.parse(res);
+		})
+		.then( data =>{
+			console.log(data);
+			
+			//출력
+			code  = `<p>아이디 : ${data.mem_id}</p>`
+			code += `<p>이름 : ${data.mem_name}</p>`
+			code += `<p>주소 : ${data.mem_add1}</p>`
+			code += `<p>전화 : ${data.mem_hp}</p>`
+		})
+		.catch( err=>{
+			console.log(err);
+		})
+		
+	})
+})
+</script>
+</head>
+<body>
+<div class="box">
+<form action="#" method="post">
+
+	<label>아이디</label>
+	<input type="text" name="id" id="id"><br>
+	<label>비밀번호</label>
+	<input type="text" name="pw" id="pw"><br>
+	<br>
+	<input type="button" value="async_await 전송" id="asend"> 
+	<input type="button" value="fetch 전송" id="fsend">
+	<input type="button" value="promise 전송" id="psend">
+</form>
+<br>
+
+<div id="result1"></div>
+<div id="result2"></div>
+<div id="result3"></div>
+
+</div>
+
+
+</body>
+</html>

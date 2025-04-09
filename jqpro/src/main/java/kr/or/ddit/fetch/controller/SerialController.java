@@ -55,6 +55,8 @@ public class SerialController extends HttpServlet {
 		
 		String reqData = strbuf.toString();
 		
+		System.out.println("reqData====="+reqData);
+		
 		//역직렬화 - 자바객체 생성
 		Gson gson = new Gson();
 		SerialVo vo = gson.fromJson(reqData, SerialVo.class);
