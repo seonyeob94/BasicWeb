@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Chart.js 연습</title>
+<!--   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script> -->
+<script src="../js/chart.umd.min.js"></script>
+<script>
+window.onload= function(){
+	
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar', // bar, line, pie 등
+      data: {
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월'],
+        datasets: [{
+          label: '월별 대출 건수',
+          data: [12, 19, 3, 5, 2, 10, 6, 10, 18, 21],
+          borderWidth: 1,
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        }]
+      },
+      options: {
+    	responsive: false,  
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+}	
+
+</script>
+<style>
+#myChart{
+	width : 400px;
+	height : 200px;
+}
+</style>
+</head>
+<body>
+  <canvas id="myChart"></canvas>
+  
+</body>
+</html>
