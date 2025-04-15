@@ -1,6 +1,6 @@
 package kr.or.ddit.loanStats.vo;
 
-public class LoanstasVo {
+public class LoansVo {
 	private String monthNo;
 	private int count;
 	

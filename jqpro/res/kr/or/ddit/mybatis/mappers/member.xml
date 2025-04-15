@@ -14,6 +14,34 @@
 		AND MEM_PASS=#{mem_pass}
 	</select>
 	
+	<!-- id 중복검사 -->
+	<select id="idCheck" parameterType="String" resultType="String">
+		select mem_id
+		from member
+		where mem_id = #{data}
+	</select>
+	
+	<!-- 우편번호 검색 -->
+	<select id="selectByDong" parameterType="String" resultType="ZipVo">
+		SELECT *
+		FROM ZIPTB
+		WHERE DONG LIKE #{data}||'%'
+	</select>
+	
+	<!-- 저장하기 -->
+	<insert id="insertMember" parameterType="MemberVo">
+		INSERT INTO MEMBER(MEM_ID, MEM_PASS, MEM_NAME, MEM_BIR, 
+					MEM_ZIP, MEM_ADD1, MEM_ADD2, MEM_HP, MEM_MAIL,)
+				VALUES( #{mem_id}
+					    ,#{mem_pass}
+					    ,#{mem_name}
+					    ,#{mem_bir}
+					    ,#{mem_zip}
+					    ,#{mem_add1}
+					    ,#{mem_add2}
+					    ,#{mem_hp}
+					    ,#{mem_mail})	
+	</insert>
 	
 
 </mapper>

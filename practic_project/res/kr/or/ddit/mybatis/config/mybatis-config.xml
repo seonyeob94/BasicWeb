@@ -10,8 +10,8 @@
 	</settings> -->
 	
 	<typeAliases>
-		<typeAlias type="kr.or.ddit.member.vo.MemberVo" alias="MemberVo" />
-		<typeAlias type="kr.or.ddit.lprod.vo.LprodVo" alias="lprodVo"/>
+		<typeAlias type="kr.or.ddit.loanStats.vo.LoansVo" alias="LoansVo" />
+		<typeAlias type="kr.or.ddit.returnCa.vo.ReturnVo" alias="ReturnVo"/>
 	</typeAliases>
 	
 	<!-- 
@@ -37,8 +37,8 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="kr/or/ddit/mybatis/mappers/member.xml"/>
-		<mapper resource="kr/or/ddit/mybatis/mappers/lprod.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/loanStats.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/return.xml"/>
 	</mappers>
 
 </configuration>

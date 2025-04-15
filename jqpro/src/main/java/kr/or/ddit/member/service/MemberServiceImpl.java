@@ -5,6 +5,7 @@ import java.util.List;
 import kr.or.ddit.member.dao.IMemberDao;
 import kr.or.ddit.member.dao.MemberDaoImpl;
 import kr.or.ddit.member.vo.MemberVo;
+import kr.or.ddit.member.vo.ZipVo;
 
 public class MemberServiceImpl implements IMemberService {
 	
@@ -35,6 +36,27 @@ public class MemberServiceImpl implements IMemberService {
 	public MemberVo loginMember(MemberVo vo) {
 		
 		return dao.loginMember(vo);
+	}
+
+
+	@Override
+	public String idCheck(String id) {
+		// TODO Auto-generated method stub
+		return dao.idCheck(id);
+	}
+
+
+	@Override
+	public List<ZipVo> selectByDong(String dong) {
+		// TODO Auto-generated method stub
+		return dao.selectByDong(dong);
+	}
+
+
+	@Override
+	public int insertMember(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return dao.insertMember(vo);
 	}
 
 }

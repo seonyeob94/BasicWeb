@@ -1,28 +1,28 @@
-package kr.or.ddit.loanStats.controller;
+package kr.or.ddit.returnCa.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kr.or.ddit.loanStats.service.ILoansService;
-import kr.or.ddit.loanStats.service.LoansServiceImpl;
-import kr.or.ddit.loanStats.vo.LoansVo;
+import kr.or.ddit.returnCa.service.IReturnService;
+import kr.or.ddit.returnCa.service.ReturnServiceImpl;
+import kr.or.ddit.returnCa.vo.ReturnVo;
 
 import java.io.IOException;
 import java.util.List;
 
 /**
- * Servlet implementation class LoanChart
+ * Servlet implementation class ReturnController
  */
-@WebServlet("/LoanChart.do")
-public class LoanChart extends HttpServlet {
+@WebServlet("/Return.do")
+public class ReturnController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoanChart() {
+    public ReturnController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +31,13 @@ public class LoanChart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 클라이언트 전송데이터 받기
-		//service객체 얻기
-		ILoansService service = LoansServiceImpl.getService();
+		IReturnService service = ReturnServiceImpl.getService();
 		
-		List<LoansVo> list = service.loansList();
+		List<ReturnVo> list = service.returnList();
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/0414_practice_projec/loans.jsp").forward(request, response);
+		request.getRequestDispatcher("/0414_practice_projec/return.jsp").forward(request, response);
 	}
-
-	
 
 }

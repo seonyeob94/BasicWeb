@@ -1,6 +1,6 @@
 package kr.or.ddit.returnCa.vo;
 
-public class ReturnCaVo {
+public class ReturnVo {
 	private String memberName;
 	private String bookTitle;
 	private String returnDate;

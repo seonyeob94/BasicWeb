@@ -11,6 +11,7 @@
 	
 	<typeAliases>
 		<typeAlias type="kr.or.ddit.member.vo.MemberVo" alias="MemberVo" />
+		<typeAlias type="kr.or.ddit.member.vo.ZipVo" alias="ZipVo" />
 		<typeAlias type="kr.or.ddit.lprod.vo.LprodVo" alias="lprodVo"/>
 	</typeAliases>
 	
