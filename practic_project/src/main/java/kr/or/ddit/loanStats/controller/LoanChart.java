@@ -39,7 +39,7 @@ public class LoanChart extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/0414_practice_projec/loans.jsp").forward(request, response);
+		request.getRequestDispatcher("/0414_practice_projec/view/loans.jsp").forward(request, response);
 	}
 
 	

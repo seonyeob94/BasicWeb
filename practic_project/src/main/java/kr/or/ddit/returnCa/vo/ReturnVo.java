@@ -3,7 +3,9 @@ package kr.or.ddit.returnCa.vo;
 public class ReturnVo {
 	private String memberName;
 	private String bookTitle;
+	private String loanDate; 
 	private String returnDate;
+	private String dueDate;
 	public String getMemberName() {
 		return memberName;
 	}
@@ -23,6 +25,26 @@ public class ReturnVo {
 	}
 	public void setReturnDate(String returnDate) {
 		this.returnDate = returnDate;
+	}
+
+
+	public String getLoanDate() {
+		return loanDate;
+	}
+
+
+	public void setLoanDate(String loanDate) {
+		this.loanDate = loanDate;
+	}
+
+
+	public String getDueDate() {
+		return dueDate;
+	}
+
+
+	public void setDueDate(String dueDate) {
+		this.dueDate = dueDate;
 	}
 	
 	

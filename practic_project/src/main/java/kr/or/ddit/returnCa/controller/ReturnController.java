@@ -37,7 +37,7 @@ public class ReturnController extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/0414_practice_projec/return.jsp").forward(request, response);
+		request.getRequestDispatcher("/0414_practice_projec/view/return.jsp").forward(request, response);
 	}
 
 }

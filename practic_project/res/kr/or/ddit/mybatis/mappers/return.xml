@@ -5,10 +5,20 @@
 <mapper namespace="return">
 
 	<select id="returnList" resultType="ReturnVo">
-		SELECT MEMBER_NAME as memberName, 
-			BOOK_TITLE as bookTitle, 
-			TO_CHAR(RETURN_DATE, 'YYYY-MM-DD') as returnDate
-		FROM RETURN_SCHEDULE
+	 SELECT 
+	    u.name AS memberName,
+	    b.title AS bookTitle,
+	    TO_CHAR(a.loan_date, 'YYYY-MM-DD') AS loanDate,
+	    TO_CHAR(a.due_date, 'YYYY-MM-DD') AS dueDate,
+	    -- NULL일 경우 공백 문자열로 처리
+	    CASE 
+	      WHEN a.return_date IS NOT NULL 
+	      THEN TO_CHAR(a.return_date, 'YYYY-MM-DD')
+	      ELSE ''
+	    END AS returnDate
+	  FROM book_loans a
+	    JOIN users u ON a.user_id = u.user_id
+	    JOIN books b ON a.book_id = b.book_id
 	</select>
 	
 </mapper>

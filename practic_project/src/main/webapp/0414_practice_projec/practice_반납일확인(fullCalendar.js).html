@@ -58,11 +58,22 @@
 	    		
 	    		data.forEach(item=>{
 
-	    			calendar.addEvent({
-		    			title: item.memberName + " - " + item.bookTitle,
-		    			start: item.returnDate, // to_char() 처리한 값, 예: "2025-04-20"
-		    			allDay: true // 날짜만 있고 시간정보가 없으면 allDay 설정
-		    		});
+	    			
+	    			
+	    			 calendar.addEvent({
+	    			      title: `${item.memberName} - ${item.bookTitle} 대출`,
+	    			      start: item.loanDate, // to_char() 처리한 값, 예: '2025-04-01'
+	    			      allDay: true,
+	    			      color: 'lightgreen'
+	    			    });
+
+	    			    // 반납 예정일 이벤트 (분홍색)
+	    			    calendar.addEvent({
+	    			      title: `${item.memberName} - ${item.bookTitle} 반납 예정`,
+	    			      start: item.dueDate, // to_char() 처리한 값, 예: '2025-04-08'
+	    			      allDay: true,
+	    			      color: 'lightcoral'
+	    			    });
 	    			
 	    		});
 	    		

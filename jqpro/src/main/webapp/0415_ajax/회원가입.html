@@ -73,7 +73,7 @@ $(function(){
 			return false;
 		}
 		
-		//입력한 값을 서버로 보내기
+		//입력한 값을 서버로 보내기 - 결과값 가져와서 출력
 		$.ajax({
 			url : "/jqpro/SelectByDong.do",
 			method : 'post',
@@ -82,6 +82,24 @@ $(function(){
 			contentType : "application/json;charset=utf-8",
 			success : function(res){
 				
+				code = "<table class='table table-bordered' border='1'>";
+				code += "<tr><td>우편번호</td><td>주소</td><td>번지</td></tr>";
+				
+				$.each(res, function(i,v){
+					addr =`${v.sido} ${v.gugun} ${v.dong}`
+					bunji = v.bunji ;
+					if(typeof bunji == "undefined") bunji ="";
+					
+					/* bunji = `${v.bunji}`;
+					if(bunji == "undefined") bunji =""; */
+					
+					code += `<tr class ="ziptr"><td>${v.zipcode}</td>
+					<td>${addr}</td>
+					<td>${bunji}</td></tr>`
+				})
+				
+				code += "</table>";
+				$('#result').html(code);
 			},
 			error : function(xhr){
 				alert(xhr.status)
@@ -89,11 +107,69 @@ $(function(){
 		})
 	})
 	
+	//우편번호 결과 출력하고 한 줄을 선택하는 이벤트
+	//.ziptr이 새롭게 생성된 요소 - delegate방식
+	$(document).on('click', '.ziptr', function(){
+		//alert("hello");
+		
+		//선택한 행에서 값을 가져온다
+		//$('td:eq(0)', this)
+		vzip = $('td', this).eq(0).text().trim();
+		vaddr = $('td', this).eq(1).text().trim();
+		
+		//본문 회원가입 폼에 출력
+		$('#zip').val(vzip);
+		$('#add1').val(vaddr);
+		
+		//입력된 결과데이터를 지운다
+		$('#dong').val("");
+		$('#result').empty();
+		
+		//모달창을 닫기
+		$('#myModal').modal('hide');
+	})
+	
+	//전송 - 가입하기 버튼 클릭 이벤트
+	$('#send').on('click', function(){
+		
+		//입력한 모든값(9개)을 가져온다
+		//$('#id').val();
+		
+		fdata1 = $('#ff').serialize(); //일반 문자열
+		fdata2 = $('#ff').serializeArray(); //배열 
+		fdata3 = $('#ff').serializeJSON(); //Object
+		
+		console.log(fdata1);
+		console.log(fdata2);
+		console.log(fdata3);
+		
+		$.ajax({
+			url : "/jqpro/InsertMember.do",
+			method : 'post',
+			//data : fdata3
+			data : JSON.stringify(fdata3), //직렬화
+			contentType : "application/json;charset=utf-8",
+			dataType : 'json',
+			success : function(res){
+				$('#join').text(res.flag).css('color', 'red')
+			},
+			error : function(xhr){
+				console.log(xhr)
+			}
+		})
+	})
+	
+	
+	
 })
 </script>
 
 
 <style>
+.ziptr:hover td{
+	background: lime;
+}
+
 #id, #name, #bir, #hp, #email, #pwd,#zip{
   width : 30%;
 }

@@ -31,7 +31,7 @@
 	<!-- 저장하기 -->
 	<insert id="insertMember" parameterType="MemberVo">
 		INSERT INTO MEMBER(MEM_ID, MEM_PASS, MEM_NAME, MEM_BIR, 
-					MEM_ZIP, MEM_ADD1, MEM_ADD2, MEM_HP, MEM_MAIL,)
+					MEM_ZIP, MEM_ADD1, MEM_ADD2, MEM_HP, MEM_MAIL)
 				VALUES( #{mem_id}
 					    ,#{mem_pass}
 					    ,#{mem_name}

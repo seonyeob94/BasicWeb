@@ -39,6 +39,7 @@ public class ReturnDaoImpl implements IReturnDao {
 				sql.close();
 			}
 		}
+		System.out.println("반환된 리스트 크기: " + list.size());
 		return list;
 	}
 
