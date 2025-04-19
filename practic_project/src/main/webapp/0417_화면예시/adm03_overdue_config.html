@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>연체 기준 설정 화면</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { color: #2a4d9c; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background-color: #f2f2f2; }
+    .highlight { background-color: #e6f7ff; }
+    .actions button { margin: 0 5px; }
+  </style>
+</head>
+<body>
+  <h1>연체 기준 설정 화면(ADM03)</h1>
+  <form>
+    <label for="days">연체일수 기준:</label>
+    <input type="number" id="days" name="days"><br><br>
+
+    <label><input type="checkbox" name="warn"> 경고 조치</label><br>
+    <label><input type="checkbox" name="ban"> 정지 조치</label><br><br>
+
+    <button type="submit">추가</button>
+    <button type="button">수정</button>
+    <button type="button">삭제</button>
+  </form>
+
+  <h2>설정된 연체 기준 목록</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>선택</th>
+        <th>기준 ID</th>
+        <th>연체일수</th>
+        <th>경고</th>
+        <th>정지</th>
+        <th>적용 여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input type="radio" name="apply"></td>
+        <td>1</td>
+        <td>3</td>
+        <td>O</td>
+        <td>X</td>
+        <td><button>적용</button></td>
+      </tr>
+      <tr class="highlight">
+        <td><input type="radio" name="apply" checked></td>
+        <td>2</td>
+        <td>5</td>
+        <td>O</td>
+        <td>O</td>
+        <td><button disabled>적용중</button></td>
+      </tr>
+      <tr>
+        <td><input type="radio" name="apply"></td>
+        <td>3</td>
+        <td>7</td>
+        <td>X</td>
+        <td>O</td>
+        <td><button>적용</button></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cart">
+
+		
+
+		<resultMap id="cartMap" type="CartVo">
+    <result property="monthNo" column="MONTHNO"/>
+    <result property="totalLoans" column="TOTALLOANS"/>
+    <result property="totalReturns" column="TOTALRETURNS"/>
+    <result property="notReturned" column="NOTRETURNED"/>
+    <result property="onTimeReturns" column="ONTIMERETURNS"/>
+    <result property="overdueReturns" column="OVERDUERETURNS"/>
+</resultMap>
+
+<select id="cartList" resultMap="cartMap">
+    SELECT 
+      TO_CHAR(LOAN_DATE, 'MM') AS MONTHNO,
+      COUNT(*) AS TOTALLOANS,
+      SUM(CASE WHEN RETURN_DATE IS NOT NULL THEN 1 ELSE 0 END) AS TOTALRETURNS,
+      SUM(CASE WHEN RETURN_DATE IS NULL THEN 1 ELSE 0 END) AS NOTRETURNED,
+      SUM(CASE WHEN RETURN_DATE IS NOT NULL AND RETURN_DATE &lt;= DUE_DATE THEN 1 ELSE 0 END) AS ONTIMERETURNS,
+      SUM(CASE WHEN RETURN_DATE IS NOT NULL AND RETURN_DATE &gt; DUE_DATE THEN 1 ELSE 0 END) AS OVERDUERETURNS
+    FROM BOOK_LOANS
+    WHERE LOAN_DATE IS NOT NULL
+    GROUP BY TO_CHAR(LOAN_DATE, 'MM')
+    ORDER BY TO_CHAR(LOAN_DATE, 'MM')
+</select>
+	
+
+</mapper>

@@ -68,7 +68,7 @@
 	    			    });
 
 	    			    // 반납 예정일 이벤트 (분홍색)
-	    			    calendar.addEvent({
+	    			 calendar.addEvent({
 	    			      title: `${item.memberName} - ${item.bookTitle} 반납 예정`,
 	    			      start: item.dueDate, // to_char() 처리한 값, 예: '2025-04-08'
 	    			      allDay: true,
@@ -99,8 +99,15 @@
   </style>
 </head>
 <body>
-  <h2 style="text-align:center;">📚 반납 예정일 확인 캘린더</h2>
+  <h2 style="text-align:center;">📚 반납 예정일 확인 캘린더(ADM04)</h2>
   <div id="calendar"></div>
+  
+  <div style="text-align:center; margin-top:20px;">
+    <span style="display:inline-block; width:20px; height:20px; background-color:lightgreen; margin-right:5px;"></span> 대출일
+    &nbsp;&nbsp;&nbsp;
+    <span style="display:inline-block; width:20px; height:20px; background-color:lightcoral; margin-right:5px;"></span> 반납예정일
+  </div>
+  
   <input type="button" value="반납 예정일" id="fetch_member">
 </body>
 </html>

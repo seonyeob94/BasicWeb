@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>대출자 상세 조회 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .arrow {
+      font-size: 24px;
+      color: #4a90e2;
+    }
+  </style>
+</head>
+<body>
+  <h2>📗 대출자 상세 조회 프로세스 흐름도</h2>
+  <div class="flow-container">
+    <div class="step">1. 관리자가 사용자 목록에서 특정 대출자 선택</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">2. 선택한 사용자의 대출/반납/연체 이력 정보 로드</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">3. 도서명, 대출일, 반납일, 연체 여부 등의 상세 정보 표시</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">4. 필요 시 연체 조치 또는 대출 정지 기능 연계</div>
+  </div>
+</body>
+</html>

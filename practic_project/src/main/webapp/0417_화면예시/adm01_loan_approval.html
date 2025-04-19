@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>ADM01 - 대출 요청 화면</title>
+  <style>
+    body { font-family: '맑은 고딕', sans-serif; margin: 40px; background-color: #f8f9fa; }
+    h1 { color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background-color: #e6f0ff; }
+    button { padding: 5px 12px; margin: 0 5px; cursor: pointer; }
+    .btn-approve { background-color: #4CAF50; color: white; }
+    .btn-reject { background-color: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <h1>📚 대출 요청 화면 (ADM01)</h1>
+  <p>대출 승인 요청 목록을 조회하고, 각 요청에 대해 승인 또는 거절 처리를 할 수 있습니다.</p>
+  <table>
+    <thead>
+      <tr><th>신청 ID</th><th>도서명</th><th>신청자</th><th>신청일자</th><th>처리</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>REQ001</td><td>자바의 정석</td><td>홍길동</td><td>2025-04-15</td>
+        <td><button class="btn-approve">반납</button></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

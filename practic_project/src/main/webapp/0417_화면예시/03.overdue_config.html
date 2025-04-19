@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>연체 기준 설정 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .arrow {
+      font-size: 24px;
+      color: #4a90e2;
+    }
+    .branch {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+    .branch .step {
+      width: 180px;
+      background-color: #e8f0fe;
+    }
+  </style>
+</head>
+<body>
+  <h2>📘 연체 기준 설정 프로세스 흐름도</h2>
+  <div class="flow-container">
+    <div class="step">1. 관리자가 연체 기준 설정 화면 진입</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">2. 기준 일수, 주말 제외 여부 등 입력</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">3. 연체 기준 등록 (DB 저장)</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">4. 기준 목록에서 현재 적용 기준 선택</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="branch">
+      <div class="step">✏️ 수정</div>
+      <div class="step">🗑️ 삭제</div>
+    </div>
+  </div>
+</body>
+</html>

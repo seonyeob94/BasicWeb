@@ -1,28 +1,26 @@
-package kr.or.ddit.returnCa.controller;
+package kr.or.ddit.member.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import kr.or.ddit.returnCa.service.IReturnService;
-import kr.or.ddit.returnCa.service.ReturnServiceImpl;
-import kr.or.ddit.returnCa.vo.ReturnVo;
+import jakarta.servlet.http.HttpSession;
+import kr.or.ddit.member.vo.MemberVo;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
- * Servlet implementation class ReturnController
+ * Servlet implementation class LogoutController
  */
-@WebServlet("/Return.do")
-public class ReturnController extends HttpServlet {
+@WebServlet("/Logout.do")
+public class LogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReturnController() {
+    public LogoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,13 +29,18 @@ public class ReturnController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		IReturnService service = ReturnServiceImpl.getService();
 		
-		List<ReturnVo> list = service.returnList();
+		//session제거
+		HttpSession session = request.getSession();
+		MemberVo vo = (MemberVo)session.getAttribute("loginok");
 		
-		request.setAttribute("list", list);
+		if(vo != null) {
+			session.removeAttribute("loginok");
+			session.removeAttribute("check");
+		}
 		
-		request.getRequestDispatcher("/0414_practice_projec/view/return.jsp").forward(request, response);
+		//view페이지로 이동  - logpro.jsp
+		request.getRequestDispatcher("/start/logpro.jsp").forward(request, response);
 	}
 
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="../css/public.css">
+<script src="../js/jquery-3.7.1.js"></script>
+<script>
+$(function(){
+	
+	$("#list").on('click', function(){
+		
+		vtype ="";
+		vword ="";
+		$.ajax({
+			url : '/boardpro/BoardList.do',
+			method : 'post',
+			data : JSON.stringify({page : 1, stype : vtype, sword : vword}),
+			contentType : 'application/json;charset=utf-8',
+			dataType : 'json',
+			success : function(res){
+				console.log(res)
+			},
+			Error : function(xhr){
+				alert(xhr.status);
+			}
+			
+		})
+	})
+})
+</script>
+</head>
+<body>
+
+
+<div class="box">
+  <h3></h3>
+  
+  <input type="button" value="확인" id="list">
+  <br><br>
+  <div id="result1"></div>
+</div>
+
+</body>
+</html>

@@ -12,6 +12,7 @@
 	<typeAliases>
 		<typeAlias type="kr.or.ddit.loanStats.vo.LoansVo" alias="LoansVo" />
 		<typeAlias type="kr.or.ddit.returnCa.vo.ReturnVo" alias="ReturnVo"/>
+		<typeAlias type="kr.or.ddit.cart.vo.CartVo" alias="CartVo"/>
 	</typeAliases>
 	
 	<!-- 
@@ -39,6 +40,7 @@
 	<mappers>
 		<mapper resource="kr/or/ddit/mybatis/mappers/loanStats.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/return.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/cart.xml"/>
 	</mappers>
 
 </configuration>

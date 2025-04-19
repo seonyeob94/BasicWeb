@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>정지 대상 알림 관리 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+   
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 50px;
+      background: #fff;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #eaf1fb;
+    }
+    .send-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .send-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  
+
+  <h2 style="margin-top:60px;">📋 정지 대상자 알림 전송 이력 (ADM13)</h2>
+  <p><strong>기능:</strong> 정지 대상자에게 전송된 알림 내역 확인 및 수동 발송</p>
+  <table>
+    <thead>
+      <tr>
+        <th>사용자명</th>
+        <th>정지 사유</th>
+        <th>정지 시작일</th>
+        <th>알림 발송일</th>
+        <th>상태</th>
+        <th>전송</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>user02</td>
+        <td>연체</td>
+        <td>2025-04-10</td>
+        <td>2025-04-09</td>
+        <td>성공</td>
+        <td><button class="send-btn">전송</button></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

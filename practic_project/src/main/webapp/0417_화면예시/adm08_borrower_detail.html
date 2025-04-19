@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>대출자 상세 이력</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .legend {
+      margin-bottom: 15px;
+    }
+    .legend span {
+      display: inline-block;
+      padding: 5px 10px;
+      margin-right: 10px;
+      border-radius: 4px;
+      font-size: 14px;
+      color: white;
+    }
+    .normal { background-color: #4caf50; }  /* green */
+    .warning { background-color: #ff9800; } /* orange */
+    .overdue { background-color: #f44336; } /* red */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    .status-normal {
+      background-color: #e8f5e9;
+    }
+    .status-warning {
+      background-color: #fff3e0;
+    }
+    .status-overdue {
+      background-color: #ffebee;
+    }
+  </style>
+</head>
+<body>
+
+<h1>대출자 상세 이력(ADM08)</h1>
+<p><strong>사용자명:</strong> 홍길동</p>
+
+<div class="legend">
+  <span class="normal">정상</span>
+  <span class="warning">경고(지연 반납)</span>
+  <span class="overdue">연체</span>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>도서명</th>
+      <th>대출일</th>
+      <th>반납일</th>
+      <th>연체여부</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="status-normal">
+      <td>자바의 정석</td>
+      <td>2025-03-01</td>
+      <td>2025-03-09</td>
+      <td>정상</td>
+    </tr>
+    <tr class="status-overdue">
+      <td>SQL 첫걸음</td>
+      <td>2025-02-01</td>
+      <td>2025-02-10</td>
+      <td>연체 (2일)</td>
+    </tr>
+    <tr class="status-warning">
+      <td>HTML/CSS 입문</td>
+      <td>2025-03-30</td>
+      <td>2025-04-06</td>
+      <td>정상 (2일 지연)</td>
+    </tr>
+  </tbody>
+</table>
+
+</body>
+</html>

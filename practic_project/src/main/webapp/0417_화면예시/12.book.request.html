@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>정지 대상 알림 관리 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    h2 {
+      color: #2c3e50;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .arrow {
+      font-size: 24px;
+      color: #4a90e2;
+    }
+    
+  </style>
+</head>
+<body>
+  
+
+  <h2 style="margin-top:80px;">📚 신청 도서 요청 처리 프로세스 흐름도</h2>
+  <div class="flow-container">
+    <div class="step">1. 사용자가 신청 도서 요청</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">2. 관리자가 신청 도서 목록 확인</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">3. 도서명 및 사유 검토 후 승인/거절 선택</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="branch" style="display: flex; justify-content: space-evenly; width: 100%;">
+      <div class="step" style="width: 180px; background-color: #e8f0fe;">✅ 승인<br>→ 도서 등록 처리</div>
+      <div class="step" style="width: 180px; background-color: #fdecea;">❌ 거절<br>→ 거절 사유 기록</div>
+    </div>
+  </div>
+</body>
+</html>

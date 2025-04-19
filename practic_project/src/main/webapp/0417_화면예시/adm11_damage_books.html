@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>분실/파손 도서 등록 및 관리</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+    }
+    h1 {
+      color: #2c3e50;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #888;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h3>📌 분실/파손 도서 등록(ADM11)</h3>
+	<form>
+	  도서명: <input type="text" name="bookTitle" placeholder="예: HTML&CSS 입문" required><br>
+	  상태:
+	  <select name="status">
+	    <option value="분실">분실</option>
+	    <option value="파손">파손</option>
+	  </select><br>
+	  등록일: <input type="date" name="regDate" value="2025-04-17"><br>
+	  비고: <input type="text" name="note" placeholder="예: 표지 훼손"><br>
+	  <button type="submit">등록</button>
+	</form>
+  
+
+
+  <h1>분실/파손 도서 등록 및 관리</h1>
+  
+        <p><strong>기능:</strong> 분실 또는 파손된 도서를 등록하고 상태 관리</p>
+        <table>
+          <thead>
+            <tr><th>도서명</th><th>상태</th><th>등록일</th><th>비고</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>HTML&CSS 입문</td><td>파손</td><td>2025-04-10</td><td>표지 훼손</td></tr>
+          </tbody>
+        </table>
+        
+</body>
+</html>

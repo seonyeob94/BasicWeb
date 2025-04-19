@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>연체자 목록 확인 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .arrow {
+      font-size: 24px;
+      color: #4a90e2;
+    }
+  </style>
+</head>
+<body>
+  <h2>📕 연체자 목록 확인 프로세스 흐름도</h2>
+  <div class="flow-container">
+    <div class="step">1. 관리자가 연체자 목록 페이지 접속</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">2. 시스템이 연체 기준에 따라 연체자 목록 데이터 조회</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">3. 연체일수 기준으로 상태 분류 (경고 / 정지)</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">4. 테이블로 목록 출력 및 경고 버튼 표시</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>도서 통계 확인 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .arrow {
+      font-size: 24px;
+      color: #4a90e2;
+    }
+  </style>
+</head>
+<body>
+  <h2>📊 도서 통계 확인 프로세스 흐름도</h2>
+  <div class="flow-container">
+    <div class="step">1. 관리자가 통계 화면 요청</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">2. 시스템이 대출/반납/연체 데이터를 기준으로 월별 집계</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">3. Chart.js를 이용해 시각화된 그래프 출력</div>
+   
+
+  </div>
+</body>
+</html>

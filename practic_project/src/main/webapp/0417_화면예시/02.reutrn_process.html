@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>도서 반납 처리 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .arrow {
+      font-size: 24px;
+      color: #4a90e2;
+    }
+    .branch {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+    .branch .step {
+      width: 180px;
+      background-color: #e8f0fe;
+    }
+  </style>
+</head>
+<body>
+  <h2>📘 도서 반납 처리 프로세스 흐름도</h2>
+  <div class="flow-container">
+    <div class="step">1. 사용자가 도서 반납 요청</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">2. 시스템이 반납일과 반납예정일 비교</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">3. 연체 여부 자동 판단</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="branch">
+      <div class="step">🟢 정시 반납<br>→ 반납 완료</div>
+      <div class="step">🔴 연체 발생<br>→ 연체 일수 계산<br>→ 사용자 정지 해제일 확정</div>
+    </div>
+  </div>
+</body>
+</html>

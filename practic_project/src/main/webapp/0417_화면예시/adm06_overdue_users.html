@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>ADM06 - 연체자 관리</title>
+  <style>
+    body {
+      font-family: "Pretendard", sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background-color: #4a90e2;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f3f7fc;
+    }
+    button {
+      padding: 6px 12px;
+      background-color: #f25d5d;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #d94b4b;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📘 연체자 목록 (ADM06)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>사용자명</th>
+          <th>도서명</th>
+          <th>연체일수</th>
+          <th>조치</th>
+          <th>상태</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>홍길동</td>
+          <td>자바의 정석</td>
+          <td>5</td>
+          <td><button onclick="sendWarning('홍길동', '자바의 정석')">경고</button></td>
+          <td>정지</td>
+        </tr>
+        <tr>
+          <td>이영희</td>
+          <td>SQL 첫걸음</td>
+          <td>3</td>
+          <td><button onclick="sendWarning('이영희', 'SQL 첫걸음')">경고</button></td>
+          <td>정지</td>
+        </tr>
+        <tr>
+          <td>이영희</td>
+          <td>모던 자바스크립트</td>
+          <td>0</td>
+          <td><button onclick="sendWarning('이영희', 'SQL 첫걸음')">경고</button></td>
+          <td>경고</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function sendWarning(user, book) {
+      alert(`${user}님에게 "${book}" 연체 경고 알림을 전송했습니다.`);
+      // 실제로는 fetch API로 알림 전송 로직 연결
+    }
+  </script>
+</body>
+</html>

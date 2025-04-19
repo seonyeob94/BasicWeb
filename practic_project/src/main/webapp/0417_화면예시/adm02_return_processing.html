@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>ADM02 - 반납 처리 화면</title>
+  <style>
+    body { font-family: '맑은 고딕', sans-serif; margin: 40px; background-color: #f8f9fa; }
+    h1 { color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: center; }
+    th { background-color: #e6f0ff; }
+    input[type="date"] { padding: 5px; }
+    button { padding: 5px 12px; margin: 0 5px; cursor: pointer; background-color: #2196F3; color: white; }
+  </style>
+</head>
+<body>
+  <h1>📦 반납 처리 화면 (ADM02)</h1>
+  <p>반납 대상 목록을 조회하고 반납일자를 입력 후 처리할 수 있습니다.</p>
+  <table>
+    <thead>
+      <tr><th>대출 ID</th><th>도서명</th><th>사용자명</th><th>반납예정일</th><th>반납일 입력</th><th>처리</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>LOAN123</td><td>SQL 첫걸음</td><td>김철수</td><td>2025-04-22</td>
+        <td><input type="date"></td><td><button>반납 처리</button></td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

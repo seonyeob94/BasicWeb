@@ -45,7 +45,7 @@
 	          order by num desc) B
 	   <![CDATA[
 	      where rownum <= #{end}) A 
-	   where A.rnum >=#{start};
+	   where A.rnum >=#{start}
 	  ]]>
 	</select>
 
@@ -72,7 +72,7 @@
 	</update>
 
 	<!-- 전체 글 갯수 -->
-	<select id="countListBoard" parameterType="map">
+	<select id="countListBoard" parameterType="map" resultType="int">
 		select count(*) from BOARDTAB
 		 <include refid="dynamicCondition"></include>
 	

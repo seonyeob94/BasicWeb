@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>관리자 유스케이스 다이어그램 (HTML)</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      padding: 40px;
+      background-color: #f9f9f9;
+    }
+    .system-boundary {
+      border: 2px dashed #999;
+      padding: 30px;
+      margin-top: 20px;
+      background-color: #fff;
+      position: relative;
+    }
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #003366;
+    }
+    .actor {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .usecases {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .usecase {
+      border: 2px solid #333;
+      border-radius: 50%;
+      width: 180px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #e8f1fc;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="title">관리자 유스케이스 다이어그램</div>
+  <div class="actor">👤 관리자</div>
+  <div class="system-boundary">
+    <div class="usecases">
+      <div class="usecase">도서 대출 처리</div>
+      <div class="usecase">도서 반납 처리</div>
+      <div class="usecase">연체 기준 설정</div>
+      <div class="usecase">통계 확인</div>
+      <div class="usecase">반납 예정 캘린더 확인</div>
+      <div class="usecase">연체자 목록 관리</div>
+      <div class="usecase">연장 요청 처리</div>
+      <div class="usecase">대출자 상세 조회</div>
+      <div class="usecase">알림 관리</div>
+      <div class="usecase">정지 사용자 관리</div>
+      <div class="usecase">분실/파손 도서 등록</div>
+    </div>
+  </div>
+</body>
+</html>

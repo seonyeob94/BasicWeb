@@ -8,7 +8,6 @@
 <script src="../js/jquery-3.7.1.js"></script>
 <script>
 let myChart;
-let myChart1;
 $(function(){
 	
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -21,27 +20,17 @@ $(function(){
           data: [],
           borderWidth: 1,
           backgroundColor: 'rgba(54, 162, 235, 0.6)'
-        }]
-      },
-      options: {
-    	responsive: false,  
-        scales: {
-          y: { beginAtZero: true }
-        }
-      }
-    });
-    
-    const ctx1= document.getElementById('myChart1').getContext('2d');
-    myChart1 = new Chart(ctx1, {
-      type: 'pie', // bar, line, pie 등
-      data: {
-        labels: [],
-        datasets: [{
-          label: '월별 대출 건수',
-          data: [],
-          borderWidth: 1,
-          backgroundColor: 'rgba(54, 162, 235, 0.6)'
-        }]
+        },
+        {
+            label: '반납 건수',
+            data: [],
+            backgroundColor: 'rgba(75, 192, 192, 0.6)'
+          },
+          {
+            label: '연체 건수',
+            data: [],
+            backgroundColor: 'rgba(255, 99, 132, 0.6)'
+          }]
       },
       options: {
     	responsive: false,  
@@ -52,7 +41,7 @@ $(function(){
     });
 
 	$("#fetch_member").on('click', function(){
-		fetch("/practic_project/LoanChart.do")
+		fetch("/practic_project/Chart.do")
 		.then( resp =>{
 			
 			console.log(resp);
@@ -69,16 +58,16 @@ $(function(){
             // data가 배열이라고 가정할 때
             // 레이블과 데이터를 추출합니다.
 			const labels = data.map(item =>item.monthNo);
-			const counts = data.map(item =>item.count);
+			const counts = data.map(item =>item.totalLoans);
+			const returns = data.map(item => item.totalReturns);
+			const overdues = data.map(item => item.overdueReturns);
 			
 			//chart 인스턴스 업데이트 : 레이블과 데이터 설정후 update() 호출
 			myChart.data.labels= labels;
 			myChart.data.datasets[0].data = counts;
+			myChart.data.datasets[1].data = returns;
+			myChart.data.datasets[2].data = overdues;
 			myChart.update();
-			
-			myChart1.data.labels= labels;
-			myChart1.data.datasets[0].data = counts;
-			myChart1.update();
 			
 		})
 		.catch( err =>{
@@ -96,8 +85,8 @@ $(function(){
 </style>
 </head>
 <body>
+  <h3>📚 대출,반납,연체 차트(ADM05)</h2>
   <canvas id="myChart"></canvas>
-  <canvas id="myChart1"></canvas>
   <input type="button" value="비동기fetch" id="fetch_member">
   
 </body>

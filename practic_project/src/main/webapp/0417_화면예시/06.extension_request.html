@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>연장 요청 처리 프로세스 흐름도</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    .flow-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+    .step {
+      background-color: #ffffff;
+      border: 2px solid #4a90e2;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+      font-size: 16px;
+    }
+    .arrow {
+      font-size: 24px;
+      color: #4a90e2;
+    }
+    .branch {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+    }
+    .branch .step {
+      width: 180px;
+      background-color: #e8f0fe;
+    }
+  </style>
+</head>
+<body>
+  <h2>📘 연장 요청 처리 프로세스 흐름도</h2>
+  <div class="flow-container">
+    <div class="step">1. 사용자가 대출 연장 요청</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">2. 시스템이 사용자 상태 및 연장 가능 여부 확인 (정상 / 경고 / 정지)</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="step">3. 관리자가 요청 내역 확인 후 승인 또는 거절 처리</div>
+    <div class="arrow">⬇️</div>
+
+    <div class="branch">
+      <div class="step">✅ 상태: 정상<br>→ 연장 승인<br>→ 반납일 연장</div>
+      <div class="step">❌ 상태: 경고/정지<br>→ 연장 거절<br>→ 알림 발송</div>
+    </div>
+  </div>
+</body>
+</html>
