@@ -50,7 +50,7 @@ public class BoardList extends HttpServlet {
 		//psvo.setPage(1) psvo.setStype("") psvo.setSword("")
 		
 		//service객체 얻기
-		IBoardService service = BoardServiceImpl.geBoardService();
+		IBoardService service = BoardServiceImpl.getBoardService();
 		
 		
 		//service매서드 호출

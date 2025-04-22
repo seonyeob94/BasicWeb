@@ -43,4 +43,25 @@ public class CartDaoImpl implements ICartDao {
 		return list;
 	}
 
+	@Override
+	public java.util.List<CartVo> getOverallStats() {
+		SqlSession sql = MybatisUtil.getInstance();
+		List<CartVo> list = null;
+		
+		try {
+			list = sql.selectList("cart.getOverallStats");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(sql != null) {
+				sql.commit();
+				sql.close();
+			}
+		}
+		
+		
+		return list;
+	}
+
 }

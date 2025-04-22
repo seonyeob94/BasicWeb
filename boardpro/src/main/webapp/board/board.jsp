@@ -138,8 +138,11 @@ ss = {
 
 %>
 
+
 uvo = <%= ss %>
 console.log(uvo);
+
+
 currentPage = 1;
 mypath =  '<%= request.getContextPath()%>';
 
@@ -206,7 +209,74 @@ $(function(){
 		
 		//서버로 보내기
 		boardWriter();
+		
+		//모달창 내용지우기
+		
+		$('#wform .txt').val("");
+		
+		
+		//모달창 닫기
+		$('#wModal').modal('hide');
+		
 	})
+	
+	
+	//수정, 삭제 댓글 등록, 댓글 삭제, 댓글 수정, 댓글리스트(제목클릭, 등록버튼클릭) -이벤트 핸들러 설정
+	$(document).on('click','.action', function(){
+		
+		
+		target = $(this); // target 변수는 board.js에서 이벤트 발생요소를 참조하는 변수
+		
+		vname = $(this).attr('name');
+		vidx = $(this).data('idx');
+		
+		if(vname == "delete"){
+			
+			alert(vidx + "번 글 삭제");
+			
+		}else if(vname == "modify"){
+			
+			alert(vidx + "번 글 수정");
+			
+			
+		}else if(vname == "reply"){
+			alert(vidx + "번 글에 댓글 달기");
+			
+			
+			//입력한 댓글 내용 가져오기
+			cont = $(this).prev().val();
+			
+			//renum, bonum, cont, name
+			//빈객체를 생성 - 동적으로 속성을 추가하고 값을 대입
+			reply = {};
+			reply.bonum = vidx;
+			reply.cont = cont;
+			reply.name = uvo.mem_name;
+			
+			//서버로 전송하기 - 저장하기
+
+			replyInsertServer();
+			
+			
+		}else if(vname == "replist"){
+			
+			//댓글리스트 가져오기
+			replyListServer();
+		}else if(vname == "r_modify"){
+			alert(vidx + "번 댓글 수정");
+		}else if(vname == "r_delete"){
+			alert(vidx + "번 댓글 삭제");
+			
+			//서버전송
+			replyDeleteServer();
+			
+		}
+		
+		
+	})
+	
+	
+	
 	
 	
 })

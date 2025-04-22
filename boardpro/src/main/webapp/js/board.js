@@ -2,7 +2,110 @@
  * 
  */
 
+const replyDeleteServer =() =>{
+	$.ajax({
+			url : `${mypath}/ReplyDelete.do`,
+			data : {renum : vidx}, // renum : 6
+			method : 'get',
+			dataType : 'json',
+			success : function(res){
+				//db삭제 성공하면
+				//화면의 reply-body를 삭제
+				
+				alert(res.flag);
+				$(target).parents('reply-body').remove();
+			},
+			error : function(xhr){
+				alert(xhr.status);
+			}
+			
+	
+	
+})
+}
+
+const replyListServer =() =>{
+	
+	//controller  -service - dao -xml
+	// view - json데이터 생성
+	$.ajax({
+		url : `${mypath}/ReplyList.do`,
+		data : {bonum : vidx}, // bonum : 23
+		method : 'get',
+		dataType : 'json',
+		success : function(res){
+			console.log(res);
+			
+			
+			code = "";
+			
+			$.each(res, function(i,v){
+				cont = v.cont;
+				cont = cont.replaceAll(/\n/g, "<br>");
+				
+				code += `<div class="reply-body">
+					       <div class="p12">
+					          <p class="p1">
+					                작성자:<span class="wr">${v.name}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					                날짜 :<span class="da">${v.redate}</span>         
+					          </p>
+					          <p class ="p2">`
+										               
+														   
+								 if(uvo != null && uvo.mem_name == v.name)  {
+					              code += ` <input type="button" data-idx="${v.renum}" 
+								  value="댓글수정" name="r_modify"  class="action">
+										              
+								  <input type="button" data-idx="${v.renum}" 
+								  value="댓글삭제" name="r_delete"  class="action">`
+								 }
+											               
+								 code += `  </p>
+					       </div>
+					       <p class="p3">
+					              ${cont} <br>
+					       </p>
+					        				            
+						 </div>`;
+			})//반복문
+			
+			//target : board.jsp의 이벤트 발생시 this를 대입받아 설정한 전역변수
+			$(target).parents('.card').find('.reply-body').remove();
+			vcard = $(target).parents('.card').find('.card-body');
+			$(vcard).append(code);
+			
+			
+		},
+		error : function(xhr){
+			alert(xhr.status);
+		}
+	})
+
+}
+
+const replyInsertServer =() =>{
+	
+	$.ajax({
+		url : `${mypath}/ReplyInsert.do`,
+		method : 'post',
+		data : JSON.stringify(reply), //reply객체  - name, bonum, cont
+		dataType : 'json',
+		contentType : 'application/json;charset=utf-8',
+		success : function(res){
+			//댓글 저장 성공하면 댓글 리스트 가져오기
+			//alert(res.flag);
+			
+			replyListServer();
+		},
+		error : function(xhr){
+			alert(xhr.status);
+		}
+	})
+		
+}
+
 const boardWriter= () =>{
+	
 	$.ajax({
 		url : `${mypath}/BoardWriter.do`,
 		data : JSON.stringify(formData),
@@ -10,7 +113,12 @@ const boardWriter= () =>{
 		contentType : 'application/json;charset=utf-8',
 		dataType : 'json',
 		success : function(res){
-			alert(res.flag)
+			//alert(res.flag)
+			//글쓰기 성공이면
+			//list
+			currentPage = 1;
+			boardListServer();
+			
 		},
 		error : function(xhr){
 			alert(xhr.status);
@@ -22,7 +130,7 @@ const boardWriter= () =>{
 
 const boardListServer = () =>{
 	
-	vtype =$("#stype option:selected").val().trim(); //writer, subject, content
+	vtype =$("#stype option:selected").val() //writer, subject, content
 	vword =$('#sword').val().trim();
 	
 			$.ajax({
@@ -32,34 +140,51 @@ const boardListServer = () =>{
 				contentType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : function(res){
+					
 					console.log(res)
 					
 					code = `<div class="container mt-3">
 						<div id="accordion">`;
-					$.each(res.datas, function(i,v){
+					
+						$.each(res.datas, function(i,v){
+							
+							content = v.content;
+							
+							content = content.replaceAll(/\n/g, "<br>")
+							
+							
+							
 					code+=`	<div class="card">
 						      <div class="card-header">
-						        <a class="btn" data-bs-toggle="collapse" href="#collapse${v.num}">
-						                 ${v.subject}
+						        <a class="btn action" data-idx="${v.num}" name="replist"
+								data-bs-toggle="collapse" href="#collapse${v.num}">
+						        ${v.subject}
 						        </a>
 						      </div>
 						      <div id="collapse${v.num}" class="collapse" data-bs-parent="#accordion">
 						        <div class="card-body">
 						            <div class="p12">
 						               <p class="p1">
-						                             작성자:<span class="wr">${v.writer}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						                          작성자:<span class="wr">${v.writer}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						                          이메일:<span class="em">${v.mail}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						                          조회수:<span class="hi">${v.hit}</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						                          날짜 :<span class="da">${v.wdate}</span>         
 						               </p>
-						               <p class ="p2">
+						               <p class ="p2">`
 						               
-						               <input type="button" data-idx="${v.num}" value="수정" name="modify"  class="action">
-						               <input type="button" data-idx="${v.num}" value="삭제" name="delete"  class="action">
-						               </p>
+									   
+									 if(uvo != null && uvo.mem_name == v.writer)  {
+						              code += ` <input type="button" data-idx="${v.num}" 
+									  value="수정" name="modify"  class="action">
+						              
+									  <input type="button" data-idx="${v.num}" 
+									  value="삭제" name="delete"  class="action">`
+									 }
+						               
+									 code += `  </p>
 						            </div>
 						            <p class="p3">
-						                            ${v.content} <br>
+						              ${content} <br>
 						            </p>
 						            <p class="p4">
 						            <textarea rows="" cols="60"></textarea>
@@ -116,3 +241,4 @@ const pageList = (sp, ep, tp) =>{
 	
 	return pager;
 }
+

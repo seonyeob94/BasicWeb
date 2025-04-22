@@ -23,7 +23,7 @@ public class BoardServiceImpl implements IBoardService {
 	//자신의 객체 생성 리턴
 	
 	private static IBoardService service;
-	public static IBoardService geBoardService() {
+	public static IBoardService getBoardService() {
 		if(service == null) service = new BoardServiceImpl();
 		
 		return service;

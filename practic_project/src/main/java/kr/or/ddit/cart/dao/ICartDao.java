@@ -8,5 +8,7 @@ import kr.or.ddit.loanStats.vo.LoansVo;
 public interface ICartDao {
 	
 	public List<CartVo> List();
+	
+	public List<CartVo> getOverallStats();
 
 }

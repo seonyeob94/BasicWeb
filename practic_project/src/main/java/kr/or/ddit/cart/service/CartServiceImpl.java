@@ -30,4 +30,10 @@ public class CartServiceImpl implements ICartService {
 		return dao.List();
 	}
 
+	@Override
+	public java.util.List<CartVo> getOverallStats() {
+		// TODO Auto-generated method stub
+		return dao.getOverallStats();
+	}
+
 }

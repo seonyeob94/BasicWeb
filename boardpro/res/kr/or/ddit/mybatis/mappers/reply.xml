@@ -25,7 +25,7 @@
 	<!-- 댓글 수정 -->
 	<update id="updateReply" parameterType="replyVo">
 		update REPLYTAB
-		set name =#{name}, cont= #{cont}, redate=sysdate
+		set cont= #{cont}, redate=sysdate
 		where renum =#{renum}
 	
 	</update>

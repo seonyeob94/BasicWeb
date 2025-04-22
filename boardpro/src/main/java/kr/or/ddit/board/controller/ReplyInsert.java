@@ -7,23 +7,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import kr.or.ddit.board.service.BoardServiceImpl;
 import kr.or.ddit.board.service.IBoardService;
-import kr.or.ddit.board.vo.BoardVo;
+import kr.or.ddit.board.vo.ReplyVo;
 
 import java.io.IOException;
 
 import com.google.gson.Gson;
 
 /**
- * Servlet implementation class BoardWriter
+ * Servlet implementation class ReplyInsert
  */
-@WebServlet("/BoardWriter.do")
-public class BoardWriter extends HttpServlet {
+@WebServlet("/ReplyInsert.do")
+public class ReplyInsert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardWriter() {
+    public ReplyInsert() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,27 +33,27 @@ public class BoardWriter extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//직렬화 데이터 읽기
 		
+		//전송 데이터 받기 - 직렬화된 데이터 = bonum, name, cont
 		String reqData = RequestDataChange.dataChange(request);
 		
-		System.out.println("reqData =="+reqData);
+		System.out.println("reqData =" +reqData);
 		
-		//역직렬화 - 자바객체 boardVo로 변환
+		//역직렬화
 		Gson gson = new Gson();
-		BoardVo vo = gson.fromJson(reqData, BoardVo.class);
-		//자동실행 vo.setWriter("")...
-		//글쓴 사람의 IP저장
-		vo.setWip(request.getRemoteAddr());
+		ReplyVo vo = gson.fromJson(reqData, ReplyVo.class);
+		//vo.setBonum(23) vo.setName("이쁜이") vo.setCont("adfads");
 		
+		//
 		IBoardService service = BoardServiceImpl.getBoardService();
 		
-		int res = service.insertBoard(vo);
+		int res = service.insertReply(vo);
 		
-		//insert. delete, update에서 공통으로 사용
+		//insert, delete, update에서 공통으로 사용
 		request.setAttribute("res", res);
 		
 		request.getRequestDispatcher("/boardview/result.jsp").forward(request, response);
+		
 	}
 
 }

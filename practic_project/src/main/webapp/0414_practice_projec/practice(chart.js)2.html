@@ -8,6 +8,7 @@
 <script src="../js/jquery-3.7.1.js"></script>
 <script>
 let myChart;
+let myChart1;
 $(function(){
 	
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -39,6 +40,33 @@ $(function(){
         }
       }
     });
+    
+    const ctx1 = document.getElementById('myChart1').getContext('2d');
+    myChart1 = new Chart(ctx1, {
+      type: 'pie', // bar, line, pie 등
+      data: {
+        labels: ["정상반납", "연체", "미반납"],
+        datasets: [{
+          label: '반납 건수 비율',
+          data: [],
+          borderWidth: 1,
+          backgroundColor: [
+        	  'rgba(54, 162, 235, 0.6)',
+        	  'rgba(75, 192, 192, 0.6)',
+        	  'rgba(255, 99, 132, 0.6)'
+        	  
+          ]
+        }]
+      },
+      options: {
+    	responsive: false,  
+        scales: {
+            x: { stacked: true },
+            y: { stacked: true, beginAtZero: true }
+        }
+      }
+    });
+    
 
 	$("#fetch_member").on('click', function(){
 		fetch("/practic_project/Chart.do")
@@ -73,7 +101,43 @@ $(function(){
 		.catch( err =>{
 			console.log(err);
 		})
+		
+		
+		
+		fetch("/practic_project/OverallChart.do")
+		.then( resp =>{
+			
+			console.log(resp);
+			if(resp.ok){
+				
+				return resp.json()
+			}
+			else{
+				throw new Error(resp.statusText)
+			}
+		})
+		.then(data => {
+		  const stats = data[0]; // getOverallStats는 row 1개만 반환
+		  const labels = ["정상반납", "연체", "미반납"];
+		  const values = [
+		    stats.onTimeReturns,
+		    stats.overdueReturns,
+		    stats.notReturned
+		  ];
+		
+		  //myChart.data.labels = labels;
+		  myChart1.data.datasets[0].data = values;
+		  myChart1.update();
+		})
+		.catch( err =>{
+			console.log(err);
+		})
+	
+	
 	})
+	
+	
+	
 })
 
 </script>
@@ -86,7 +150,8 @@ $(function(){
 </head>
 <body>
   <h3>📚 대출,반납,연체 차트(ADM05)</h2>
-  <canvas id="myChart"></canvas>
+  <canvas id="myChart"></canvas><br><br>
+  <canvas id="myChart1"></canvas>
   <input type="button" value="비동기fetch" id="fetch_member">
   
 </body>
