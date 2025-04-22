@@ -104,6 +104,7 @@ span.pa{
 #modifyform{
   display: none;
 }
+
 #btnok, #btnreset{
   height : 40px;
   vertical-align: bottom;
@@ -135,7 +136,6 @@ ss = {
 } 
 */
 
-
 %>
 
 
@@ -146,16 +146,21 @@ console.log(uvo);
 currentPage = 1;
 mypath =  '<%= request.getContextPath()%>';
 
+//빈객체를 생성 - 동적으로 속성을 추가하고 값을 대입
+//댓글 등록 할때 , 댓글 수정에서 확인버튼 클릭시 사용
+reply = {};
 
 $(function(){
 	
 	boardListServer();
+	
 	
 	//다음버튼 이벤트
 	$(document).on('click','#next', function(){
 		currentPage = parseInt($('.pno').last().text())+1;
 		boardListServer();
 	})
+	
 	
 	//이전버튼 이벤트
 	$(document).on('click','#prev', function(){
@@ -174,6 +179,7 @@ $(function(){
 		currentPage=1;
 		boardListServer();
 	})
+	
 	
 	//stype이 전체일 때  sword의 값을 지운다
 	$('#stype').on('change', function(){
@@ -221,6 +227,7 @@ $(function(){
 	})
 	
 	
+	
 	//수정, 삭제 댓글 등록, 댓글 삭제, 댓글 수정, 댓글리스트(제목클릭, 등록버튼클릭) -이벤트 핸들러 설정
 	$(document).on('click','.action', function(){
 		
@@ -247,8 +254,7 @@ $(function(){
 			cont = $(this).prev().val();
 			
 			//renum, bonum, cont, name
-			//빈객체를 생성 - 동적으로 속성을 추가하고 값을 대입
-			reply = {};
+			
 			reply.bonum = vidx;
 			reply.cont = cont;
 			reply.name = uvo.mem_name;
@@ -257,13 +263,43 @@ $(function(){
 
 			replyInsertServer();
 			
-			
-		}else if(vname == "replist"){
+		}else if(vname == "replist"){ // 제목클릭
 			
 			//댓글리스트 가져오기
 			replyListServer();
+		
+		
+			//조회수 증가하기
+			aria = $(this).attr('aria-expanded');
+			if(aria == "true"){
+				//alert(vidx +"번글 조회수 증가");
+				hitUpdateServer();
+			}
+			
 		}else if(vname == "r_modify"){
 			alert(vidx + "번 댓글 수정");
+			
+			//버튼을 기준으로 .p3을 찾는다
+			vp3 = $(this).parents('.reply-body').find('.p3');
+			
+			//.p3의 내용을 가져온다 - 원래내용 - 보관하고 있어야한다
+			//댓글 수정창에서 취소버튼 클릭하면 원래 상태로 되돌아오기 위해
+			
+			modifycont = $(vp3).html().trim();
+			
+			//원래 내용의 <br>태그를 \n으로 변경
+			mcont = modifycont.replaceAll(/<br>/g, "\n");
+			
+			//mcont를 수정창으로 출력
+			$('#modifyform textarea').val(mcont);
+			
+			
+			//수정폼을 body안에서 .p3으로 이동하기
+			$(vp3).empty().append($('#modifyform'));
+			
+			//수정폼을 보이게 한다
+			$('#modifyform').show();
+			
 		}else if(vname == "r_delete"){
 			alert(vidx + "번 댓글 삭제");
 			
@@ -272,12 +308,54 @@ $(function(){
 			
 		}
 		
-		
 	})
 	
 	
+	//댓글 수정창(modifyform)에서 취소버튼 클릭
+	$('#btnreset').on('click', function(){
+		
+		//수정폼을 기준으로 p3을 찾는다
+		vp3 = $('#modifyform').parent();
+		
+		//수정폼을 먼저 boby태그로 이동
+		$('body').append($('#modifyform'));
+		$('#modifyform').hide();
+		
+		//.p3의 원래 내용을 출력
+		$(vp3).html(modifycont);
+		
+	})
 	
-	
+	//댓글 수정창에서 확인버튼 클릭하면
+	$('#btnok').on('click', function(){
+		//새롭게 입력한 내용을 가져온다 - 엔터가 포함되어 있다 -db저장용
+		modicont =$('#modifyform textarea').val();
+		
+		//엔터기호를 <br>태그로 변경 - 확인 버튼 클릭시 db수정이 성공하면 
+		//.p3에 출력하기 위해
+		modiout = modicont.replaceAll(/\n/g, "<br>");//출력용
+		
+		
+		//수정폼을 기준으로 p3을 찾는다
+		vp3 = $('#modifyform').parent();
+		
+		//수정폼을 먼저 boby태그로 이동
+		$('body').append($('#modifyform'));
+		$('#modifyform').hide();
+		
+		//db수정이 성공하면 비동기 ajax의 success의 콜백함수에서 실행
+		//$(vp3).html(modiout);
+		
+		//서버로 전송
+		//전송데이터 - cont, renum,
+		reply.cont = modicont;
+		reply.renum = vidx;
+		
+		
+		replyUpdateServer();
+		
+	})
+		
 	
 })
 </script>

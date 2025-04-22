@@ -2,6 +2,56 @@
  * 
  */
 
+const hitUpdateServer = () =>{
+
+		$.ajax({
+				url : `${mypath}/HitUpdate.do`,
+				data : {num : vidx},
+				method : 'get',
+				dataType : 'json',
+				success : function(res){
+					
+					//alert(res.flag)
+					
+					//성공하면 화면의 조회수를 증가
+					//target변수는 jsp에서 이벤트 대상 this를 대입받은 변수
+					
+					//화면의 조회수 span요소를 검색
+					hit = $(target).parents('.card').find('.hi');
+					
+					//화면의 조회수의 값을 가져온다
+					hitValue = parseInt($(hit).text())+1;
+					
+					//hitValue의 값으로 조회수 span요소의 값을 변경한다
+					$(hit).text(hitValue);
+					
+				},
+				error : function(xhr){
+					alert(xhr.status);
+				}
+				
+	})			
+}
+
+const replyUpdateServer = () =>{
+	$.ajax({
+			url : `${mypath}/ReplyUpdate.do`,
+			data : JSON.stringify(reply), // {renum : 5, cont : "dfdfd"}
+			method : 'post',
+			dataType : 'json',
+			success : function(res){
+				//db수정 성공하면
+				//화면의 내용 바꾸기
+				//alert(res.flag);
+				$(vp3).html(modiout);
+				
+			},
+			error : function(xhr){
+				alert(xhr.status);
+			}
+	})
+}
+
 const replyDeleteServer =() =>{
 	$.ajax({
 			url : `${mypath}/ReplyDelete.do`,
@@ -12,7 +62,7 @@ const replyDeleteServer =() =>{
 				//db삭제 성공하면
 				//화면의 reply-body를 삭제
 				
-				alert(res.flag);
+				//alert(res.flag);
 				$(target).parents('reply-body').remove();
 			},
 			error : function(xhr){
@@ -21,7 +71,7 @@ const replyDeleteServer =() =>{
 			
 	
 	
-})
+	})
 }
 
 const replyListServer =() =>{
