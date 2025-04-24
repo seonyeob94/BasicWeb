@@ -1,14 +1,15 @@
 package kr.or.ddit.cart.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.cart.vo.CartVo;
-import kr.or.ddit.loanStats.vo.LoansVo;
+
 
 public interface ICartService {
+
+	public List<Map<String, Object>> cartListMap();
 	
-	public List<CartVo> List();
-	
-	public List<CartVo> getOverallStats();
+	public List<Map<String, Object>> getOverallStatsMap();
 
 }

@@ -36,7 +36,7 @@
         ]
       });
       calendar.render();
-  
+  		
     
 	    $("#fetch_member").on("click", function(){
 	    	fetch("/practic_project/Return.do")
@@ -56,12 +56,14 @@
 	            // 기존 이벤트 제거 (필요시)
 	            calendar.getEvents().forEach(event => event.remove());
 	    		
+	            calendar.removeAllEvents(); 
+	            
 	    		data.forEach(item=>{
 
 	    			
 	    			
 	    			 calendar.addEvent({
-	    			      title: `${item.memberName} - ${item.bookTitle} 대출`,
+	    			      title: `${item.name} - ${item.bookTitle} 대출`,
 	    			      start: item.loanDate, // to_char() 처리한 값, 예: '2025-04-01'
 	    			      allDay: true,
 	    			      color: 'lightgreen'
@@ -69,7 +71,7 @@
 
 	    			    // 반납 예정일 이벤트 (분홍색)
 	    			 calendar.addEvent({
-	    			      title: `${item.memberName} - ${item.bookTitle} 반납 예정`,
+	    			      title: `${item.name} - ${item.bookTitle} 반납 예정`,
 	    			      start: item.dueDate, // to_char() 처리한 값, 예: '2025-04-08'
 	    			      allDay: true,
 	    			      color: 'lightcoral'
@@ -77,6 +79,8 @@
 	    			
 	    		});
 	    		
+	    		// → 여기서 한 번 더 로그
+	    		console.log('현재 캘린더에 남은 이벤트 수:', calendar.getEvents().length);
 	    		
 	    	})
 	    	

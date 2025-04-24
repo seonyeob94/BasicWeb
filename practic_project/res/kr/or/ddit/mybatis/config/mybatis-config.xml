@@ -10,9 +10,20 @@
 	</settings> -->
 	
 	<typeAliases>
-		<typeAlias type="kr.or.ddit.loanStats.vo.LoansVo" alias="LoansVo" />
 		<typeAlias type="kr.or.ddit.returnCa.vo.ReturnVo" alias="ReturnVo"/>
 		<typeAlias type="kr.or.ddit.cart.vo.CartVo" alias="CartVo"/>
+		<typeAlias type="kr.or.ddit.vo.BanUsersVo" alias="BanUsersVo"/>
+		<typeAlias type="kr.or.ddit.vo.BookLoanApprovalVo" alias="BookLoanApprovalVo"/>
+		<typeAlias type="kr.or.ddit.vo.BookLoansVo" alias="BookLoansVo"/>
+		<typeAlias type="kr.or.ddit.vo.BookRequestsVo" alias="BookRequestsVo"/>
+		<typeAlias type="kr.or.ddit.vo.BookReservationsVo" alias="BookReservationsVo"/>
+		<typeAlias type="kr.or.ddit.vo.BooksVo" alias="BooksVo"/>
+		<typeAlias type="kr.or.ddit.vo.DamagedLostBookVo" alias="DamagedLostBookVo"/>
+		<typeAlias type="kr.or.ddit.vo.Noti" alias="Noti"/>
+		<typeAlias type="kr.or.ddit.vo.OverduePolicyVo" alias="OverduePolicyVo"/>
+		<typeAlias type="kr.or.ddit.vo.RealBookVo" alias="RealBookVo"/>
+		<typeAlias type="kr.or.ddit.vo.RecommendBookVo" alias="RecommendBookVo"/>
+		<typeAlias type="kr.or.ddit.vo.UsertsVo" alias="UsertsVo"/>
 	</typeAliases>
 	
 	<!-- 
@@ -38,9 +49,9 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="kr/or/ddit/mybatis/mappers/loanStats.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/return.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/cart.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/policy.xml"/>
 	</mappers>
 
 </configuration>

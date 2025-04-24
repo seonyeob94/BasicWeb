@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="banUser">
+
+		
+
+	<resultMap id="loanMap" type="BookLoansVo">
+	    <result property="loanNo" column="loan_no"/>
+	    <result property="loanDate" column="loan_date"/>
+	    <result property="dueDate" column="due_date"/>
+	    <result property="returnDate" column="return_date"/>
+	    <result property="userNo" column="USER_NO"/>
+	    <result property="realBook" column="real_book"/>
+	    <result property="policyNo" column="POLICY_NO"/>
+	</resultMap>
+
+
+	<update id="laonBan"></update>
+	
+	
+	
+	
+</mapper>

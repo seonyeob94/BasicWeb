@@ -1,6 +1,7 @@
 package kr.or.ddit.returnCa.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -21,14 +22,17 @@ public class ReturnDaoImpl implements IReturnDao {
 	}
 
 
+
+
+
 	@Override
-	public List<ReturnVo> returnList() {
+	public List<Map<String, Object>> returnListMap() {
 		SqlSession sql = MybatisUtil.getInstance();
-		List<ReturnVo> list =null;
+		List<Map<String, Object>> list =null;
 		
 		try {
 			
-			list = sql.selectList("return.returnList");
+			list = sql.selectList("return.returnListMap");
 			
 			
 		} catch (Exception e) {

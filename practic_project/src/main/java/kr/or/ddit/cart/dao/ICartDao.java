@@ -1,14 +1,16 @@
 package kr.or.ddit.cart.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.cart.vo.CartVo;
-import kr.or.ddit.loanStats.vo.LoansVo;
+
 
 public interface ICartDao {
 	
-	public List<CartVo> List();
+
+	public List<Map<String, Object>> cartListMap();
 	
-	public List<CartVo> getOverallStats();
+	public List<Map<String, Object>> getOverallStatsMap();
 
 }

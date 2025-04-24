@@ -1,11 +1,12 @@
 package kr.or.ddit.cart.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.cart.dao.CartDaoImpl;
 import kr.or.ddit.cart.dao.ICartDao;
 import kr.or.ddit.cart.vo.CartVo;
-import kr.or.ddit.loanStats.dao.ILoansDao;
+
 
 public class CartServiceImpl implements ICartService {
 	
@@ -24,16 +25,17 @@ public class CartServiceImpl implements ICartService {
 		return service;
 	}
 
+
 	@Override
-	public List<CartVo> List() {
+	public List<Map<String, Object>> cartListMap() {
 		// TODO Auto-generated method stub
-		return dao.List();
+		return dao.cartListMap();
 	}
 
 	@Override
-	public java.util.List<CartVo> getOverallStats() {
+	public List<Map<String, Object>> getOverallStatsMap() {
 		// TODO Auto-generated method stub
-		return dao.getOverallStats();
+		return dao.getOverallStatsMap();
 	}
 
 }

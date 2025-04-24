@@ -11,6 +11,7 @@ import kr.or.ddit.cart.vo.CartVo;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Servlet implementation class LoanChart
@@ -35,11 +36,11 @@ public class Chart extends HttpServlet {
 		//service객체 얻기
 		ICartService service = CartServiceImpl.getService();
 		
-		List<CartVo> list = service.List();
+		List<Map<String, Object>> list = service.cartListMap();
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/0414_practice_projec/view/loans.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/chart/loans.jsp").forward(request, response);
 	}
 
 	

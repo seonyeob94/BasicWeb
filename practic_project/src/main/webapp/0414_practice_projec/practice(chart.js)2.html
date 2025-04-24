@@ -85,10 +85,10 @@ $(function(){
 			console.log(data);
             // data가 배열이라고 가정할 때
             // 레이블과 데이터를 추출합니다.
-			const labels = data.map(item =>item.monthNo);
-			const counts = data.map(item =>item.totalLoans);
-			const returns = data.map(item => item.totalReturns);
-			const overdues = data.map(item => item.overdueReturns);
+			const labels = data.map(item =>item.MONTHNO);
+			const counts = data.map(item =>item.TOTALLOANS);
+			const returns = data.map(item => item.TOTALRETURNS);
+			const overdues = data.map(item => item.OVERDUERETURNS);
 			
 			//chart 인스턴스 업데이트 : 레이블과 데이터 설정후 update() 호출
 			myChart.data.labels= labels;
@@ -120,9 +120,9 @@ $(function(){
 		  const stats = data[0]; // getOverallStats는 row 1개만 반환
 		  const labels = ["정상반납", "연체", "미반납"];
 		  const values = [
-		    stats.onTimeReturns,
-		    stats.overdueReturns,
-		    stats.notReturned
+		    stats.ONTIMERETURNS,
+		    stats.OVERDUERETURNS,
+		    stats.NOTRETURNED
 		  ];
 		
 		  //myChart.data.labels = labels;

@@ -11,6 +11,7 @@ import kr.or.ddit.returnCa.vo.ReturnVo;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Servlet implementation class ReturnController
@@ -33,11 +34,11 @@ public class Returntroller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IReturnService service = ReturnServiceImpl.getService();
 		
-		List<ReturnVo> list = service.returnList();
+		List<Map<String, Object>> list = service.returnListMap();
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/0414_practice_projec/view/return.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/chart/return.jsp").forward(request, response);
 	}
 
 }

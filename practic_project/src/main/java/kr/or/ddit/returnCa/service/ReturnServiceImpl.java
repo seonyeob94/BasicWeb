@@ -1,6 +1,7 @@
 package kr.or.ddit.returnCa.service;
 
 import java.util.List;
+import java.util.Map;
 
 import kr.or.ddit.returnCa.dao.IReturnDao;
 import kr.or.ddit.returnCa.dao.ReturnDaoImpl;
@@ -21,10 +22,12 @@ public class ReturnServiceImpl implements IReturnService {
 		return service;
 	}
 
+
+
 	@Override
-	public List<ReturnVo> returnList() {
+	public List<Map<String, Object>> returnListMap() {
 		// TODO Auto-generated method stub
-		return dao.returnList();
+		return dao.returnListMap();
 	}
 
 }

@@ -2,6 +2,7 @@ package kr.or.ddit.cart.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,10 +20,10 @@ public class OverChart extends HttpServlet{
 
 		ICartService service = CartServiceImpl.getService();
 		
-		List<CartVo> list = service.getOverallStats();
+		List<Map<String, Object>> list = service.getOverallStatsMap();
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/0414_practice_projec/view/loans.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/chart/loans.jsp").forward(request, response);
 	}
 }

@@ -1,6 +1,7 @@
 package kr.or.ddit.cart.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -22,13 +23,16 @@ public class CartDaoImpl implements ICartDao {
 		return dao;
 	}
 
+	
+
 	@Override
-	public List<CartVo> List() {
+	public List<Map<String, Object>> cartListMap() {
+		
 		SqlSession sql = MybatisUtil.getInstance();
-		List<CartVo> list = null;
+		List<Map<String, Object>> list = null;
 		
 		try {
-			list = sql.selectList("cart.cartList");
+			list = sql.selectList("cart.cartListMap");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,12 +48,13 @@ public class CartDaoImpl implements ICartDao {
 	}
 
 	@Override
-	public java.util.List<CartVo> getOverallStats() {
+	public List<Map<String, Object>> getOverallStatsMap() {
+		
 		SqlSession sql = MybatisUtil.getInstance();
-		List<CartVo> list = null;
+		List<Map<String, Object>> list = null;
 		
 		try {
-			list = sql.selectList("cart.getOverallStats");
+			list = sql.selectList("cart.getOverallStatsMap");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
