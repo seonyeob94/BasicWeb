@@ -52,6 +52,7 @@
 		<mapper resource="kr/or/ddit/mybatis/mappers/return.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/cart.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/policy.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/loanExtension.xml"/>
 	</mappers>
 
 </configuration>

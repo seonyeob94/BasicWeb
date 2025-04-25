@@ -83,6 +83,12 @@ table.policy-table td:first-child {
 }
 </style>
 
+<c:if test="${not empty sessionScope.msg}">
+	<div class="alert-box">
+		<c:out value="${sessionScope.msg}"/>
+	</div>
+	<c:remove var="msg" scope="session"/>
+</c:if>
 
 <h2>연체 기준 설정</h2>
 
@@ -137,7 +143,7 @@ table.policy-table td:first-child {
 	              type="submit"
 	              class="btn btn-apply"
 	              ${p.isActive=='Y' ? 'disabled' : ''}
-	              ${isDeleted      ? 'disabled' : ''}>
+	           <%--    ${isDeleted      ? 'disabled' : ''} --%>>
 	              적용
 	            </button>
 	          </form>

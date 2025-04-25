@@ -151,24 +151,24 @@
     </insert>
     
     
-	<!-- 7) 30일 초과 지연자는 ban_users 에서 분실로 업데이트 -->
+	<!-- 7) 60일 초과 지연자는 ban_users 에서 분실로 업데이트 -->
     <update id="lostBookBan">
     	UPDATE BAN_USERS BU
 	   SET 
-	       BU.BAN_DAYS = 30,
-	       BU.RELEASE_DATE = TRUNC(SYSDATE) + 30,
+	       BU.BAN_DAYS = 60,
+	       BU.RELEASE_DATE = TRUNC(SYSDATE) + 60,
 	       BU.BAN_NOTE     = '분실'
 	 WHERE EXISTS (
 	     SELECT 1
 	       FROM BOOK_LOANS B
 	      WHERE B.LOAN_NO      = BU.LOAN_NO
 	        AND B.RETURN_DATE IS NULL
-	        AND TRUNC(SYSDATE) &gt; TRUNC(B.DUE_DATE) + 30
+	        AND TRUNC(SYSDATE) &gt; TRUNC(B.DUE_DATE) + 60
 	 )
     </update>
     
     
-    <!-- 8) 정상 반납 시 Book_Loans.return_date 설정 -->
+    <!-- 10) 정상 반납 시 Book_Loans.return_date 설정 -->
     <update id="bookLoanReturn" parameterType="BookLoansVo">
     	UPDATE BOOK_LOANS
 		SET RETURN_DATE = SYSDATE
@@ -177,12 +177,24 @@
     </update>
 	
 	
-	<!-- 9) 반납 시 ban_users.release_date 설정 -->
+	<!-- 11) 연체자 반납 시 ban_users.release_date 설정 -->
     <update id="banReleaseDateOnReturn" parameterType="BookLoansVo">
-    	UPDATE BAN_USERS
-		   SET RELEASE_DATE = TRUNC(SYSDATE) + BAN_DAYS
-		 WHERE LOAN_NO      = #{loanNo}
-		   AND RELEASE_DATE IS NULL
+    	MERGE INTO BAN_USERS B
+		USING (
+		  SELECT 
+		    L.LOAN_NO,
+		    TRUNC(L.RETURN_DATE) - TRUNC(L.LOAN_DATE) AS PENALTY_DAYS
+		  FROM BOOK_LOANS L
+		  JOIN OVERDUE_POLICY P ON L.POLICY_NO = P.POLICY_NO
+		  WHERE TRUNC(L.RETURN_DATE) > TRUNC(L.DUE_DATE) + P.DAYS
+		    AND L.LOAN_NO = #{loanNo}
+		) SRC
+		ON (B.LOAN_NO = SRC.LOAN_NO)
+		WHEN MATCHED THEN
+		  UPDATE SET
+		    BAN_DAYS     = SRC.PENALTY_DAYS,
+		    RELEASE_DATE = TRUNC(SYSDATE) + SRC.PENALTY_DAYS
+		    WHERE B.RELEASE_DATE IS NULL
     </update>
 	
 </mapper>

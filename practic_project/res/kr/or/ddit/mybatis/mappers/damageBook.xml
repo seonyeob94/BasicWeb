@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="damage">
+
+		
+
+	<resultMap id="damageMap" type="DamagedLostBookVo">
+	    <result property="lostNo" column="lostNo"/>
+	    <result property="reportDate" column="reportDate"/>
+	    <result property="lostStatus" column="lostStatus"/>
+	    <result property="description" column="description"/>
+	    <result property="processed" column="processed"/>
+	    <result property="processedDate" column="processedDate"/>
+	    <result property="userNo" column="userNo"/>
+	    <result property="realBook" column="realBook"/>
+	</resultMap>
+
+	<!-- 60일 이상 연체의 경우 도서는 분실처리 한다 -->
+	<update id="damageAutoInsert">
+		INSERT INTO DAMAGED_LOST_BOOK
+			             (LOST_NO, 
+			             REPORT_DATE, 
+			             LOST_STATUS, 
+			             DESCRIPTION, 
+			             PROCESSED, 
+			             PROCESSED_DATE, 
+			             USER_NO, 
+			             REAL_BOOK)
+			SELECT SEQ_DAMAGED_LOST_BOOK.nextval, 
+			       SYSDATE, 
+			       B.BAN_NOTE, 
+			       '60일 이상 연체로 분실처리', 
+			       'Y', 
+			       SYSDATE, 
+			       L.USER_NO, 
+			       L.REAL_BOOK
+			  FROM BOOK_LOANS L
+			  JOIN BAN_USERS B ON L.USER_NO=B.USER_NO
+			 WHERE TRUNC(SYSDATE) > TRUNC(L.DUE_DATE) + 60
+			   AND TRUNC(L.RETURN_DATE) IS NULL
+			   AND NOT EXISTS(
+			    SELECT 1
+			      FROM DAMAGED_LOST_BOOK D
+			     WHERE D.USER_NO=L.USER_NO
+			   )
+	</update>
+	
+	<insert id="damageInsert">
+		INSERT INTO DAMAGED_LOST_BOOK
+			             (LOST_NO, 
+			             REPORT_DATE, 
+			             LOST_STATUS, 
+			             DESCRIPTION, 
+			             PROCESSED, 
+			             PROCESSED_DATE, 
+			             USER_NO, 
+			             REAL_BOOK
+			             )
+			   VALUES(
+			   			SEQ_DAMAGED_LOST_BOOK.nextval,
+			   			SYSDATE,
+			   			#{lostStatus},
+			   			#{description},
+			   			'Y',
+			   			SYSDATE,
+			   			#{userNo},
+			   			#{realBook}
+			   		)          
+	</insert>
+	
+	
+	
+	
+</mapper>

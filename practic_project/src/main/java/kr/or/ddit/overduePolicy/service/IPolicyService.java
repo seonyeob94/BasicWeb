@@ -13,7 +13,7 @@ public interface IPolicyService {
 	public int policyInsert(OverduePolicyVo vo);
 
 	//선택한 연체기준목록 선택
-	public void policyApply(int policyNo);
+	public boolean policyApply(int policyNo);
 
 	//선택한 연체기준목록 삭제(영구 비활성화)
 	public int policyDelete(int policyNo);

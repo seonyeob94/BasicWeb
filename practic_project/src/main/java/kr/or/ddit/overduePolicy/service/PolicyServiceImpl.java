@@ -36,11 +36,14 @@ public class PolicyServiceImpl implements IPolicyService {
 	}
 
 	@Override
-	public void policyApply(int policyNo) {
+	public boolean policyApply(int policyNo) {
 
-		dao.deactivateAll();
 		
-		dao.activateOne(policyNo);
+		int up1 = dao.deactivateAll();
+		
+		int up2 = dao.activateOne(policyNo);
+		
+		return up1>0&&up2>0;
 		
 	}
 

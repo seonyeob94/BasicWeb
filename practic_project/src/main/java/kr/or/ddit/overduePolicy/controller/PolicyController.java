@@ -64,7 +64,14 @@ public class PolicyController extends HttpServlet{
 		else if("/activate".equals(path)) {
 			int policyNo = Integer.parseInt(req.getParameter("policyNo"));
 			
-			service.policyApply(policyNo);
+			boolean ok = service.policyApply(policyNo);
+			
+			String msg = ok ? "선택한 정책이 적용되었습니다."
+					        : "정책 적용에 실패하였습니다.";
+			req.getSession().setAttribute("msg", msg);
+			
+			resp.sendRedirect(req.getContextPath()+ "/Policy/list");
+			return;
 			
 		}
 		else if("/delete".equals(path)) {
