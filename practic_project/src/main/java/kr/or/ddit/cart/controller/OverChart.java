@@ -24,6 +24,6 @@ public class OverChart extends HttpServlet{
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/WEB-INF/view/chart/loans.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/chart/chart.jsp").forward(request, response);
 	}
 }

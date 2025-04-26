@@ -1,87 +1,131 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Chart.js 연습</title>
-<!--   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script> -->
-<script src="../js/chart.umd.min.js"></script>
-<script src="../js/jquery-3.7.1.js"></script>
-<script>
-let myChart;
-let myChart1;
-$(function(){
-	
-    const ctx = document.getElementById('myChart').getContext('2d');
-    myChart = new Chart(ctx, {
-      type: 'pie', // bar, line, pie 등
-      data: {
-        labels: ["정상반납", "연체", "미반납"],
-        datasets: [{
-          label: '반납 건수 비율',
-          data: [],
-          borderWidth: 1,
-          backgroundColor: [
-        	  'rgba(54, 162, 235, 0.6)',
-        	  'rgba(75, 192, 192, 0.6)',
-        	  'rgba(255, 99, 132, 0.6)'
-        	  
+  <title>Chart.js 통합 테스트</title>
+
+  <!-- Chart.js 라이브러리 -->
+  <script src="../js/chart.umd.min.js"></script>
+  <script src="../js/jquery-3.7.1.js"></script>
+
+  <script>
+  let myChart;
+  let myChart1;
+
+  $(function() {
+      // 첫 번째 차트 (막대그래프)
+      const ctx = document.getElementById('myChart').getContext('2d');
+      myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: '월별 대출 건수',
+              data: [],
+              backgroundColor: 'rgba(54, 162, 235, 0.6)'
+            },
+            {
+              label: '반납 건수',
+              data: [],
+              backgroundColor: 'rgba(75, 192, 192, 0.6)'
+            },
+            {
+              label: '연체 건수',
+              data: [],
+              backgroundColor: 'rgba(255, 99, 132, 0.6)'
+            }
           ]
-        }]
-      },
-      options: {
-    	responsive: false,  
-        scales: {
-            x: { stacked: true },
-            y: { stacked: true, beginAtZero: true }
+        },
+        options: {
+          responsive: false,
+          scales: {
+            y: { beginAtZero: true }
+          }
         }
-      }
-    });
-    
-   
+      });
 
-	$("#fetch_member").on('click', function(){
-		fetch("/practic_project/OverallChart.do")
-		.then( resp =>{
-			
-			console.log(resp);
-			if(resp.ok){
-				
-				return resp.json()
-			}
-			else{
-				throw new Error(resp.statusText)
-			}
-		})
-		.then(data => {
-		  const stats = data[0]; // getOverallStats는 row 1개만 반환
-		  const labels = ["정상반납", "연체", "미반납"];
-		  const values = [
-		    stats.onTimeReturns,
-		    stats.overdueReturns,
-		    stats.notReturned
-		  ];
-		
-		  myChart.data.labels = labels;
-		  myChart.data.datasets[0].data = values;
-		  myChart.update();
-		})
-		.catch( err =>{
-			console.log(err);
-		})
-	})
-})
+      // 두 번째 차트 (파이 차트)
+      const ctx1 = document.getElementById('myChart1').getContext('2d');
+      myChart1 = new Chart(ctx1, {
+        type: 'pie',
+        data: {
+          labels: ["정상반납", "연체", "미반납"],
+          datasets: [{
+            data: [],
+            backgroundColor: [
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(255, 99, 132, 0.6)'
+            ]
+          }]
+        },
+        options: {
+          responsive: false
+        }
+      });
 
-</script>
-<style>
-#myChart{
-	width : 400px;
-	height : 200px;
-}
-</style>
+      // 비동기 fetch 버튼
+      $("#fetch_member").on('click', function() {
+          fetch("/practic_project/Chart1.do") // controller 연결
+          .then(resp => {
+              if (resp.ok) {
+                  return resp.json();
+              } else {
+                  throw new Error(resp.statusText);
+              }
+          })
+          .then(data => {
+              console.log(data);
+
+              // 월별 데이터 처리
+              const monthly = data.monthlyStats;
+              const labels = monthly.map(item => item.MONTHNO);
+              const counts = monthly.map(item => item.TOTALLOANS);
+              const returns = monthly.map(item => item.TOTALRETURNS);
+              const overdues = monthly.map(item => item.OVERDUERETURNS);
+
+              myChart.data.labels = labels;
+              myChart.data.datasets[0].data = counts;
+              myChart.data.datasets[1].data = returns;
+              myChart.data.datasets[2].data = overdues;
+              myChart.update();
+
+              // 전체 데이터 처리
+              const stats = data.overallStats[0]; // 결과는 한 줄(row)만
+              const values = [
+                  stats.ONTIMERETURNS,
+                  stats.OVERDUERETURNS,
+                  stats.NOTRETURNED
+              ];
+
+              myChart1.data.datasets[0].data = values;
+              myChart1.update();
+          })
+          .catch(err => {
+              console.log(err);
+          });
+      });
+  });
+  </script>
+
+  <style>
+    #myChart, #myChart1 {
+      width: 400px;
+      height: 200px;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
 </head>
+
 <body>
-  <canvas id="myChart"></canvas>
-  <input type="button" value="비동기fetch" id="fetch_member">
-  
+  <h2>📊 대출/반납/연체 월별 통계</h2>
+  <canvas id="myChart"></canvas><br><br>
+  <h2>📈 반납 상태(정상/연체/미반납) 비율</h2>
+  <canvas id="myChart1"></canvas><br><br>
+  <input type="button" value="비동기 fetch" id="fetch_member">
 </body>
 </html>

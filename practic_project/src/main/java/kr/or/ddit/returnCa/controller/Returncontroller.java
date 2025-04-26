@@ -17,13 +17,13 @@ import java.util.Map;
  * Servlet implementation class ReturnController
  */
 @WebServlet("/Return.do")
-public class Returntroller extends HttpServlet {
+public class Returncontroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Returntroller() {
+    public Returncontroller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,7 +38,7 @@ public class Returntroller extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/WEB-INF/view/chart/return.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/admin/loan_return/calender.jsp").forward(request, response);
 	}
 
 }
