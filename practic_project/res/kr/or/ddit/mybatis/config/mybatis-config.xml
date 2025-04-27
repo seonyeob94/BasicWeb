@@ -23,7 +23,7 @@
 		<typeAlias type="kr.or.ddit.vo.OverduePolicyVo" alias="OverduePolicyVo"/>
 		<typeAlias type="kr.or.ddit.vo.RealBookVo" alias="RealBookVo"/>
 		<typeAlias type="kr.or.ddit.vo.RecommendBookVo" alias="RecommendBookVo"/>
-		<typeAlias type="kr.or.ddit.vo.UsertsVo" alias="UsertsVo"/>
+		<typeAlias type="kr.or.ddit.vo.UsersVo" alias="UsersVo"/>
 	</typeAliases>
 	
 	<!-- 

@@ -26,14 +26,14 @@ public class PolicyController extends HttpServlet{
 			List<OverduePolicyVo> list = service.policyList();
 			req.setAttribute("list", list);
 			
-			req.getRequestDispatcher("/WEB-INF/view/policy/list.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/view/policy/policyList.jsp").forward(req, resp);
 			return;
 		}
 		else if("/update".equals(path)) {
 			int policyNo = Integer.parseInt(req.getParameter("policyNo"));
 			OverduePolicyVo vo = service.getPolicy(policyNo);
 			req.setAttribute("vo", vo);
-			req.getRequestDispatcher("/WEB-INF/view/policy/update.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/view/policy/policyUpdate.jsp").forward(req, resp);
 			
 			return;
 		}

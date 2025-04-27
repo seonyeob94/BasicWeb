@@ -18,14 +18,14 @@ public class ExtensionServiceImpl implements IExtensionService {
 	
 	//자신의 객체 생성 리턴
 	private static IExtensionService service;
-	public static IExtensionService getIExtensionService() {
+	public static IExtensionService getService() {
 		if( service == null) service = new ExtensionServiceImpl();
 		
 		return service;
 	}
  	
 	@Override
-	public List<Map<String, Object>> extentionListMap() {
+	public List<Map<String, Object>> extensionListMap() {
 		// TODO Auto-generated method stub
 		return dao.extentionListMap();
 	}
@@ -33,8 +33,8 @@ public class ExtensionServiceImpl implements IExtensionService {
 	@Override
 	public boolean approveExtension(BookLoanApprovalVo vo) {
 			
-			int up1 = dao.approveLoanExtension(vo);
 			int up2 = dao.extendDueDate(vo);
+			int up1 = dao.approveLoanExtension(vo);
 
 		return up1>0&&up2>0;
 	}

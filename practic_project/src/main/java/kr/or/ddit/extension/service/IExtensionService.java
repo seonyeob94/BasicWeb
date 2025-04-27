@@ -7,7 +7,7 @@ import kr.or.ddit.vo.BookLoanApprovalVo;
 
 public interface IExtensionService {
 		//연장 요청목록 조회
-		public List<Map<String, Object>> extentionListMap();
+		public List<Map<String, Object>> extensionListMap();
 		
 		//연장 승인시 연장처리 테이블 변화
 		public boolean approveExtension(BookLoanApprovalVo vo);

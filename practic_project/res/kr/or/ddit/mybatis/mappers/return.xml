@@ -6,7 +6,7 @@
 
 		
 
-	<resultMap id="reutrnMap" type="BookLoansVo">
+	<resultMap id="returnMap" type="BookLoansVo">
 	    <result property="loanNo" column="loan_no"/>
 	    <result property="loanDate" column="loan_date"/>
 	    <result property="dueDate" column="due_date"/>
@@ -32,7 +32,7 @@
 	    END AS "returnDate"
 	  FROM book_loans a
 	    JOIN USERS u ON a.user_no = u.user_no
-	    JOIN REAL_BOOKS bl ON a.real_book = bl.real_book
+	    JOIN REAL_BOOK bl ON a.real_book = bl.real_book
 	    JOIN BOOKS b ON bl.book_no = b.book_no
 	</select>
 	

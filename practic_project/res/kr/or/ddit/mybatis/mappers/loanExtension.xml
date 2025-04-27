@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
-<mapper namespace="loanExtension">
+<mapper namespace="extension">
 
 		
 
@@ -16,7 +16,7 @@
 	</resultMap>
 
 
-	<select id="extentionListMap" resultType="map">
+	<select id="extensionListMap" resultType="map">
 		SELECT  
                U.NAME AS "name",
                B.BOOK_TITLE AS "bookTitle" ,
@@ -29,8 +29,8 @@
 		  FROM BOOK_LOAN_APPROVAL A
             JOIN USERS U ON  A.USER_NO=U.USER_NO
             JOIN BOOK_LOANS L ON A.LOAN_NO=L.LOAN_NO
-            JOIN REAL_BOOKS R ON L.REAL_BOOK=R.REAL_BOOK
-            JOIN BOOKS B ON R.BOOK_NO=B.BOOK_NO
+            LEFT JOIN REAL_BOOK R ON L.REAL_BOOK=R.REAL_BOOK
+            LEFT JOIN BOOKS B ON R.BOOK_NO=B.BOOK_NO
 		  
 		  
 	</select>
@@ -43,8 +43,8 @@
 		UPDATE BOOK_LOAN_APPROVAL
 		 SET approval_status = '승인',
 		    approved_date = SYSDATE,
-		    approved_by = #{data}
-		WHERE approval_no =#{approvalNO}
+		    approved_by = #{approvedBy}
+		WHERE approval_no =#{approvalNo}
 		  AND approval_status ='대기'
 	</update>
 	
@@ -58,7 +58,7 @@
 		    FROM  USERS U
 		    JOIN BOOK_LOAN_APPROVAL A ON B.LOAN_NO=A.LOAN_NO
 		    WHERE B.USER_NO = U.USER_NO
-		     AND A.approval_no =#{approvalNO}
+		     AND A.approval_no =#{approvalNo}
 		     AND approval_status ='대기'
 		     AND U.STATUS = '정상'
 		     AND NOT EXISTS (
@@ -75,8 +75,8 @@
 		UPDATE BOOK_LOAN_APPROVAL
 		 SET approval_status = '반려',
 		    approved_date = SYSDATE,
-		    approved_by = #{data}
-		WHERE approval_no =#{approvalNO}
+		    approved_by = #{approvedBy}
+		WHERE approval_no =#{approvalNo}
 		  AND approval_status ='대기'
 	</update>
 	

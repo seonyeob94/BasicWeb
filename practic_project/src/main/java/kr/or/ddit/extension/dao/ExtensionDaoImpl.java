@@ -27,7 +27,7 @@ public class ExtensionDaoImpl implements IExtensionDao {
 		SqlSession sql = MybatisUtil.getInstance();
 		List<Map<String, Object>> list = null;
 		try {
-			list =sql.selectList("extension.extentionListMap");
+			list =sql.selectList("extension.extensionListMap");
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -46,7 +46,7 @@ public class ExtensionDaoImpl implements IExtensionDao {
 		SqlSession sql = MybatisUtil.getInstance();
 		int list = 0;
 		try {
-			list =sql.update("extension.approveLoanExtension");
+			list =sql.update("extension.approveLoanExtension", vo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,7 +65,7 @@ public class ExtensionDaoImpl implements IExtensionDao {
 		SqlSession sql = MybatisUtil.getInstance();
 		int list = 0;
 		try {
-			list =sql.update("extension.extendDueDate");
+			list =sql.update("extension.extendDueDate", vo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,7 +84,7 @@ public class ExtensionDaoImpl implements IExtensionDao {
 		SqlSession sql = MybatisUtil.getInstance();
 		int list = 0;
 		try {
-			list =sql.update("extension.rejectLoanExtension");
+			list =sql.update("extension.rejectLoanExtension", vo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

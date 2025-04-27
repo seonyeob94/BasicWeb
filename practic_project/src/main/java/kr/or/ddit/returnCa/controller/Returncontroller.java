@@ -38,7 +38,7 @@ public class Returncontroller extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("/WEB-INF/view/admin/loan_return/calender.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/chart/return.jsp").forward(request, response);
 	}
 
 }
