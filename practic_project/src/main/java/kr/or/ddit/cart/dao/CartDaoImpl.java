@@ -18,7 +18,7 @@ public class CartDaoImpl implements ICartDao {
 	//자기자신의 객체를 생성 - 리턴
 	
 	public static ICartDao getDao() {
-		if(dao ==null) dao = new CartDaoImpl();
+		if(dao == null) dao = new CartDaoImpl();
 		
 		return dao;
 	}

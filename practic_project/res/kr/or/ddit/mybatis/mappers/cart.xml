@@ -4,16 +4,9 @@
 
 		
 
-<resultMap id="cartMap" type="CartVo">
-    <result property="monthNo" column="MONTHNO"/>
-    <result property="totalLoans" column="TOTALLOANS"/>
-    <result property="totalReturns" column="TOTALRETURNS"/>
-    <result property="notReturned" column="NOTRETURNED"/>
-    <result property="onTimeReturns" column="ONTIMERETURNS"/>
-    <result property="overdueReturns" column="OVERDUERETURNS"/>
-</resultMap>
 
-<select id="cartList" resultMap="cartMap">
+
+<select id="cartList" resultType="map">
     SELECT 
       TO_CHAR(LOAN_DATE, 'MM') AS MONTHNO,
       COUNT(*) AS TOTALLOANS,
@@ -33,7 +26,7 @@
     ORDER BY TO_CHAR(LOAN_DATE, 'MM')
 </select>
 
-<select id="getOverallStats" resultMap="cartMap">
+<select id="getOverallStats" resultType="map">
 	SELECT 
       COUNT(*) AS TOTALLOANS,
       SUM(CASE WHEN RETURN_DATE IS NOT NULL THEN 1 ELSE 0 END) AS TOTALRETURNS,

@@ -16,7 +16,9 @@
 	    <result property="policyNo" column="POLICY_NO"/>
 	</resultMap>
 
-
+	<insert id="banUserInsert">
+	
+	</insert>
 	
 	
 	

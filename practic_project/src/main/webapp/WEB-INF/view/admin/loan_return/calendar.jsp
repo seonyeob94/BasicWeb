@@ -83,13 +83,13 @@
         eventDisplay: 'block',
         events: calendarStats.flatMap(item => [
           {
-            title: `${item.name} - ${item.bookTitle} 대출`,
+            title: `\${item.name} - \${item.bookTitle} 대출`,
             start: item.loanDate,
             allDay: true,
             color: 'lightgreen'
           },
           {
-            title: `${item.name} - ${item.bookTitle} 반납예정`,
+            title: `\${item.name} - \${item.bookTitle} 반납예정`,
             start: item.dueDate,
             allDay: true,
             color: 'lightcoral'
