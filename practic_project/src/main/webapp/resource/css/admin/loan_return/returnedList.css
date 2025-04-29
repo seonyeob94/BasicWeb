@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* 전체 테이블 */
+.returned-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.9rem;
+}
+.returned-table th,
+.returned-table td {
+  border: 1px solid #ddd;
+  padding: 0.5em 0.75em;
+  text-align: center;
+}
+.returned-table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+/* 짝수행 배경 */
+.returned-table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+/* 마우스오버 */
+.returned-table tr:hover {
+  background-color: #eef;
+}
+
+/* 상태별 배지 */
+.status {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border-radius: 0.25em;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.status-normal {
+  background-color: #d4edda;
+  color: #155724;
+}
+.status-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+.status-overdue {
+  background-color: #f8d7da;
+  color: #721c24;
+}

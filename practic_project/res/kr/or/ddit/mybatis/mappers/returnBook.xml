@@ -228,7 +228,37 @@
     </update>
     
     
-	
+	<select id="selectReturnedList" resultType="map">
+	  SELECT 
+	    a.loan_no    AS loanNo,
+	    u.name       AS name,
+	    b.book_title AS bookTitle,
+	    p.days       AS days,
+	    TO_CHAR(a.loan_date,   'YYYY-MM-DD') AS loanDate,
+	    TO_CHAR(a.return_date, 'YYYY-MM-DD') AS returnDate,
+	    -- 날짜 차이 계산
+	    TRUNC(a.return_date) - TRUNC(a.due_date)           AS delayDays,
+	    TRUNC(a.return_date) - TRUNC(a.due_date) - p.days       AS overDays,
+	    -- 상태 &amp; 메시지 합치기
+	    CASE
+	      WHEN TRUNC(a.return_date) &lt;= TRUNC(a.due_date)
+	        THEN '정상반납'
+	      WHEN TRUNC(a.return_date) &lt;= TRUNC(a.due_date) + p.days
+	        THEN '지연반납('
+	             || (TRUNC(a.return_date) - TRUNC(a.due_date))
+	             || '일)'
+	      ELSE    '연체반납('
+	             || (TRUNC(a.return_date) - (TRUNC(a.due_date) + p.days))
+	             || '일)'
+	    END AS statusText
+	  FROM book_loans a
+	  JOIN users     u ON a.user_no   = u.user_no
+	  JOIN real_book r ON a.real_book = r.real_book
+	  JOIN books     b ON r.book_no   = b.book_no
+	  JOIN overdue_policy p ON a.policy_no=p.policy_no
+	  WHERE a.return_date IS NOT NULL
+	  ORDER BY a.return_date DESC
+	</select>
 	
 	
 </mapper>

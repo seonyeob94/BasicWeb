@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import kr.or.ddit.returnBook.service.IReturnBookService;
 import kr.or.ddit.returnBook.service.ReturnBookServiceImpl;
 
-@WebServlet("/admin/loans/return")
+@WebServlet({ "/admin/loans/return", "/admin/loans/returned" })
 public class ReturnBookController extends HttpServlet{
 	
 	private final IReturnBookService service = ReturnBookServiceImpl.getService();
@@ -20,12 +20,25 @@ public class ReturnBookController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//1) 반납 대상 대출 목록 조회
+		String path = req.getServletPath();
+	    if("/admin/loans/returned".equals(path)) {
+	    	 List<Map<String,Object>> list = service.selectReturnedList();
+	         req.setAttribute("list", list);
+	         //req.setAttribute("pageTitle", "반납 완료 목록");
+	        // req.setAttribute("contentPage", "/WEB-INF/view/admin/loan_return/returnedList.jsp");
+	         req.getRequestDispatcher("/WEB-INF/view/admin/loan_return/returnedList.jsp").forward(req, resp);
+	   	  
+	    }
+	    else {
+	    	
+	    	//1) 반납 대상 대출 목록 조회
+	    	
+	    	List<Map<String, Object>> list = service.returnListMap();
+	    	req.setAttribute("list", list);
+	    	
+	    	req.getRequestDispatcher("/WEB-INF/view/admin/loan_return/returnBook.jsp").forward(req, resp);
+	    }
 		
-		List<Map<String, Object>> list = service.returnListMap();
-		req.setAttribute("list", list);
-		
-		req.getRequestDispatcher("/WEB-INF/view/admin/loan_return/returnBook.jsp").forward(req, resp);
 	}
 	
 	@Override

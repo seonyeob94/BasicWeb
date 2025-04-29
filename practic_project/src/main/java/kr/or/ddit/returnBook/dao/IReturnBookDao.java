@@ -26,4 +26,6 @@ public interface IReturnBookDao {
 	//5) ban_users 테이블 기준 정지자 자동 복귀
 	public int restoreBanned();
 	
+	public List<Map<String, Object>> selectReturnedList();
+	
 }

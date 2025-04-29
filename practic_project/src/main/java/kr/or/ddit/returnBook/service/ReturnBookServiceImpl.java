@@ -68,4 +68,12 @@ public class ReturnBookServiceImpl implements IReturnBookService {
 		return dao.returnListMap();
 	}
 
+
+
+	@Override
+	public List<Map<String, Object>> selectReturnedList() {
+		// TODO Auto-generated method stub
+		return dao.selectReturnedList();
+	}
+
 }
