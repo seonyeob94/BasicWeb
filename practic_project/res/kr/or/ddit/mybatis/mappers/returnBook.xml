@@ -239,7 +239,7 @@
 	    -- 날짜 차이 계산
 	    TRUNC(a.return_date) - TRUNC(a.due_date)           AS delayDays,
 	    TRUNC(a.return_date) - TRUNC(a.due_date) - p.days       AS overDays,
-	    -- 상태 &amp; 메시지 합치기
+	    -- 상태와 메시지 합치기
 	    CASE
 	      WHEN TRUNC(a.return_date) &lt;= TRUNC(a.due_date)
 	        THEN '정상반납'

@@ -48,7 +48,7 @@
 			   )
 	</update>
 	
-	<insert id="damageInsert">
+	<insert id="damageInsert" parameterType="DamagedLostBookVo">
 		INSERT INTO DAMAGED_LOST_BOOK
 			             (LOST_NO, 
 			             REPORT_DATE, 
@@ -63,14 +63,35 @@
 			   			SEQ_DAMAGED_LOST_BOOK.nextval,
 			   			SYSDATE,
 			   			#{lostStatus},
-			   			#{description},
+      					#{description},
 			   			'Y',
 			   			SYSDATE,
 			   			#{userNo},
-			   			#{realBook}
+      					#{realBook}
 			   		)          
 	</insert>
 	
+	<select id="damageBookList" resultType="Map">
+		SELECT D.LOST_NO AS "lostNo",
+	       B.BOOK_TITLE AS "bookTitle", 
+	       D.LOST_STATUS AS "lostStatus",
+	       D.REPORT_DATE AS "reportDate",
+	       D.DESCRIPTION AS "description",
+	       D.PROCESSED_DATE AS "processedDate",
+	       D.USER_NO AS "userNo",
+	       R.REAL_BOOK AS "realBook"
+	  FROM DAMAGED_LOST_BOOK D
+	  JOIN REAL_BOOK R ON D.REAL_BOOK=R.REAL_BOOK
+	  JOIN BOOKS B ON R.BOOK_NO= B.BOOK_NO
+	</select>
+	
+	 <update id="updateDamage">
+  	    MERGE INTO REAL_BOOK R
+		USING DAMAGED_LOST_BOOK D
+		   ON (R.REAL_BOOK = D.REAL_BOOK)
+		 WHEN MATCHED THEN
+	   UPDATE SET R.REAL_BOOK_STATUS = D.LOST_STATUS
+	  </update>
 	
 	
 	

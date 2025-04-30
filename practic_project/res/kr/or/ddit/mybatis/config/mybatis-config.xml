@@ -54,6 +54,7 @@
 		<mapper resource="kr/or/ddit/mybatis/mappers/loanExtension.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/notiBan.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/returnBook.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/damageBook.xml"/>
 	</mappers>
 
 </configuration>
